@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Documentation-Driven Development — Fanzine</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=IBM+Plex+Mono:wght@400;700&family=Oswald:wght@700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body {
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    background: #f5f0e8;
+    font-family: 'Special Elite', 'Courier New', monospace;
+    color: #1a1a1a;
+  }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    padding: 10mm 12mm;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 5mm;
+    position: relative;
+  }
+
+  /* NOISE TEXTURE OVERLAY */
+  .page::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── HEADER BANNER ── */
+  .header {
+    grid-column: 1 / -1;
+    border: 3px solid #1a1a1a;
+    border-bottom: 6px solid #1a1a1a;
+    padding: 4mm 6mm 3mm;
+    background: #1a1a1a;
+    color: #f5f0e8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-title {
+    font-family: 'Oswald', Impact, sans-serif;
+    font-size: 28pt;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .header-title span {
+    color: #e8a020;
+  }
+
+  .header-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7pt;
+    text-align: right;
+    line-height: 1.6;
+    opacity: 0.8;
+  }
+
+  .header-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 6pt;
+    border: 2px solid #e8a020;
+    color: #e8a020;
+    padding: 1mm 3mm;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  /* ── COLUMNS ── */
+  .col {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3mm;
+    font-size: 7pt;
+    line-height: 1.5;
+  }
+
+  /* ── SECTION TITLES ── */
+  .section-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10pt;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 1mm;
+    margin-bottom: 1mm;
+  }
+
+  .section-title.accent {
+    color: #c0390b;
+    border-color: #c0390b;
+  }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote {
+    background: #1a1a1a;
+    color: #f5f0e8;
+    padding: 3mm 4mm;
+    font-family: 'Oswald', sans-serif;
+    font-size: 9pt;
+    line-height: 1.4;
+    border-left: 4px solid #e8a020;
+  }
+
+  .pull-quote em {
+    color: #e8a020;
+    font-style: normal;
+  }
+
+  /* ── RULES BOX ── */
+  .rules-box {
+    border: 2px solid #1a1a1a;
+    padding: 2mm 3mm;
+  }
+
+  .rules-box ul {
+    padding-left: 4mm;
+  }
+
+  .rules-box li {
+    font-size: 6.5pt;
+    line-height: 1.5;
+    margin-bottom: 0.5mm;
+  }
+
+  /* ── LOOP DIAGRAM ── */
+  .loop-diagram {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 6pt;
+    background: #eee8d5;
+    border: 1px dashed #888;
+    padding: 2mm 3mm;
+    line-height: 1.7;
+    white-space: pre;
+  }
+
+  /* ── PROOF BOX ── */
+  .proof-box {
+    border: 2px solid #c0390b;
+    background: #fff5f0;
+    padding: 2mm 3mm;
+  }
+
+  .proof-box .label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 7pt;
+    text-transform: uppercase;
+    color: #c0390b;
+    margin-bottom: 1mm;
+  }
+
+  /* ── 2×2 GRID ── */
+  .grid2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1.5mm;
+  }
+
+  .grid-cell {
+    border: 1.5px solid #1a1a1a;
+    padding: 1.5mm 2mm;
+    font-size: 6pt;
+  }
+
+  .grid-cell .cell-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5mm;
+  }
+
+  /* ── LICENSE CALL ── */
+  .license-box {
+    background: #1a1a1a;
+    color: #f5f0e8;
+    border-left: 5px solid #e8a020;
+    padding: 2mm 3mm;
+    font-size: 6.5pt;
+    line-height: 1.5;
+  }
+
+  .license-box strong {
+    color: #e8a020;
+    font-family: 'Oswald', sans-serif;
+    font-size: 8pt;
+    text-transform: uppercase;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    grid-column: 1 / -1;
+    border-top: 3px solid #1a1a1a;
+    padding-top: 2mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    position: relative;
+  }
+
+  .footer-url {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10pt;
+    color: #c0390b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .footer-cta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 6pt;
+    text-align: right;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  .tag {
+    display: inline-block;
+    background: #1a1a1a;
+    color: #f5f0e8;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 5.5pt;
+    padding: 0.5mm 1.5mm;
+    margin: 0.3mm;
+    letter-spacing: 0.5px;
+  }
+
+  .tags { line-height: 1.8; }
+
+  hr.separator {
+    border: none;
+    border-top: 1px solid #999;
+    margin: 1mm 0;
+  }
+
+  p { margin-bottom: 1.5mm; }
+
+  @media print {
+    body { background: #f5f0e8; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══ HEADER ══ -->
+  <header class="header">
+    <div>
+      <div class="header-title">Documentation<span>-</span>Driven<br/>Development</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:6.5pt;color:#aaa;margin-top:2mm;">
+        The missing infrastructure for AI-assisted software teams
+      </div>
+    </div>
+    <div class="header-badge">DDD<br/>Manifesto<br/>v1.0 — 2026</div>
+    <div class="header-sub">
+      documentationfirst.ai<br/>
+      #DDD #ContextEngineering<br/>
+      #KnowledgeCapital
+    </div>
+  </header>
+
+  <!-- ══ COLUMN 1 ══ -->
+  <div class="col">
+
+    <div class="section-title">The Problem</div>
+    <p>AI agents are not dumb. They are <strong>amnesiac</strong>. Every session starts from zero. No context, no history, no conventions. You spend 20 minutes re-explaining the project before getting anything useful done.</p>
+
+    <div class="pull-quote">
+      Code is temporary.<br/><em>Documentation is permanent.</em>
+    </div>
+
+    <div class="section-title" style="margin-top:1mm;">The Flip</div>
+    <p>Instead of explaining the project to the AI — <strong>document it for the AI.</strong></p>
+    <p>Every architectural decision in a <code>.md</code> file. Every migration step written <em>before</em> execution. Every convention versioned alongside the code.</p>
+
+    <div class="section-title">The Loop</div>
+    <div class="loop-diagram">PO writes specs in .md
+→ Dev enriches with rules
+→ AI reads, executes, updates
+→ PO / Dev reviews → loops</div>
+
+    <div class="section-title" style="margin-top:1mm;">Getting Started</div>
+    <div class="rules-box">
+      <ul>
+        <li>📄 Functional specs (PO) → <code>specs-functional.md</code></li>
+        <li>📄 Technical specs (Dev) → <code>specs-technical.md</code></li>
+        <li>📄 AI report → <code>DONE.md</code></li>
+        <li>📁 Group by context in versioned subfolders</li>
+        <li>🎫 Prompt = User Story referencing the docs</li>
+      </ul>
+    </div>
+
+    <hr class="separator"/>
+    <p style="font-size:6pt;color:#555;">Context Engineering made accessible for entire teams. DDD is not about generating docs from code — it's the <strong>opposite</strong>.</p>
+
+  </div>
+
+  <!-- ══ COLUMN 2 ══ -->
+  <div class="col">
+
+    <div class="section-title">The Four File Types</div>
+    <div class="grid2x2">
+      <div class="grid-cell">
+        <span class="cell-title">📋 Spec</span>
+        User stories, acceptance criteria, business rules. Written by POs before dev starts.
+      </div>
+      <div class="grid-cell">
+        <span class="cell-title">⚙️ Technical</span>
+        Architecture decisions, API contracts, migration steps. Written by devs.
+      </div>
+      <div class="grid-cell">
+        <span class="cell-title">✅ Done</span>
+        Execution report. Written by the AI: what was done, why, and what changed.
+      </div>
+      <div class="grid-cell">
+        <span class="cell-title">📖 Best Practices</span>
+        Conventions, rules, anti-patterns. Updated when the AI makes a mistake.
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:2mm;">Three Superpowers</div>
+    <div class="rules-box">
+      <ul>
+        <li><strong>🌐 Language Agnostic</strong> — docs describe intent, not syntax. Survives every migration.</li>
+        <li><strong>📦 Fully Portable</strong> — plain Markdown in Git. Switch agents? Docs follow. Zero lock-in.</li>
+        <li><strong>🔄 Contextual Adaptation</strong> — every correction sharpens the docs. Errors don't repeat.</li>
+      </ul>
+    </div>
+
+    <div class="section-title" style="margin-top:2mm;">Reconstruction Guarantee</div>
+    <p style="font-size:6.5pt;">If you lost the codebase tomorrow, your <code>.md</code> files must allow you to:</p>
+    <div class="rules-box">
+      <ul>
+        <li>Understand the project's purpose and architecture</li>
+        <li>Know every rule and convention to follow</li>
+        <li>Reproduce every migration or refactoring step</li>
+        <li>Make correct decisions in ambiguous situations</li>
+      </ul>
+    </div>
+
+    <div class="pull-quote" style="margin-top:1mm;font-size:7pt;">
+      <em>The context is not a prompt.<br/>It is infrastructure.</em>
+    </div>
+
+  </div>
+
+  <!-- ══ COLUMN 3 ══ -->
+  <div class="col">
+
+    <div class="section-title accent">Real-World Proof</div>
+    <div class="proof-box">
+      <div class="label">🕹️ Legends of the Future Past — 1992</div>
+      <p style="font-size:6.5pt;">A MUD from 1992 came back online in 2026. Not because someone had the original server code — because the <strong>structured text files</strong> describing the world had survived: zones, characters, rules, quests, lore.</p>
+      <p style="font-size:6.5pt;">The executable was gone. The documentation was not. <strong>The game was rebuilt from its data files alone.</strong></p>
+      <p style="font-size:5.5pt;color:#c0390b;">Your .md files are those data files.</p>
+    </div>
+
+    <div class="section-title" style="margin-top:2mm;">Knowledge Capital</div>
+    <p style="font-size:6.5pt;">In DDD, the real intellectual property lives in the documentation — not the code. The code is a snapshot. The <code>.md</code> files encode <em>why</em> decisions were made, what failed, and what the team learned.</p>
+    <p style="font-size:6.5pt;font-style:italic;color:#555;">A team that loses its codebase can rebuild. A team that loses its Knowledge Capital starts from zero.</p>
+
+    <div class="license-box">
+      <strong>A Call for a New License</strong><br/>
+      MIT, Apache, CC BY — designed for artifacts. A DDD repo is not an artifact. It's a living context, co-authored by devs, POs, and AI agents.<br/>
+      <span style="color:#e8a020;">We need a Living Knowledge License.</span>
+    </div>
+
+    <div class="section-title" style="margin-top:2mm;">What's Next</div>
+    <p style="font-size:6pt;">Native IDE plugins (JetBrains + VSCode) that auto-detect <code>ai_md_files/</code>, inject context, and scaffold templates — and propose structured <code>.md</code> drafts from the current conversation.</p>
+    <p style="font-size:6pt;color:#555;font-style:italic;">The conversation is the raw material. The plugin proposes. The developer decides.</p>
+
+    <div class="tags">
+      <span class="tag">#DDD</span>
+      <span class="tag">#ContextEngineering</span>
+      <span class="tag">#KnowledgeCapital</span>
+      <span class="tag">#IDEFirst</span>
+      <span class="tag">#AIFirst</span>
+      <span class="tag">#OpenSource</span>
+    </div>
+
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <div class="footer-url">documentationfirst.ai</div>
+    <div style="font-size:6pt;color:#555;text-align:center;">
+      ☕ Patreon &nbsp;·&nbsp; Ko-fi &nbsp;·&nbsp; GitHub Sponsors<br/>
+      🏆 Documentation First Certification — founding spots open
+    </div>
+    <div class="footer-cta">
+      Fork the manifesto →<br/>
+      github.com/documentationfirst<br/>
+      <em style="font-size:5pt;">Code is temporary. Docs are forever.</em>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
