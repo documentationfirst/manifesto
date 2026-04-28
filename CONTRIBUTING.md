@@ -56,6 +56,6 @@ This is a manifesto about making software development better — that starts her
 
 ---
 
-*Questions? Open an issue or write to [hello@documentationfirst.ai](mailto:hello@documentationfirst.ai)*
+*Questions? Open an issue or write to [bonjour@documentationfirst.ai](mailto:bonjour@documentationfirst.ai)*
 
 
