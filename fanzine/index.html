@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Documentation-Driven Development — Fanzine #1</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=IBM+Plex+Mono:wght@400;700&family=Oswald:wght@400;700&family=Bebas+Neue&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @page {
+    size: A5;
+    margin: 0;
+  }
+
+  body {
+    background: #d6d0c4;
+    font-family: 'Special Elite', 'Courier New', monospace;
+    color: #1a1a1a;
+  }
+
+  /* ── EACH PAGE ── */
+  .zine-page {
+    width: 148mm;
+    height: 210mm;
+    background: #f5f0e8;
+    padding: 10mm 12mm;
+    margin: 0 auto 4mm;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  @media print {
+    body { background: white; }
+    .zine-page { margin: 0; }
+  }
+
+  /* ── NOISE ── */
+  .zine-page::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* ════════════════════════════
+     PAGE 1 — COVER
+  ════════════════════════════ */
+  .cover { background: #f5f0e8; }
+
+  .cover-band {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    background: #1a1a1a;
+    padding: 3mm 12mm;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7pt;
+    color: #e8a020;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .cover-title-block {
+    position: absolute;
+    top: 16mm; left: 0; right: 0;
+    background: #1a1a1a;
+    padding: 6mm 12mm 5mm;
+  }
+
+  .cover-title {
+    font-family: 'Bebas Neue', 'Oswald', sans-serif;
+    font-size: 38pt;
+    line-height: 0.95;
+    color: #f5f0e8;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+  }
+
+  .cover-title span { color: #e8a020; }
+
+  .cover-title-version {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7pt;
+    color: #aaa;
+    margin-top: 2mm;
+    letter-spacing: 2px;
+  }
+
+  .cover-subtitle {
+    position: absolute;
+    top: 92mm; left: 12mm; right: 12mm;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8.5pt;
+    color: #333;
+    line-height: 1.7;
+    border-top: 2px solid #1a1a1a;
+    padding-top: 3mm;
+  }
+
+  .cover-issue {
+    position: absolute;
+    bottom: 20mm; left: 12mm;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 6pt;
+    color: #555;
+    line-height: 1.8;
+  }
+
+  .cover-price {
+    position: absolute;
+    bottom: 20mm; right: 12mm;
+    border: 2px solid #1a1a1a;
+    color: #1a1a1a;
+    font-family: 'Oswald', sans-serif;
+    font-size: 9pt;
+    padding: 2mm 4mm;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .cover-tagline {
+    position: absolute;
+    bottom: 10mm; left: 12mm; right: 12mm;
+    text-align: center;
+    font-family: 'Special Elite', monospace;
+    font-size: 7pt;
+    color: #888;
+    border-top: 1px solid #ccc;
+    padding-top: 2mm;
+  }
+
+  /* ════════════════════════════
+     INNER PAGES — COMMON
+  ════════════════════════════ */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2.5px solid #1a1a1a;
+    padding-bottom: 2mm;
+    margin-bottom: 5mm;
+  }
+
+  .page-header .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 6pt;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #888;
+  }
+
+  .page-header .page-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 8pt;
+    color: #ccc;
+  }
+
+  h1.art {
+    font-family: 'Bebas Neue', 'Oswald', sans-serif;
+    font-size: 30pt;
+    line-height: 0.95;
+    text-transform: uppercase;
+    margin-bottom: 4mm;
+    letter-spacing: -0.5px;
+  }
+
+  h1.art span { color: #c0390b; }
+
+  h2.art {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13pt;
+    text-transform: uppercase;
+    border-left: 4px solid #e8a020;
+    padding-left: 3mm;
+    margin: 4mm 0 2mm;
+  }
+
+  h3.art {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #c0390b;
+    margin: 3mm 0 1mm;
+  }
+
+  p.body {
+    font-size: 7.5pt;
+    line-height: 1.65;
+    margin-bottom: 2mm;
+  }
+
+  p.intro {
+    font-size: 9pt;
+    line-height: 1.6;
+    font-style: italic;
+    color: #333;
+    margin-bottom: 3mm;
+    border-left: 3px solid #e8a020;
+    padding-left: 3mm;
+  }
+
+  .pull {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13pt;
+    line-height: 1.3;
+    background: #1a1a1a;
+    color: #f5f0e8;
+    padding: 4mm 5mm;
+    margin: 4mm 0;
+    border-left: 5px solid #e8a020;
+  }
+
+  .pull em { color: #e8a020; font-style: normal; }
+
+  .mono-block {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 6.5pt;
+    background: #eee8d5;
+    border: 1px dashed #999;
+    padding: 2.5mm 3mm;
+    line-height: 1.8;
+    white-space: pre;
+    margin: 2mm 0;
+  }
+
+  .callout {
+    border: 2px solid #1a1a1a;
+    padding: 3mm 4mm;
+    margin: 3mm 0;
+    font-size: 7pt;
+    line-height: 1.6;
+  }
+
+  .callout.red {
+    border-color: #c0390b;
+    background: #fff5f0;
+  }
+
+  .callout strong {
+    font-family: 'Oswald', sans-serif;
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1.5mm;
+  }
+
+  .callout.red strong { color: #c0390b; }
+
+  ul.zine-list {
+    padding-left: 5mm;
+    font-size: 7pt;
+    line-height: 1.8;
+  }
+
+  ul.zine-list li { margin-bottom: 0.5mm; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm;
+    margin: 3mm 0;
+  }
+
+  .two-col .cell {
+    border: 1.5px solid #1a1a1a;
+    padding: 2mm 2.5mm;
+    font-size: 6.5pt;
+    line-height: 1.5;
+  }
+
+  .two-col .cell strong {
+    font-family: 'Oswald', sans-serif;
+    font-size: 8pt;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1mm;
+  }
+
+  .tag-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5mm;
+    margin-top: 3mm;
+  }
+
+  .tag {
+    background: #1a1a1a;
+    color: #f5f0e8;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 5.5pt;
+    padding: 0.5mm 2mm;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── PAGE FOOTER ── */
+  .page-foot {
+    position: absolute;
+    bottom: 8mm; left: 12mm; right: 12mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #999;
+    padding-top: 2mm;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 5.5pt;
+    color: #888;
+  }
+
+  .page-foot .url { color: #c0390b; font-weight: bold; font-size: 6pt; }
+
+  /* ════════════════════════════
+     BACK COVER
+  ════════════════════════════ */
+  .back-cover { background: #f5f0e8; }
+
+  .bc-big {
+    font-family: 'Bebas Neue', 'Oswald', sans-serif;
+    font-size: 42pt;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin-bottom: 5mm;
+  }
+
+  .bc-big span { color: #e8a020; }
+
+  .barcode-fake {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 5pt;
+    letter-spacing: 3px;
+    color: #1a1a1a;
+    border-top: 1.5px solid #1a1a1a;
+    border-bottom: 1.5px solid #1a1a1a;
+    padding: 2mm 0;
+    text-align: center;
+    margin: 4mm 0;
+    word-break: break-all;
+  }
+
+  .support-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2mm;
+    margin: 3mm 0;
+  }
+
+  .support-item {
+    border: 1.5px solid #1a1a1a;
+    padding: 2mm;
+    text-align: center;
+    font-size: 6pt;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .support-item .emoji { font-size: 11pt; display: block; margin-bottom: 1mm; }
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     PAGE 1 — COVER
+═══════════════════════════════════════════ -->
+<div class="zine-page cover">
+  <div class="cover-band">Issue #1 · 2026 · Free / Open Source · documentationfirst.ai</div>
+
+  <div class="cover-title-block">
+    <div class="cover-title">Documentation<span>-</span>Driven<br/>Development <span>V2</span></div>
+    <div class="cover-title-version">Documentation First for AI — 2026</div>
+  </div>
+
+  <div class="cover-subtitle">
+    A field manual for developers,<br/>
+    POs, and AI agents working together.<br/>
+    <br/>
+    <strong>Stop explaining. Start documenting.</strong>
+  </div>
+
+  <div class="cover-issue">
+    DDD Fanzine #1<br/>
+    Documentation-Driven Development<br/>
+    v2.0 — April 2026<br/>
+    github.com/documentationfirst
+  </div>
+
+  <div class="cover-price">
+    FREE<br/>
+    <span style="font-size:6pt;">fork it</span>
+  </div>
+
+  <div class="cover-tagline">
+    Code is temporary &nbsp;·&nbsp; Docs are forever &nbsp;·&nbsp; #DDD #ContextEngineering
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 2 — EDITORIAL / THE PROBLEM
+═══════════════════════════════════════════ -->
+<div class="zine-page">
+  <div class="page-header">
+    <span class="section-label">Editorial</span>
+    <span class="page-num">02</span>
+  </div>
+
+  <h1 class="art">The AI<br/><span>Amnesia</span><br/>Problem.</h1>
+
+  <p class="intro">Every time you open a new session, the agent forgets everything. You re-explain the stack, the conventions, the last three weeks of decisions. Again.</p>
+
+  <p class="body">We've been building powerful AI tooling on top of a broken assumption: that the agent will somehow <em>remember</em>. It won't. Context windows close. Sessions expire. Memory is expensive and unreliable.</p>
+
+  <p class="body">The industry's answer has been prompts: longer, smarter, more elaborate prompts. But prompts are ephemeral. They vanish. They aren't versioned. They can't be reviewed, corrected, or shared with your team.</p>
+
+  <div class="pull">
+    AI agents are not dumb.<br/>
+    They are <em>amnesiac</em>.<br/>
+    The fix is not a better prompt.<br/>
+    It's <em>infrastructure</em>.
+  </div>
+
+  <p class="body">Documentation-Driven Development (DDD) is the answer. Not a framework. Not a tool. A discipline: <strong>write the context before you write the code.</strong></p>
+
+  <p class="body">This fanzine is a field manual. Tear it apart. Fork it. Disagree with it. But try it first.</p>
+
+  <div class="page-foot">
+    <span>DDD Fanzine #1 — 2026</span>
+    <span class="url">documentationfirst.ai</span>
+    <span>#DDD</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 3 — THE MANIFESTO CORE
+═══════════════════════════════════════════ -->
+<div class="zine-page">
+  <div class="page-header">
+    <span class="section-label">Manifesto</span>
+    <span class="page-num">03</span>
+  </div>
+
+  <h2 class="art">The Five Principles</h2>
+
+  <h3 class="art">1. Docs before code</h3>
+  <p class="body">Every feature, migration, or architectural change starts as a <code>.md</code> file. The agent reads the doc. Then it acts.</p>
+
+  <h3 class="art">2. Version your context</h3>
+  <p class="body">Documentation lives in Git alongside the code. It is reviewed, branched, and tagged. It has history. It is a first-class citizen.</p>
+
+  <h3 class="art">3. The agent writes back</h3>
+  <p class="body">After execution, the AI updates the documentation. What was done. What changed. What it learned. The loop closes.</p>
+
+  <h3 class="art">4. Knowledge is capital</h3>
+  <p class="body">The real IP of a team is not the code — it's the accumulated decisions, mistakes, and conventions encoded in the docs. Protect it. Grow it.</p>
+
+  <h3 class="art">5. Language agnostic</h3>
+  <p class="body">Docs describe intent, not syntax. When the stack changes, the docs survive. Angular → React, Python → Go: the knowledge travels.</p>
+
+  <div class="callout">
+    <strong>The DDD Loop</strong>
+    <div class="mono-block">PO   →  specs-functional.md
+Dev  →  specs-technical.md
+AI   →  reads, executes, writes DONE.md
+Team →  reviews, corrects, loops</div>
+  </div>
+
+  <div class="page-foot">
+    <span>DDD Fanzine #1 — 2026</span>
+    <span class="url">documentationfirst.ai</span>
+    <span>#DDD</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 4 — THE FOUR FILE TYPES
+═══════════════════════════════════════════ -->
+<div class="zine-page">
+  <div class="page-header">
+    <span class="section-label">Toolkit</span>
+    <span class="page-num">04</span>
+  </div>
+
+  <h1 class="art">Four<br/><span>Files.</span><br/>One System.</h1>
+
+  <div class="two-col">
+    <div class="cell">
+      <strong>📋 Spec</strong>
+      User stories, acceptance criteria, business rules. Written by the PO <em>before</em> development starts. The agent's primary input.
+    </div>
+    <div class="cell">
+      <strong>⚙️ Technical</strong>
+      Architecture decisions, API contracts, migration steps, constraints. Written by devs. The agent's operating manual.
+    </div>
+    <div class="cell">
+      <strong>✅ Done</strong>
+      Execution report. Written by the AI after each task: what was done, what changed, what was skipped and why.
+    </div>
+    <div class="cell">
+      <strong>📖 Best Practices</strong>
+      Conventions and anti-patterns. Updated every time the AI makes a mistake or a new rule is established.
+    </div>
+  </div>
+
+  <h2 class="art" style="margin-top:4mm;">Getting Started</h2>
+  <ul class="zine-list">
+    <li>📁 Create <code>.ai_context/</code> at the root of your repo</li>
+    <li>📄 Write functional specs → <code>specs-functional.md</code></li>
+    <li>📄 Write technical specs → <code>specs-technical.md</code></li>
+    <li>📁 Group by feature context in versioned subfolders</li>
+    <li>🎫 Your prompt = a User Story that references the docs</li>
+    <li>✅ AI writes back → <code>DONE.md</code> after execution</li>
+  </ul>
+
+  <div style="margin-top:3mm;border:2.5px solid #e8a020;background:#fdf8e8;padding:3mm 4mm;">
+    <div style="font-family:'Oswald',sans-serif;font-size:9pt;text-transform:uppercase;letter-spacing:1px;color:#1a1a1a;margin-bottom:2mm;border-bottom:1px solid #e8a020;padding-bottom:1mm;">✦ The 3S Rule — Every Context Doc Must Be</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2mm;">
+      <div style="border:1.5px solid #1a1a1a;padding:2mm;background:#fff;">
+        <div style="font-family:'Bebas Neue','Oswald',sans-serif;font-size:14pt;color:#c0390b;line-height:1;">S1</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:8pt;text-transform:uppercase;margin-bottom:1mm;">Selected</div>
+        <div style="font-size:6pt;line-height:1.5;">Only what the agent needs. No noise. No dump.</div>
+      </div>
+      <div style="border:1.5px solid #1a1a1a;padding:2mm;background:#fff;">
+        <div style="font-family:'Bebas Neue','Oswald',sans-serif;font-size:14pt;color:#c0390b;line-height:1;">S2</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:8pt;text-transform:uppercase;margin-bottom:1mm;">Synthetic</div>
+        <div style="font-size:6pt;line-height:1.5;">As short as possible. Distilled, not transcribed.</div>
+      </div>
+      <div style="border:1.5px solid #1a1a1a;padding:2mm;background:#fff;">
+        <div style="font-family:'Bebas Neue','Oswald',sans-serif;font-size:14pt;color:#c0390b;line-height:1;">S3</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:8pt;text-transform:uppercase;margin-bottom:1mm;">Structured</div>
+        <div style="font-size:6pt;line-height:1.5;">Headings, bullets, tables. Structure is clarity.</div>
+      </div>
+    </div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:5.5pt;color:#888;margin-top:2mm;text-align:center;">Noise kills context. A 3S doc is a doc the agent can actually use.</div>
+  </div>
+
+  <div class="page-foot">
+    <span>DDD Fanzine #1 — 2026</span>
+    <span class="url">documentationfirst.ai</span>
+    <span>#DDD</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 5 — REAL WORLD PROOF + SUPERPOWERS
+═══════════════════════════════════════════ -->
+<div class="zine-page">
+  <div class="page-header">
+    <span class="section-label">Case Study</span>
+    <span class="page-num">05</span>
+  </div>
+
+  <h2 class="art">Legends of the Future Past</h2>
+
+  <div class="callout red">
+    <strong>🕹️ A MUD from 1992 — resurrected in 2026</strong>
+    A text-based multiplayer game went offline. The server code was lost. Yet the game came back — because the <strong>structured text files</strong> describing the world had survived: zones, characters, rules, quests, lore.
+    <br/><br/>
+    The executable was gone. The documentation was not.
+    <strong style="color:#c0390b;">The game was rebuilt from its data files alone.</strong>
+    <br/><br/>
+    <em style="font-size:6.5pt;">Your <code>.md</code> files are those data files.</em>
+  </div>
+
+  <h2 class="art">Three Superpowers</h2>
+
+  <h3 class="art">🌐 Language Agnostic</h3>
+  <p class="body">Docs describe intent, not syntax. They survive every migration, every rewrite, every new framework. The knowledge outlives the stack.</p>
+
+  <h3 class="art">📦 Fully Portable</h3>
+  <p class="body">Plain Markdown in Git. Switch agents, switch IDEs, switch companies. Zero lock-in. The context travels with you.</p>
+
+  <h3 class="art">🔄 Contextual Adaptation</h3>
+  <p class="body">Every correction sharpens the docs. Every mistake that gets documented never repeats. The system learns — because the team writes it down.</p>
+
+  <div class="page-foot">
+    <span>DDD Fanzine #1 — 2026</span>
+    <span class="url">documentationfirst.ai</span>
+    <span>#DDD</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 6 — KNOWLEDGE CAPITAL + LICENSE CALL
+═══════════════════════════════════════════ -->
+<div class="zine-page">
+  <div class="page-header">
+    <span class="section-label">Philosophy</span>
+    <span class="page-num">06</span>
+  </div>
+
+  <h1 class="art">Knowledge<br/><span>is</span><br/>Capital.</h1>
+
+  <p class="body">In traditional software development, the codebase is the asset. In DDD, the codebase is a snapshot. The real intellectual property is the accumulated knowledge encoded in your documentation: every decision, every mistake, every constraint, every lesson.</p>
+
+  <p class="body">A team that loses its codebase can rebuild in weeks. A team that loses its Knowledge Capital starts from zero — and makes the same mistakes again.</p>
+
+  <div class="pull" style="font-size:10pt;">
+    Code is a snapshot.<br/>
+    <em>Docs are the source of truth.</em>
+  </div>
+
+  <div class="callout red" style="margin-top:3mm;">
+    <strong>⚖️ A Call for a New Kind of License</strong>
+    MIT, Apache, CC BY — all designed for software <em>artifacts</em>. A DDD repository is not an artifact. It is a living, evolving context — co-authored by developers, product owners, and AI agents over months or years.
+    <br/><br/>
+    We need a <strong>Living Knowledge License</strong>: one that acknowledges collective authorship, protects the integrity of the context, and enables fair use by AI systems without erasing attribution.
+    <br/><br/>
+    <em style="font-size:6pt;color:#c0390b;">Contribute to the discussion → github.com/documentationfirst</em>
+  </div>
+
+  <div class="page-foot">
+    <span>DDD Fanzine #1 — 2026</span>
+    <span class="url">documentationfirst.ai</span>
+    <span>#DDD</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 7 — WHAT'S NEXT / PLUGINS / MCP
+═══════════════════════════════════════════ -->
+<div class="zine-page">
+  <div class="page-header">
+    <span class="section-label">What's Next</span>
+    <span class="page-num">07</span>
+  </div>
+
+  <h2 class="art">The IDE Plugin</h2>
+  <p class="body">Native plugins for JetBrains and VSCode that auto-detect your <code>.ai_context/</code> folder, inject context into every AI request, scaffold new documentation templates, and — crucially — propose structured <code>.md</code> drafts from your current conversation.</p>
+
+  <div class="callout">
+    <strong>The idea</strong>
+    The conversation is the raw material. The plugin reads it, structures it, and proposes a versioned document. The developer reviews and commits. The knowledge is captured — not lost in a chat log.
+  </div>
+
+  <h2 class="art">DDD + MCP</h2>
+  <p class="body">The Model Context Protocol (MCP) by Anthropic formalises what DDD does informally: structured context injection for AI agents. DDD is a human workflow built on the same principle — and a natural fit for MCP-compatible tooling.</p>
+
+  <p class="body">As MCP matures, <code>.ai_context/</code> becomes a portable context server that any MCP-compatible agent can consume. Write once, serve everywhere.</p>
+
+  <h2 class="art">Memory vs. Documentation</h2>
+  <p class="body">Vector memory tools (MemPalace, etc.) are powerful — but expensive, opaque, and non-portable. DDD's hypothesis: <strong>well-structured versioned Markdown outperforms implicit memory</strong> for most software teams. Transparent, diffable, auditable. Always.</p>
+
+  <div class="tag-strip">
+    <span class="tag">#DDD</span>
+    <span class="tag">#ContextEngineering</span>
+    <span class="tag">#MCP</span>
+    <span class="tag">#IDEPlugin</span>
+    <span class="tag">#KnowledgeCapital</span>
+    <span class="tag">#OpenSource</span>
+  </div>
+
+  <div class="page-foot">
+    <span>DDD Fanzine #1 — 2026</span>
+    <span class="url">documentationfirst.ai</span>
+    <span>#DDD</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 8 — BACK COVER
+═══════════════════════════════════════════ -->
+<div class="zine-page back-cover">
+  <div class="bc-big">
+    Docs<br/>
+    Are<br/>
+    <span>Forever.</span>
+  </div>
+
+  <p style="font-size:8pt;line-height:1.7;font-family:'Special Elite',monospace;color:#333;margin-bottom:4mm;">
+    Code will be rewritten. Frameworks will be replaced. AI models will change. Your <code>.md</code> files will outlive all of it — if you treat them as the infrastructure they are.
+  </p>
+
+  <div class="barcode-fake">
+    |||  |||  |  |||  |  ||  |||  ||  |  ||  |||  |  |||  ||  |  ||  |||  |  |||  ||  |  ||  |||
+    documentationfirst.ai — DDD FANZINE #1 — 2026 — FREE
+  </div>
+
+  <div class="support-grid">
+    <div class="support-item">
+      <span class="emoji">☕</span>
+      Ko-fi<br/>
+      <span style="color:#888;">ko-fi.com/<br/>documentationfirst</span>
+    </div>
+    <div class="support-item">
+      <span class="emoji">🎁</span>
+      Patreon<br/>
+      <span style="color:#888;">patreon.com/<br/>documentationfirst</span>
+    </div>
+    <div class="support-item">
+      <span class="emoji">🏆</span>
+      Certification<br/>
+      <span style="color:#888;">Founding spots<br/>open now</span>
+    </div>
+  </div>
+
+  <div style="margin-top:4mm;font-family:'IBM Plex Mono',monospace;font-size:6.5pt;line-height:1.8;color:#555;">
+    Fork the manifesto → <strong style="color:#c0390b;">github.com/documentationfirst</strong><br/>
+    Improve it → open an Issue or a Pull Request<br/>
+    Share it → print it, post it, pin it on your wall
+  </div>
+
+  <div style="position:absolute;bottom:10mm;left:12mm;right:12mm;text-align:center;font-family:'Oswald',sans-serif;font-size:9pt;color:#1a1a1a;border-top:2px solid #1a1a1a;padding-top:2mm;">
+    documentationfirst.ai &nbsp;·&nbsp; #DocumentationFirst &nbsp;·&nbsp; #DDD
+  </div>
+</div>
+
+</body>
+</html>

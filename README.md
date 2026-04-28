@@ -21,6 +21,7 @@
 - [The Problem DDD Solves](#the-problem-ddd-solves)
 - [The Core Principle](#the-core-principle)
 - [DDD as Context Engineering](#ddd-as-context-engineering)
+- [The 3S Rule](#the-3s-rule--what-makes-a-good-context-document)
 - [The DDD Loop](#the-ddd-loop)
 - [The Four DDD File Types](#the-four-ddd-file-types)
 - [Why Markdown?](#why-markdown)
@@ -31,6 +32,11 @@
 - [Contextual Adaptation](#contextual-adaptation)
 - [DDD as Knowledge Capital](#ddd-as-knowledge-capital)
 - [A Call for a New Kind of License](#a-call-for-a-new-kind-of-license)
+- [The IDE-First Ecosystem](#the-ide-first-ecosystem)
+- [DDD & MCP — Advanced Integration](#ddd--mcp--advanced-integration)
+- [DDD & Contextual Memory Tools](#ddd--contextual-memory-tools)
+- [DDD Tooling Roadmap](#ddd-tooling-roadmap)
+- [What's Next](#whats-next)
 - [Getting Started](#getting-started)
 - [Support the Manifesto](#support-the-manifesto)
 - [Documentation First Certification](#documentation-first-certification)
@@ -103,10 +109,26 @@ DDD *is* Context Engineering — applied to software teams.
 
 Where Context Engineering describes the *what* (give the AI the right context), DDD describes the *how*:
 
+### The 3S Rule — What Makes a Good Context Document
+
+A DDD context document is not just any Markdown file. Every `.md` file in `.ai_context/` should satisfy the **3S Rule**:
+
+| S | Principle | Meaning |
+|---|---|---|
+| **Selected** | Only what the agent needs | Don't dump everything — choose what is relevant to the task, the feature, or the constraint. Noise kills context. |
+| **Synthetic** | Summarised, not verbose | Each document should be as short as possible while being complete enough to act on. Avoid copy-pasting raw logs or long prose — distill to the essential. |
+| **Structured** | Formatted for AI consumption | Use Markdown headings, bullet points, tables, and code blocks. Flat walls of text are hard for agents (and humans) to parse. Structure is clarity. |
+
+> *A document that is Selected, Synthetic, and Structured is a document the agent can actually use.*
+
+This rule applies to every file type in the DDD taxonomy: specs, technical notes, best practices, and execution reports.
+
+
+
 | Context Engineering concept | DDD implementation |
 |---|---|
 | Persistent context across sessions | Versioned `.md` files committed in the repo |
-| Structured knowledge base | `ai_md_files/` folder organized by domain |
+| Structured knowledge base | `.ai_context/` folder organized by domain |
 | Role-specific information | `specs-functional.md` (PO) vs `specs-technical.md` (dev) |
 | Behavioral rules and constraints | `best-practices.md` — always read first |
 | Execution trace and auditability | `DONE.md` — written by the AI after each task |
@@ -114,7 +136,7 @@ Where Context Engineering describes the *what* (give the AI the right context), 
 
 The key insight is that **context is not a prompt — it is infrastructure**.
 
-A one-shot prompt disappears after the session. A well-structured `ai_md_files/` folder is permanent, versionable, shareable, and improvable. It turns ephemeral AI interactions into a **durable, compounding asset** for the entire team.
+A one-shot prompt disappears after the session. A well-structured `.ai_context/` folder is permanent, versionable, shareable, and improvable. It turns ephemeral AI interactions into a **durable, compounding asset** for the entire team.
 
 > *Context Engineering asks: "what does the AI need to know?"*
 > *DDD answers: "everything — and it lives in `.md` files."*
@@ -195,7 +217,7 @@ This is the ultimate test of a DDD-compliant project.
 
 ## Real-World Proof: *Legends of the Future Past* (1992)
 
-> ��️ **The game that proved documentation outlives code.**
+> 🕹️ **The game that proved documentation outlives code.**
 
 **Legends of the Future Past** is a MUD (Multi-User Dungeon) that went offline and stayed dark for decades.
 In 2026, it came back online — not because someone had the original server code, but because the
@@ -230,7 +252,7 @@ Because DDD documentation lives in plain Markdown files committed alongside the 
 
 - Move from GitHub to GitLab? The docs follow.
 - Switch from GitHub Copilot to Claude to a local model? The docs follow.
-- Onboard a new team member or a new AI agent? Hand them the `ai_md_files/` folder.
+- Onboard a new team member or a new AI agent? Hand them the `.ai_context/` folder.
 - Fork the project? The entire context forks with it.
 
 No vendor lock-in. No proprietary format. No special tooling required to read, write, or update.
@@ -333,14 +355,249 @@ Until the community answers these questions, DDD projects are published under **
 
 ---
 
+## The IDE-First Ecosystem
+
+DDD's primary interface is **your IDE and its built-in AI agent** — not a chat window, not an external tool.
+
+The `.md` files live in the repository. The AI agent lives in the IDE. The developer stays in flow.
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                   THE IDE-FIRST LOOP                        │
+│                                                             │
+│   .ai_context/ (in repo)                                    │
+│         │                                                   │
+│         ▼  attached / referenced by the developer           │
+│   IDE Agent (Copilot, JetBrains AI, Cursor, Windsurf...)    │
+│         │                                                   │
+│         ▼  reads context → executes → updates .md           │
+│   Code + updated DONE.md                                    │
+│         │                                                   │
+│         ▼  reviewed and committed by the developer          │
+│   Git — versioned snapshot of code AND context              │
+└─────────────────────────────────────────────────────────────┘
+```
+
+This is not MCP. This is not an external service. This is a **local, zero-dependency, agent-agnostic workflow** that works with any IDE and any AI agent — today, without any additional tooling.
+
+MCP and other context protocols are valid extensions for advanced use cases (multi-agent, shared context servers), but they are **not required** and not the primary use case.
+
+---
+
+## DDD & MCP — Advanced Integration
+
+**Model Context Protocol (MCP)** is an open standard by Anthropic that allows AI agents to connect to external context sources (files, APIs, databases, tools) in a structured and interoperable way.
+
+DDD and MCP are **complementary, not competing**. MCP provides the *transport layer*. DDD provides the *structured, versioned content* worth transporting.
+
+### How they map to each other
+
+| DDD concept | MCP equivalent |
+|---|---|
+| `.ai_context/` folder | **MCP Resources** — files exposed to the agent |
+| `README_AI.md` / agent contract | **MCP System Prompt** — instructions injected at session start |
+| `best-practices.md` | **MCP Prompt template** — reusable, named prompt |
+| Interaction profiles (strict / standard / open) | **MCP Tool permissions** — scoped access control |
+| DDD IDE Plugin | **MCP Client** — the IDE becomes the MCP client |
+| Agent context server | **MCP Server** — local or remote, exposing DDD files |
+
+### Architecture in an MCP-enabled DDD project
+
+```
+IDE (IntelliJ / VSCode)
+  └── DDD Plugin (MCP Client)
+        ├── exposes .ai_context/  → MCP Resources
+        ├── exposes README_AI.md  → MCP System Prompt
+        ├── exposes templates/    → MCP Prompt Templates
+        └── connects to ──────→  AI Agent (Claude, Copilot, etc.)
+                                        via local MCP Server
+```
+
+### When to use MCP with DDD
+
+MCP becomes relevant when:
+
+- **Multiple agents** collaborate on the same project (e.g. a planning agent + a coding agent)
+- **Shared context servers** are needed across a team (one MCP server, many IDE clients)
+- **Dynamic context** is required (the server queries a database or live API to enrich the `.md` context)
+- **Audit and traceability** of context injection is required at the infrastructure level
+
+For individual developers working in a single IDE, **MCP is not required** — the DDD local workflow is sufficient and simpler.
+
+### The DDD Plugin as an MCP Server
+
+The planned DDD IDE plugins (JetBrains, VSCode) can optionally expose a local MCP server endpoint, making the `.ai_context/` context available to any MCP-compatible agent — including Claude Desktop, custom agents, or CI pipelines.
+
+```json
+// mcp-server-config.json (optional, in .ai_context/)
+{
+  "name": "ddd-context-server",
+  "version": "1.0.0",
+  "resources": [
+    { "uri": "file://.ai_context/**/*.md", "description": "Project DDD context" }
+  ],
+  "prompts": [
+    { "name": "agent-contract", "file": "README_AI.md" },
+    { "name": "best-practices", "file": "best-practices.md" }
+  ]
+}
+```
+
+> *MCP makes DDD context portable across agents. DDD makes MCP context meaningful and maintained.*
+
+---
+
+## DDD & Contextual Memory Tools
+
+A new category of tools has emerged alongside MCP: **contextual memory layers** — systems that give AI agents persistent, semantic memory across sessions.
+
+Examples: **Mem0**, **Zep**, **Mempalace**, **Letta (MemGPT)**.
+
+These tools store facts, preferences, and past interactions in a vector database, and automatically surface relevant memories when the agent needs them.
+
+### How they differ from DDD
+
+| Dimension | DDD (`.ai_context/`) | Memory tools (Mem0, Zep...) |
+|---|---|---|
+| What is stored | Structured rules, specs, decisions | Implicit facts, conversation history, preferences |
+| Who writes it | Developers and POs — deliberately | The agent — automatically |
+| Versionable | ✅ Yes — committed in Git | ❌ No — opaque vector store |
+| Shareable with the team | ✅ Yes | ❌ No — personal or session-scoped |
+| Auditable | ✅ Yes | ❌ Rarely |
+| Works with GitHub Copilot | ✅ Yes (via file attachment) | ❌ No — Copilot is a closed environment |
+| Works with Claude, Cursor, Cline | ✅ Yes | ✅ Yes — via MCP or SDK |
+
+### The key insight
+
+Memory tools and DDD operate at **different layers of memory**:
+
+```
+┌─────────────────────────────────────────────────────┐
+│              AI AGENT MEMORY LAYERS                 │
+│                                                     │
+│  Semantic memory  ←  Mem0 / Zep / Mempalace         │
+│  "you told me that..."                              │
+│                                                     │
+│  Structured context  ←  DDD (.ai_context/)          │
+│  "it is written in best-practices.md"               │
+│                                                     │
+│  Transport layer  ←  MCP                            │
+│  (delivers both layers to the agent automatically)  │
+└─────────────────────────────────────────────────────┘
+```
+
+### Is a memory layer necessary alongside DDD?
+
+> 🧪 **Working Hypothesis** — *If you practice DDD correctly, you don't need a contextual memory layer. A well-maintained `.ai_context/` folder is a strictly superior alternative: explicit, versionable, auditable, and infrastructure-free. This hypothesis guides all DDD tooling decisions.*
+
+**In most cases: no.**
+
+Memory tools add complexity, infrastructure cost, and opacity — in exchange for automating something DDD already does better, explicitly.
+
+Apply this test:
+> *If it's important enough for the agent to remember, it's important enough to be in a `.md` file.*
+
+Implicit memory is a shortcut that creates **context debt** — exactly the problem DDD is designed to eliminate.
+
+| Problem with memory tools | DDD solution |
+|---|---|
+| Opaque — you don't know what the agent "remembers" | Explicit — you know exactly what it read |
+| Degrades over time — old memories pollute new decisions | Always current — the `.md` reflects the current truth |
+| Infrastructure overhead — vector DB, embeddings, always-on | Zero infrastructure — plain files in Git |
+| Not versionable — no audit trail | Fully versionable — every change is a commit |
+| Breaks with closed agents (Copilot) | Works everywhere |
+
+| Situation | DDD alone | DDD + Memory tool |
+|---|---|---|
+| Single developer, one IDE (Copilot) | ✅ Sufficient | ❌ Not compatible |
+| Team sharing rules and conventions | ✅ Sufficient | ➖ Not needed |
+| Multi-session personal preferences | ⚠️ Manual effort | ✅ Marginal value |
+| Multi-agent pipelines (Claude, Cursor...) | ✅ Sufficient | ✅ Complementary |
+| Enterprise: shared context across teams | ✅ via Git | ➖ Adds infrastructure cost |
+
+Memory tools may add marginal value in **highly personal, conversational, multi-session** workflows — but for team-scoped, project-scoped, or agent-scoped context, DDD is strictly superior.
+
+> *What you want the team to remember → DDD. What the agent learns about you personally → memory tools, if you accept the trade-offs. When in doubt: write a `.md`.*
+
+---
+
+## DDD Tooling Roadmap
+
+DDD works today with any IDE. The next step is **native IDE support** — plugins that make DDD a first-class citizen of the development environment.
+
+### JetBrains Plugin (IntelliJ, WebStorm, Rider...)
+
+- Auto-detects `.ai_context/` in the project
+- **Templates by language/framework** at project init (Angular, Spring Boot, Python, Rust...)
+- Injects the relevant `.md` files into the **JetBrains AI agent context** automatically
+- UI panel to create, edit, and browse DDD files without leaving the IDE
+- "DDD Ready" project badge in the project tree
+
+### VSCode / Cursor / Windsurf Plugin
+
+- Same auto-detection and template system
+- Generates `.cursorrules`, `CLAUDE.md`, `COPILOT_INSTRUCTIONS.md` from the `best-practices.md`
+- Compatible with all major AI extensions (GitHub Copilot, Cursor, Continue, Cline...)
+- Command palette integration: `DDD: New feature context`, `DDD: New migration plan`, `DDD: View DONE.md`
+
+### Why IDE-first matters
+
+| Approach | Context delivery | Session persistence | Vendor lock-in |
+|---|---|---|---|
+| Copy-paste to chat | Manual, per session | None | High |
+| MCP server | Automated, external | Partial | Medium |
+| **DDD + IDE plugin** | **Automated, local** | **Full (committed)** | **None** |
+
+The plugin eliminates the only remaining friction in DDD: manually attaching files to the agent context. With the plugin, **the context is always ready — because it lives in the repo.**
+
+---
+
+## What's Next
+
+> Ideas under exploration — not yet implemented, but guiding the direction of DDD tooling.
+
+### 💬 Conversation-to-Document: Closing the Last Gap
+
+The DDD loop has one remaining blind spot: **the conversation itself**.
+
+Every meaningful session with an AI agent produces decisions, trade-offs, and discoveries. Today, those disappear when the session closes. They live nowhere — not in the code, not in the `.md` files, not in Git.
+
+The proposed solution: a plugin feature that **reads the current conversation and transforms it into a structured, editable DDD document**.
+
+Not a raw transcript — a **synthesized extraction**:
+
+```
+Conversation (16/04/2026) — ng-idle removal
+  ↓  plugin analyses and proposes
+decisions.md       ← "decided to remove ng-idle because Zone.js dependency"
+best-practices.md  ← "new rule: avoid Zone-dependent libraries"
+DONE.md            ← "what was done during this session"
+```
+
+The developer reviews, adjusts, and commits. **The conversation becomes Knowledge Capital.**
+
+#### The three principles of this feature
+
+| Principle | Rationale |
+|---|---|
+| **Extract, don't dump** | A raw transcript is noise. The plugin extracts what deserves to be permanent. |
+| **Propose, don't auto-commit** | The human validates what enters the `.md`. No silent writes. |
+| **`.md` first, not vector memory** | The output is editable Markdown — versionable, auditable, readable by any agent. |
+
+> *The conversation is the raw material. The plugin proposes. The developer decides what becomes documentation.*
+
+This is the final piece of the DDD loop — making sure **nothing that matters gets lost between sessions**.
+
+---
+
 ## Getting Started
 
-### Step 1 — Create the `ai_md_files/` folder structure
+### Step 1 — Create the `.ai_context/` folder structure
 
 Organize documentation by context, each in its own versioned subfolder:
 
 ```
-ai_md_files/
+.ai_context/
 ├── best-practices.md          ← global rules & conventions for the AI
 ├── docs/                      ← deep-dive technical references
 │   ├── RXJS_SIGNALS.md
@@ -395,8 +652,8 @@ Acceptance criteria:
 - [ ] ...
 - [ ] ...
 
-Technical context: see ai_md_files/features/authentication/specs-technical.md
-Rules to follow: see ai_md_files/best-practices.md
+Technical context: see .ai_context/features/authentication/specs-technical.md
+Rules to follow: see .ai_context/best-practices.md
 ```
 
 This works with any system — Jira, Linear, GitHub Issues, Notion, or even a personal note. The point is: **the ticket references the `.md` files, not the other way around.**
@@ -415,7 +672,7 @@ Commit the `.md` files alongside the code, with meaningful messages:
 ```
 feat(auth): implement login flow
 
-See ai_md_files/features/authentication/DONE.md for full execution report.
+See .ai_context/features/authentication/DONE.md for full execution report.
 ```
 
 Every commit is a versioned snapshot of both the code **and** its context.
@@ -444,7 +701,7 @@ The **Documentation First Certification** is a structured audit and recognition 
 
 ### What it includes
 
-- **Audit** — a structured review of your `ai_md_files/` folder, your DDD loop, and your team's practices
+- **Audit** — a structured review of your `.ai_context/` folder, your DDD loop, and your team's practices
 - **Certificate** — a dated, versioned certificate recognizing your organization as *Documentation First Certified*
 - **Badge** — a digital badge for your GitHub repo, with a verification link proving authenticity
 - **Annual renewal** — ensuring your practices stay current as DDD evolves with the AI landscape
@@ -470,3 +727,4 @@ The only rule: **the documentation drives the development, not the other way aro
 *Published under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)*
 *Website: [documentationfirst.ai](https://documentationfirst.ai)*
 *GitHub: [github.com/documentationfirst/manifesto](https://github.com/documentationfirst/manifesto)*
+

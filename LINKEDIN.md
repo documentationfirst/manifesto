@@ -22,6 +22,9 @@ In 2026, with AI agents in the loop, it's no longer optional. It's the missing i
 
 There's a term gaining traction in AI engineering circles: **Context Engineering** — the practice of designing and maintaining the information an AI agent needs to perform well. DDD is Context Engineering, made concrete and accessible for entire software teams.
 
+One rule stands at the heart of it: **the 3S Rule**.
+Every context document must be **Selected** (only what's relevant), **Synthetic** (distilled, not dumped), and **Structured** (headings, bullets, tables). Noise kills context. Structure is clarity.
+
 The key insight: **context is not a prompt. It is infrastructure.**
 
 A prompt disappears after the session. A versioned <code>.md</code> file is permanent, forkable, and gets smarter over time. That's the difference between a one-shot AI interaction and a **durable, compounding team asset**.
@@ -65,7 +68,7 @@ The `.md` files are simultaneously the **spec**, the **contract**, the **journal
 
 In practice, the structure looks like this:
 
-📁 `ai_md_files/features/authentication/`
+📁 `.ai_context/features/authentication/`
 &nbsp;&nbsp;&nbsp;&nbsp;📄 `specs-functional.md` ← PO writes user stories, acceptance criteria, business rules
 &nbsp;&nbsp;&nbsp;&nbsp;📄 `specs-technical.md` ← Dev writes architecture decisions, API contracts, constraints
 &nbsp;&nbsp;&nbsp;&nbsp;📄 `DONE.md` ← AI writes the execution report after completion
@@ -91,7 +94,7 @@ And it has three superpowers people don't expect:
 The `.md` files describe intent and rules — not syntax. Angular today, something else tomorrow? The documentation survives every migration. Only the code changes.
 
 **2. Fully portable** 📦
-Plain Markdown, committed alongside the code. Switch AI agents? The docs follow. Onboard a new dev? Hand them the `ai_md_files/` folder. Fork the project? The entire context forks with it. Zero vendor lock-in.
+Plain Markdown, committed alongside the code. Switch AI agents? The docs follow. Onboard a new dev? Hand them the `.ai_context/` folder. Fork the project? The entire context forks with it. Zero vendor lock-in.
 
 **3. Contextual adaptation** 🔄
 Every correction makes the next session smarter. When a convention changes → update the `.md`. When the AI makes a mistake → fix the `.md`, re-run. The error won't happen again. The documentation gets sharper with every iteration.
@@ -105,7 +108,7 @@ Not a chat window. Not an external platform. Your IDE — JetBrains AI, GitHub C
 The flow is:
 
 ```
-ai_md_files/ in the repo
+.ai_context/ in the repo
     → you attach or reference them in the IDE agent
     → AI reads context, executes, updates DONE.md
     → you commit code + docs together
@@ -117,15 +120,15 @@ No external server. No special infrastructure. Just Markdown files, versioned in
 
 **What about MCP and contextual memory tools?**
 
-**MCP** (Anthropic's Model Context Protocol) is a great complement — it automates the *injection* of your `ai_md_files/` context into the agent without manual attachment. Think of it as the transport layer: DDD provides the content, MCP delivers it automatically. Useful for multi-agent setups or team-shared context servers.
+**MCP** (Anthropic's Model Context Protocol) is a great complement — it automates the *injection* of your `.ai_context/` context into the agent without manual attachment. Think of it as the transport layer: DDD provides the content, MCP delivers it automatically. Useful for multi-agent setups or team-shared context servers.
 
 **Memory tools** (Mem0, Zep, Mempalace...) are a different story. They store implicit, conversational memory in a vector database. But here's our working hypothesis:
 
 > 🧪 *If you practice DDD correctly, you don't need a memory layer. If something is important enough for the agent to remember — write it in a `.md` file.*
 
-Memory tools are opaque, non-versionable, and incompatible with closed agents like GitHub Copilot. A well-maintained `ai_md_files/` folder does the same job — explicitly, transparently, and for free.
+Memory tools are opaque, non-versionable, and incompatible with closed agents like GitHub Copilot. A well-maintained `.ai_context/` folder does the same job — explicitly, transparently, and for free.
 
-The next step? **Native IDE plugins** — for JetBrains and VSCode — that auto-detect your `ai_md_files/` folder, inject the right context automatically, and scaffold templates for new features or migrations based on your tech stack.
+The next step? **Native IDE plugins** — for JetBrains and VSCode — that auto-detect your `.ai_context/` folder, inject the right context automatically, and scaffold templates for new features or migrations based on your tech stack.
 
 Zero friction. Always-ready context. No copy-paste.
 
@@ -194,4 +197,3 @@ If DDD resonates with you or your team:
 Would love to hear how your team manages context with AI agents 👇
 
 #AI #SoftwareEngineering #DeveloperExperience #DocumentationDrivenDevelopment #DDD #ContextEngineering #KnowledgeCapital #OpenSource #GitHub #Copilot #Cursor #JetBrains #LLM #IDEFirst
-
