@@ -68,6 +68,9 @@ This was later expanded by others (see [Andrew's article on Medium](https://buil
 We stand on the shoulders of zsup and the DDD community.
 We extend their work for a world where **AI agents are first-class contributors**.
 
+> *In 2026, with AI agents in the loop, it's no longer optional. It's the missing infrastructure.
+> No longer an **intern task** — it's now your core **architecture**!*
+
 ---
 
 ## What is DDD?

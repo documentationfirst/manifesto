@@ -14,18 +14,18 @@ So I flipped the model.
 
 Instead of explaining the project to the AI — **I document it for the AI.**
 
-I call this approach **Documentation-Driven Development (DDD)**.
+I call this approach **Documentation-Driven Development v2 (DDD2)**.
 
 Not a new term — zsup defined it back in 2014: *"write the docs before the code."* Spec-first. Clarity before implementation. A great idea that never fully took off.
 
-In 2026, with AI agents in the loop, it's no longer optional. It's the missing infrastructure.
+In 2026, with AI agents in the loop, it's no longer optional. It's the missing infrastructure. No longer an **intern task** — it's now your core **architecture**!
 
 There's a term gaining traction in AI engineering circles: **Context Engineering** — the practice of designing and maintaining the information an AI agent needs to perform well. DDD is Context Engineering, made concrete and accessible for entire software teams.
 
 One rule stands at the heart of it: **the 3S Rule**.
 Every context document must be **Selected** (only what's relevant), **Synthetic** (distilled, not dumped), and **Structured** (headings, bullets, tables). Noise kills context. Structure is clarity.
 
-The key insight: **context is not a prompt. It is infrastructure.**
+The key insight: **context is not a prompt. It is architecture.**
 
 A prompt disappears after the session. A versioned <code>.md</code> file is permanent, forkable, and gets smarter over time. That's the difference between a one-shot AI interaction and a **durable, compounding team asset**.
 
