@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="-10 -10 220 220" role="img" aria-label="Documentation First Certified Badge">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1a2a1a"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </radialGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Starburst 16 pointes -->
+  <polygon
+    fill="url(#bgGrad)"
+    stroke="#3fb950"
+    stroke-width="1.8"
+    filter="url(#glow)"
+    points="
+      100.00,2.00   117.54,27.65  137.94,10.54  141.57,40.00
+      168.00,32.00  157.65,59.46  185.46,62.06  162.35,82.46
+      198.00,100.00 162.35,117.54 185.46,137.94 157.65,140.57
+      168.00,168.00 141.57,157.65 137.94,185.46 117.54,162.35
+      100.00,198.00  82.46,162.35  62.06,185.46  59.43,157.65
+       32.00,168.00  42.35,140.57  14.54,137.94  37.65,117.54
+        2.00,100.00  37.65,82.46   14.54,62.06   42.35,59.43
+       32.00,32.00   59.43,42.35   62.06,14.54   82.46,37.65
+    "
+  />
+
+  <!-- Cercle de fond -->
+  <circle cx="100" cy="100" r="66" fill="#0d1117" stroke="#3fb950" stroke-width="1.8"/>
+  <!-- Anneau intérieur décoratif -->
+  <circle cx="100" cy="100" r="57" fill="none" stroke="#3fb950" stroke-width="0.5" opacity="0.35"/>
+
+  <!-- Logo D^ai : position mi-chemin entre centre (100,100) et haut-gauche (80,82) => (90,91) -->
+  <g transform="translate(90,91) scale(0.72) translate(-35,-50)" opacity="0.28">
+    <text x="0" y="90" font-size="90" font-family="Arial, sans-serif" font-weight="300" fill="#e8d5b0">D</text>
+    <text x="52" y="36" font-size="36" font-family="Arial, sans-serif" font-weight="normal" font-style="italic" fill="#e8d5b0" opacity="0.9">ai</text>
+  </g>
+
+  <!-- Checkmark agrandi, décalé légèrement vers le bas -->
+  <polyline
+    points="90,112 101,124 128,94"
+    fill="none"
+    stroke="#3fb950"
+    stroke-width="5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    filter="url(#glow)"
+  />
+
+  <!-- Texte en arc -->
+  <path id="topArc"    d="M 48,100 A 52,52 0 0,1 152,100" fill="none"/>
+  <path id="bottomArc" d="M 48,100 A 52,52 0 0,0 152,100" fill="none"/>
+
+  <text font-family="'Segoe UI', Arial, sans-serif" font-size="9.5" font-weight="700" fill="#3fb950" letter-spacing="1.8">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">AI DOCUMENTATION FIRST</textPath>
+  </text>
+
+  <text font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="600" fill="#8b949e" letter-spacing="3" dominant-baseline="auto">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">CERTIFIED</textPath>
+  </text>
+</svg>
