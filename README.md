@@ -113,7 +113,7 @@ Where Context Engineering describes the *what* (give the AI the right context), 
 
 A DDD context document is not just any Markdown file. Every `.md` file in `.ai_context/` should satisfy the **3S Rule**:
 
-| S | Principle | Meaning |
+| 3S | Principle | Meaning |
 |---|---|---|
 | **Selected** | Only what the agent needs | Don't dump everything — choose what is relevant to the task, the feature, or the constraint. Noise kills context. |
 | **Synthetic** | Summarised, not verbose | Each document should be as short as possible while being complete enough to act on. Avoid copy-pasting raw logs or long prose — distill to the essential. |
