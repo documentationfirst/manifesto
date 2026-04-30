@@ -300,14 +300,15 @@
     <p>Every architectural decision in a <code>.md</code> file. Every migration step written <em>before</em> execution. Every convention versioned alongside the code.</p>
 
     <div class="section-title">The Loop</div>
-    <div class="loop-diagram">PO writes specs in .md
-→ Dev enriches with rules
-→ AI reads, executes, updates
-→ PO / Dev reviews → loops</div>
+    <div class="loop-diagram">PO writes specs → specification/
+Dev enriches → technical/
+AI reads, executes → done/*.md
+PO / Dev reviews → loops</div>
 
     <div class="section-title" style="margin-top:1mm;">Getting Started</div>
     <div class="rules-box">
       <ul>
+        <li>🎓 Write your first skill → <code>skills/permanent-dev-stack.md</code></li>
         <li>📄 Functional specs (PO) → <code>specs-functional.md</code></li>
         <li>📄 Technical specs (Dev) → <code>specs-technical.md</code></li>
         <li>📄 AI report → <code>DONE.md</code></li>
@@ -332,23 +333,31 @@
   <!-- ══ COLUMN 2 ══ -->
   <div class="col">
 
-    <div class="section-title">The Four File Types</div>
-    <div class="grid2x2">
+    <div class="section-title">The Six Document Types</div>
+    <div class="grid2x2" style="grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,auto);">
       <div class="grid-cell">
-        <span class="cell-title">📋 Spec</span>
-        User stories, acceptance criteria, business rules. Written by POs before dev starts.
+        <span class="cell-title">📜 Contract</span>
+        Agent profile + permissions. Written once. Never reset.
+      </div>
+      <div class="grid-cell">
+        <span class="cell-title">🎯 Context</span>
+        Current unit of work: title, todos. Reset each context.
+      </div>
+      <div class="grid-cell">
+        <span class="cell-title">📋 Specification</span>
+        Functional specs (PO). Reset — except permanent-*.
       </div>
       <div class="grid-cell">
         <span class="cell-title">⚙️ Technical</span>
-        Architecture decisions, API contracts, migration steps. Written by devs.
+        Architecture & decisions (Dev). Reset — except permanent-*.
       </div>
       <div class="grid-cell">
         <span class="cell-title">✅ Done</span>
-        Execution report. Written by the AI: what was done, why, and what changed.
+        AI execution report. Every change, every decision. Fully reset.
       </div>
-      <div class="grid-cell">
-        <span class="cell-title">📖 Best Practices</span>
-        Conventions, rules, anti-patterns. Updated when the AI makes a mistake.
+      <div class="grid-cell" style="border-color:#e8a020;background:#fdf8e8;">
+        <span class="cell-title" style="color:#c0390b;">🎓 Skills</span>
+        Role, stack, conventions. Persists across all contexts.
       </div>
     </div>
 
@@ -396,28 +405,26 @@
     <p style="font-size:6.5pt;">In DDD, the real intellectual property lives in the documentation — not the code. The code is a snapshot. The <code>.md</code> files encode <em>why</em> decisions were made, what failed, and what the team learned.</p>
     <p style="font-size:6.5pt;font-style:italic;color:#555;">A team that loses its codebase can rebuild. A team that loses its Knowledge Capital starts from zero.</p>
 
-    <br/>
-
-    <div class="license-box">
-      <strong>A Call for a New License</strong><br/>
-      MIT, Apache, CC BY — designed for artifacts. A DDD repo is not an artifact. It's a living context, co-authored by devs, POs, and AI agents.<br/>
-      <span style="color:#e8a020;">We need a Living Knowledge License.</span>
+    <div class="section-title accent" style="margin-top:2mm;">Scientific Proof — 2026</div>
+    <div class="proof-box">
+      <div class="label">🔬 Microsoft Research — DELEGATE-52</div>
+      <p style="font-size:6.5pt;"><strong>19 models · 52 documents · 20 interactions</strong></p>
+      <p style="font-size:6.5pt;">Top models: <strong style="color:#c0390b;">~25% corrupted</strong>. Average: <strong style="color:#c0390b;">~50%</strong>. No plateau. Agentic tools: +6% worse.</p>
+      <p style="font-size:6.5pt;">Only Python (verifiable) held at 98%+. Prose? Silently degraded.</p>
+      <p style="font-size:5.5pt;color:#c0390b;margin-top:1.5mm;">DDD answer: AI adds to done/ — human reviews — Git tracks. No silent writes.</p>
     </div>
-
-    <br/>
 
     <div class="section-title" style="margin-top:2mm;">What's Next</div>
     <p style="font-size:6pt;">Native IDE plugins (JetBrains + VSCode) that auto-detect <code>.ai_context/</code>, inject context, and scaffold templates — and propose structured <code>.md</code> drafts from the current conversation.</p>
     <p style="font-size:6pt;color:#555;font-style:italic;">The conversation is the raw material. The plugin proposes. The developer decides.</p>
 
     <br/>
-    <br/>
 
     <div style="grid-column:1/-1;display:flex;flex-wrap:wrap;gap:1.5mm;justify-content:center;padding:2mm 0 1mm;border-top:1px solid #ccc;position:relative;z-index:1;">
       <span class="tag">#DDD</span>
       <span class="tag">#ContextEngineering</span>
       <span class="tag">#KnowledgeCapital</span>
-      <span class="tag">#IDEFirst</span>
+      <span class="tag">#DocFirst</span>
       <span class="tag">#AIFirst</span>
       <span class="tag">#OpenSource</span>
       <span class="tag">#3SRule</span>

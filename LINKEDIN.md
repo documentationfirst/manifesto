@@ -101,20 +101,16 @@ Every correction makes the next session smarter. When a convention changes → u
 
 ---
 
-One thing I want to be clear about: **DDD is IDE-first**.
+We built two open-source plugins to make DDD zero-friction in your IDE.
 
-Not a chat window. Not an external platform. Your IDE — JetBrains AI, GitHub Copilot, Cursor, Windsurf — whatever you already use.
+🔵 **DocumentFirst** for VSCode.
+🔌 **DocumentFirst** for JetBrains.
 
-The flow is:
+👉 [github.com/documentfirst](https://www.github.com/documentfirst)
 
-```
-.ai_context/ in the repo
-    → you attach or reference them in the IDE agent
-    → AI reads context, executes, updates DONE.md
-    → you commit code + docs together
-```
+Both plugins auto-detect your `.ai_context/` folder, scaffold the right templates for a new feature or migration, and give you a tree view of your entire knowledge structure without leaving the IDE.
 
-No external server. No special infrastructure. Just Markdown files, versioned in Git, read by your IDE agent.
+No external server. No special infrastructure. Just Markdown files, versioned in Git, and a plugin that knows where to look.
 
 ---
 
@@ -128,29 +124,26 @@ No external server. No special infrastructure. Just Markdown files, versioned in
 
 Memory tools are opaque, non-versionable, and incompatible with closed agents like GitHub Copilot. A well-maintained `.ai_context/` folder does the same job — explicitly, transparently, and for free.
 
-The next step? **Native IDE plugins** — for JetBrains and VSCode — that auto-detect your `.ai_context/` folder, inject the right context automatically, and scaffold templates for new features or migrations based on your tech stack.
+---
 
-Zero friction. Always-ready context. No copy-paste.
+🔬 **The theoretical proof — from Microsoft Research.**
+
+A paper published in 2026 by Philippe Laban, Tobias Schnabel and Jennifer Neville makes the case in hard numbers: *"LLMs Corrupt Your Documents When You Delegate."*
+
+They tested 19 models — including frontier ones — across 52 documents, with 20 editing interactions each. The result?
+
+> **25% of document content was degraded** by the best models. Average across all 19: **50% degradation**. And the decline never plateaued — it was monotonic. The longer you delegate, the worse it gets.
+
+Peter Naur argued in 1985 that a program is not its source code. It's **the theory** — the mental model of how and why the system works — held by the people who built it. When those people leave, the theory dies. You're left with an artifact nobody truly comprehends.
+[(Source)](https://cekrem.github.io/posts/llms-corrupt-your-documents/)
+
+This paper shows something worse. When you delegate document maintenance to an LLM, **the theory dies twice**: you didn't build the understanding because you delegated, *and* the LLM silently corrupted the artifact itself. You've lost both the map and the territory.
+
+DDD is the antidote. The `.md` files *are* the theory — written down, versioned, human-owned. The AI executes against them. The human reviews the diff. The theory survives.
 
 ---
 
-🔭 **One more idea on the horizon.**
-
-The DDD loop still has one blind spot: **the conversation itself**.
-
-Every session produces decisions, discoveries, trade-offs. Today, they vanish when the session closes.
-
-The next step for the IDE plugins: **read the current conversation and propose a structured `.md` draft** — decisions, new rules, execution notes — that the developer reviews and commits.
-
-Not a memory tool. Not a transcript. A **proposed document**, human-validated, that enters the Knowledge Capital of the project.
-
-> *The conversation is the raw material. The plugin proposes. The developer decides.*
-
-That's the last missing piece of the DDD loop.
-
----
-
- The proof  coming from an unexpected place.
+A proof coming from an unexpected place.
 
 🕹️ **Legends of the Future Past** — a MUD from 1992 — just came back online in 2026.
 Not because someone had the original server code. Because the **structured text files describing the world** had survived: zones, characters, rules, quests, lore.

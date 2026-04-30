@@ -461,9 +461,9 @@
 
   <div class="callout">
     <strong>The DDD Loop</strong>
-    <div class="mono-block">PO   →  specs-functional.md
-Dev  →  specs-technical.md
-AI   →  reads, executes, writes DONE.md
+    <div class="mono-block">PO   →  specification/specs-functional.md
+Dev  →  technical/specs-technical.md
+AI   →  reads, executes, writes done/*.md
 Team →  reviews, corrects, loops</div>
   </div>
 
@@ -484,35 +484,40 @@ Team →  reviews, corrects, loops</div>
     <span class="page-num">04</span>
   </div>
 
-  <h1 class="art">Four<br/><span>Files.</span><br/>One System.</h1>
+  <h1 class="art">Six<br/><span>Types.</span><br/>One System.</h1>
 
   <div class="two-col">
     <div class="cell">
-      <strong>📋 Spec</strong>
-      User stories, acceptance criteria, business rules. Written by the PO <em>before</em> development starts. The agent's primary input.
+      <strong>📜 Contract</strong>
+      Agent profile: strict / standard / permissive. Permissions. Written once. Never reset.
+    </div>
+    <div class="cell">
+      <strong>🎯 Context</strong>
+      Current unit of work: title, description, todo list. Read first. Reset on each new context.
+    </div>
+    <div class="cell">
+      <strong>📋 Specification</strong>
+      Functional specs (PO). User stories, acceptance criteria. Reset — except <code>permanent-*</code>.
     </div>
     <div class="cell">
       <strong>⚙️ Technical</strong>
-      Architecture decisions, API contracts, migration steps, constraints. Written by devs. The agent's operating manual.
+      Architecture decisions, API contracts (Dev). Reset — except <code>permanent-*</code>.
     </div>
     <div class="cell">
       <strong>✅ Done</strong>
-      Execution report. Written by the AI after each task: what was done, what changed, what was skipped and why.
+      Execution report. Written by the AI after each task. Fully reset on new context.
     </div>
     <div class="cell">
-      <strong>📖 Best Practices</strong>
-      Conventions and anti-patterns. Updated every time the AI makes a mistake or a new rule is established.
+      <strong>🎓 Skills</strong>
+      Role, stack, conventions — persists across all contexts. The agent's permanent identity.
     </div>
   </div>
 
   <h2 class="art" style="margin-top:4mm;">Getting Started</h2>
   <ul class="zine-list">
-    <li>📁 Create <code>.ai_context/</code> at the root of your repo</li>
+    <li>🎓 Write your first skill → <code>skills/permanent-dev-stack.md</code></li>
     <li>📄 Write functional specs → <code>specs-functional.md</code></li>
     <li>📄 Write technical specs → <code>specs-technical.md</code></li>
-    <li>📁 Group by feature context in versioned subfolders</li>
-    <li>🎫 Your prompt = a User Story that references the docs</li>
-    <li>✅ AI writes back → <code>DONE.md</code> after execution</li>
   </ul>
 
   <div style="margin-top:3mm;border:2.5px solid #e8a020;background:#fdf8e8;padding:3mm 4mm;">
@@ -546,12 +551,66 @@ Team →  reviews, corrects, loops</div>
 
 
 <!-- ══════════════════════════════════════════
-     PAGE 5 — REAL WORLD PROOF + SUPERPOWERS
+     PAGE 5 — SKILLS FOLDER
+═══════════════════════════════════════════ -->
+<div class="zine-page">
+  <div class="page-header">
+    <span class="section-label">Skills</span>
+    <span class="page-num">05</span>
+  </div>
+
+  <h1 class="art">Skills/<br/><span>Persistent</span><br/>Knowledge.</h1>
+
+  <p class="intro">Specs describe what to build. Skills describe <em>who the agent is on your project</em>. They survive every context switch.</p>
+
+  <div class="pull">
+    Documents = what to do <em>now</em>.<br/>
+    Skills = <em>how to work</em> here, always.
+  </div>
+
+  <h3 class="art">What goes in a skill?</h3>
+  <div class="two-col">
+    <div class="cell">
+      <strong>🎭 Role</strong>
+      Senior dev? Architect? PO writer? Define the persona before the first line of code.
+    </div>
+    <div class="cell">
+      <strong>🛠️ Stack</strong>
+      Languages, frameworks, forbidden libs, build tools. What exists. What must not appear.
+    </div>
+    <div class="cell">
+      <strong>📐 Conventions</strong>
+      Naming, file structure, patterns to follow and avoid. The unwritten rules — now written.
+    </div>
+    <div class="cell">
+      <strong>🗺️ Architecture</strong>
+      Where things live. What touches what. How to navigate without getting lost.
+    </div>
+  </div>
+
+  <h3 class="art">The permanent- convention</h3>
+  <div class="mono-block">skills/
+├── permanent-dev-typescript.md  ← survives
+├── permanent-architecture.md    ← survives
+└── onboarding-notes.md          ← reset on new context</div>
+
+  <p class="body" style="font-size:6.5pt;color:#555;margin-top:2mm;">Any file prefixed <code>permanent-</code> in <code>skills/</code>, <code>specification/</code> or <code>technical/</code> is <strong>kept when switching to a new context</strong>. Everything else is cleared.</p>
+
+  <div class="page-foot">
+    <span>DDD Fanzine #1 — 2026</span>
+    <span class="url">documentationfirst.ai</span>
+    <span>#DDD</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 6 — REAL WORLD PROOF + SUPERPOWERS
 ═══════════════════════════════════════════ -->
 <div class="zine-page">
   <div class="page-header">
     <span class="section-label">Case Study</span>
-    <span class="page-num">05</span>
+    <span class="page-num">06</span>
   </div>
 
   <h2 class="art">Legends of the Future Past</h2>
@@ -566,16 +625,25 @@ Team →  reviews, corrects, loops</div>
     <em style="font-size:6.5pt;">Your <code>.md</code> files are those data files.</em>
   </div>
 
-  <h2 class="art">Three Superpowers</h2>
+  <h2 class="art" style="margin-top:4mm;">Microsoft Research — 2026</h2>
 
-  <h3 class="art">🌐 Language Agnostic</h3>
-  <p class="body">Docs describe intent, not syntax. They survive every migration, every rewrite, every new framework. The knowledge outlives the stack.</p>
+  <div class="callout" style="border-color:#1a1a1a;background:#f0ede5;">
+    <strong>🔬 "LLMs Corrupt Your Documents When You Delegate"</strong>
+    DELEGATE-52 benchmark — 19 models, 52 documents, 20 interactions each.
+    <br/><br/>
+    Top frontier models: <strong>~25% of content corrupted</strong> after 20 interactions.
+    Average across all models: <strong>~50%</strong>. No plateau at 100 interactions.
+    Agentic tool use (web, code): <strong>+6% additional degradation</strong>.
+    <br/><br/>
+    Only Python code — mechanically verifiable — held at 98%+.
+    <em style="font-size:6pt;color:#555;">Everything else? Silently corrupted.</em>
+  </div>
 
-  <h3 class="art">📦 Fully Portable</h3>
-  <p class="body">Plain Markdown in Git. Switch agents, switch IDEs, switch companies. Zero lock-in. The context travels with you.</p>
-
-  <h3 class="art">🔄 Contextual Adaptation</h3>
-  <p class="body">Every correction sharpens the docs. Every mistake that gets documented never repeats. The system learns — because the team writes it down.</p>
+  <div class="pull" style="font-size:8.5pt;margin-top:3mm;">
+    DDD's answer: the AI <em>adds</em> to done/.<br/>
+    The human <em>reviews and commits</em>.<br/>
+    Git <em>tracks everything</em>. No silent writes.
+  </div>
 
   <div class="page-foot">
     <span>DDD Fanzine #1 — 2026</span>
@@ -586,21 +654,26 @@ Team →  reviews, corrects, loops</div>
 
 
 <!-- ══════════════════════════════════════════
-     PAGE 6 — KNOWLEDGE CAPITAL + LICENSE CALL
+     PAGE 7 — KNOWLEDGE CAPITAL + LICENSE CALL
 ═══════════════════════════════════════════ -->
 <div class="zine-page">
   <div class="page-header">
     <span class="section-label">Philosophy</span>
-    <span class="page-num">06</span>
+    <span class="page-num">07</span>
   </div>
 
   <h1 class="art">Knowledge<br/><span>is</span><br/>Capital.</h1>
 
-  <p class="body">In traditional software development, the codebase is the asset. In DDD, the codebase is a snapshot. The real intellectual property is the accumulated knowledge encoded in your documentation: every decision, every mistake, every constraint, every lesson.</p>
+  <h3 class="art">🌐 Language Agnostic</h3>
+  <p class="body">Docs describe intent, not syntax. They survive every migration, every rewrite. Angular → React, Python → Go: the knowledge travels.</p>
 
-  <p class="body">A team that loses its codebase can rebuild in weeks. A team that loses its Knowledge Capital starts from zero — and makes the same mistakes again.</p>
+  <h3 class="art">📦 Fully Portable</h3>
+  <p class="body">Plain Markdown in Git. Switch agents, switch IDEs, switch companies. Zero lock-in. The context travels with you.</p>
 
-  <div class="pull" style="font-size:10pt;">
+  <h3 class="art">🔄 Contextual Adaptation</h3>
+  <p class="body">Every correction sharpens the docs. Every mistake documented never repeats. The system learns — because the team writes it down.</p>
+
+  <div class="pull" style="font-size:10pt;margin-top:3mm;">
     Code is a snapshot.<br/>
     <em>Docs are the source of truth.</em>
   </div>
@@ -611,7 +684,7 @@ Team →  reviews, corrects, loops</div>
     <br/><br/>
     We need a <strong>Living Knowledge License</strong>: one that acknowledges collective authorship, protects the integrity of the context, and enables fair use by AI systems without erasing attribution.
     <br/><br/>
-    <em style="font-size:6pt;color:#c0390b;">Contribute to the discussion → github.com/documentationfirst</em>
+    <em style="font-size:6pt;color:#c0390b;">A team that loses its codebase can rebuild. A team that loses its Knowledge Capital starts from zero.</em>
   </div>
 
   <div class="page-foot">
@@ -623,12 +696,12 @@ Team →  reviews, corrects, loops</div>
 
 
 <!-- ══════════════════════════════════════════
-     PAGE 7 — WHAT'S NEXT / PLUGINS / MCP
+     PAGE 8 — WHAT'S NEXT / PLUGINS / MCP
 ═══════════════════════════════════════════ -->
 <div class="zine-page">
   <div class="page-header">
     <span class="section-label">What's Next</span>
-    <span class="page-num">07</span>
+    <span class="page-num">08</span>
   </div>
 
   <h2 class="art">The IDE Plugin</h2>
@@ -665,7 +738,7 @@ Team →  reviews, corrects, loops</div>
 
 
 <!-- ══════════════════════════════════════════
-     PAGE 8 — BACK COVER
+     PAGE 9 — BACK COVER
 ═══════════════════════════════════════════ -->
 <div class="zine-page back-cover">
   <div class="bc-big">

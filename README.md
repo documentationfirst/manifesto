@@ -23,10 +23,12 @@
 - [DDD as Context Engineering](#ddd-as-context-engineering)
 - [The 3S Rule](#the-3s-rule--what-makes-a-good-context-document)
 - [The DDD Loop](#the-ddd-loop)
-- [The Four DDD File Types](#the-four-ddd-file-types)
+- [The DDD Document Types](#the-ddd-document-types)
+- [The `skills/` Folder](#the-skills-folder--reusable-agent-knowledge)
 - [Why Markdown?](#why-markdown)
 - [The Reconstruction Guarantee](#the-reconstruction-guarantee)
 - [Real-World Proof](#real-world-proof-legends-of-the-future-past-1992)
+- [Scientific Proof](#scientific-proof-llms-corrupt-your-documents)
 - [Language Agnostic](#language-agnostic)
 - [Portability](#portability)
 - [Contextual Adaptation](#contextual-adaptation)
@@ -177,19 +179,76 @@ The `.md` files are simultaneously:
 
 ---
 
-## The Four DDD File Types
+## The DDD Document Types
 
-### 1. `best-practices.md`
-Rules, conventions, and patterns the AI **must** follow. Updated as the team learns.
+The `.ai_context/` folder organises documentation into six distinct types, each with a clear owner and lifecycle:
 
-### 2. `migration-xxx.md`
-Instructions for a specific migration or refactoring. Written *before* execution. Acts as a prompt and a checklist.
+### 1. `CONTRACT.md` *(permanent)*
+The agent's interaction contract. Defines the profile (strict / standard / permissive): what the agent may or may not do, how it should communicate. Written once at project init. Never reset.
 
-### 3. `MIGRATION_DONE.md` (or equivalent)
-The execution report. Written *by the AI* after completing the task. Describes every change made, every decision taken, and every trade-off.
+### 2. `CONTEXT.md` *(contextual)*
+The current unit of work: title, description, todo list. Reset each time the team starts a new context. The agent reads this first to understand what to do *right now*.
 
-### 4. `docs/*.md`
-Deep-dive documentation on specific topics (zoneless Angular, RxJS vs signals, testing patterns, etc.). The AI reads these to understand the project's technical philosophy.
+### 3. `documents/specification/` *(contextual, permanent-* kept)*
+Functional specifications written by the PO: user stories, acceptance criteria, business rules, edge cases. Reset on new context — except files prefixed `permanent-`.
+
+### 4. `documents/technical/` *(contextual, permanent-* kept)*
+Technical decisions written by the dev: architecture choices, API contracts, constraints, migration steps. Reset on new context — except files prefixed `permanent-`.
+
+### 5. `documents/done/` *(contextual)*
+Execution reports written *by the AI* after each task: what was done, what changed, every decision and trade-off. Fully reset on new context. The Git history is the archive.
+
+### 6. `skills/` *(permanent-* kept)*
+Reusable agent knowledge that persists across all contexts: role definition, stack, conventions, architecture map. See [The `skills/` Folder](#the-skills-folder--reusable-agent-knowledge).
+
+---
+
+| Type | Owner | Lifecycle |
+|---|---|---|
+| `CONTRACT.md` | Dev (init) | Permanent |
+| `CONTEXT.md` | Dev | Reset on new context |
+| `specification/` | PO | Reset (except `permanent-*`) |
+| `technical/` | Dev | Reset (except `permanent-*`) |
+| `done/` | AI | Fully reset |
+| `skills/` | Dev | `permanent-*` kept, others reset |
+
+---
+
+## The `skills/` Folder — Reusable Agent Knowledge
+
+Beyond context-specific documents, DDD introduces a dedicated folder for **persistent, reusable knowledge**: the `skills/` folder.
+
+> *A skill is what the agent needs to know about **how to work** on this project — independently of what to do right now.*
+
+While `documents/` captures the *current context*, `skills/` captures the *stable knowledge* that applies across all contexts:
+
+| Folder | Contains | Lifecycle |
+|---|---|---|
+| `documents/specification/` | Functional specs for the current context | Reset on new context (except `permanent-*`) |
+| `documents/technical/` | Technical decisions for the current context | Reset on new context (except `permanent-*`) |
+| `documents/done/` | Execution reports written by the AI | Fully reset on new context |
+| **`skills/`** | **Role, stack, conventions, domain expertise** | **Persists across all contexts (`permanent-*`)** |
+
+### What goes in a skill?
+
+A skill document typically defines:
+- **Role** — who the agent should be on this project (senior dev, architect, PO-facing writer…)
+- **Stack & constraints** — languages, frameworks, forbidden libraries, build tools
+- **Conventions** — naming, file structure, patterns to follow and avoid
+- **Architecture map** — how the codebase is shaped, where things live
+
+### The `permanent-` convention
+
+Any file prefixed with `permanent-` in `skills/` (or in `specification/` and `technical/`) is **preserved when switching to a new context**. Everything else is reset.
+
+```
+skills/
+├── permanent-dev-typescript.md    ← survives all context switches
+├── permanent-architecture.md      ← survives all context switches
+└── onboarding-notes.md            ← reset on next context switch
+```
+
+> *Skills are the agent's memory of **who it is on this project**. Documents are its memory of **what it is doing right now**.*
 
 ---
 
@@ -236,6 +295,49 @@ The codebase can be rewritten by any competent developer — or any AI agent.
 The **context** — decisions, conventions, architecture, history — cannot be recovered if it was never written down.
 
 > *Code is temporary. Documentation is permanent.*
+
+---
+
+## Scientific Proof: LLMs Corrupt Your Documents
+
+> 🔬 **The research that proves human guardianship of documents is not optional.**
+
+In April 2026, Microsoft Research published **"LLMs Corrupt Your Documents When You Delegate"** (Laban, Schnabel, Neville). Their DELEGATE-52 benchmark tested 19 models — including frontier models — across 52 documents and 20 interactions each.
+
+The results are unambiguous:
+
+| Condition | Document degradation after 20 interactions |
+|---|---|
+| Top-tier frontier models | **~25%** of content corrupted |
+| Average across 19 models | **~50%** of content corrupted |
+| At 100 interactions | No plateau — **monotonic decline** |
+| With agentic tool use (web, code exec) | **+6% additional degradation** |
+
+The only domain that held up: **Python code** — the most mechanically verifiable, compiler-checked domain in the dataset. Everything else, including prose and structured documents, degraded silently.
+
+### Why this matters for DDD
+
+This research validates the core architectural choice of DDD — and explains *why* it works.
+
+**The corruption is silent.** The model doesn't produce gibberish. It makes small, confident changes: a detail shifted, a qualification dropped, an emphasis altered. You'd have to read the entire document against the original to catch it. Nobody does that. That's exactly how context debt accumulates.
+
+**DDD's structural answer:**
+
+| Risk identified by the research | DDD's architectural response |
+|---|---|
+| LLMs corrupt documents when asked to update them | The AI only **adds new files** in `done/` — never modifies existing docs |
+| Errors compound over multiple interactions | Each context starts clean; `done/` is fully reset |
+| Agentic setups make corruption worse | The developer reviews and **commits** every change — no silent writes |
+| Short-term performance hides long-term decay | Git tracks every change — corruption is detectable and reversible |
+| You lose both the document and the mental model | `skills/permanent-*` are human-written and never AI-modified |
+
+The author of the article, Christian Ekrem, connects this to Peter Naur's 1985 theory of programming:
+
+> *"When you delegate document maintenance to an LLM, the theory dies twice. First: you didn't build the understanding, because you delegated. Second: the LLM silently corrupted the artifact itself."*
+
+DDD answers this directly: **the human writes the context. The AI operates within it. The human validates the output before it enters Git.** The theory never dies — because it was never delegated.
+
+> *The documents are not the AI's to modify. They are the team's to maintain. The AI's job is to execute — and to report.*
 
 ---
 
@@ -601,25 +703,18 @@ Organize documentation by context, each in its own versioned subfolder:
 
 ```
 .ai_context/
-├── best-practices.md          ← global rules & conventions for the AI
-├── docs/                      ← deep-dive technical references
-│   ├── RXJS_SIGNALS.md
-│   ├── ZONELESS_MIGRATION.md
-│   └── ...
-├── features/                  ← one subfolder per functional domain
-│   ├── authentication/
-│   │   ├── specs-functional.md    ← functional specifications (PO-owned)
-│   │   ├── specs-technical.md     ← technical specifications (dev-owned)
-│   │   └── DONE.md                ← execution report (AI-written)
-│   └── notifications/
-│       ├── specs-functional.md
-│       ├── specs-technical.md
-│       └── DONE.md
-└── migrations/                ← one subfolder per migration or refactoring
-    ├── angular-21/
-    │   ├── migration-plan.md
-    │   └── MIGRATION_DONE.md
-    └── ...
+├── README.md                  ← project overview for the agent (permanent)
+├── CONTRACT.md                ← agent interaction rules (permanent)
+├── CONTEXT.md                 ← current context: title, description, todo list
+├── context.json               ← machine-readable context metadata
+├── history.log                ← past contexts journal
+├── skills/                    ← reusable agent knowledge (permanent-* kept)
+│   ├── permanent-dev-stack.md     ← role, stack, conventions
+│   └── permanent-architecture.md ← codebase map
+└── documents/
+    ├── done/              ← AI execution reports (reset on new context)
+    ├── specification/     ← functional specs (permanent-* kept)
+    └── technical/         ← technical decisions (permanent-* kept)
 ```
 
 ### Step 2 — Write the functional specifications

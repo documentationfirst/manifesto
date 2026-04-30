@@ -413,29 +413,142 @@ Developer / PO
 <!-- ══════════════════════════════ FILE TYPES ══════════════════════════════ -->
 <section>
   <div class="container">
-    <h2>The Four DDD File Types</h2>
+    <h2>The DDD Document Types</h2>
+    <p>The <code>.ai_context/</code> folder organises documentation into six distinct types, each with a clear owner and lifecycle:</p>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px;">
       <div class="card">
-        <div class="icon">⚙️</div>
-        <h4>best-practices.md</h4>
-        <p>Rules, conventions and patterns the AI <em>must</em> follow. Updated as the team learns.</p>
+        <div class="icon">📜</div>
+        <h4>CONTRACT.md <span style="font-size:11px;color:var(--accent2);font-weight:400;">permanent</span></h4>
+        <p>The agent's interaction contract. Profile (strict / standard / permissive), permissions, communication rules. Written once at init. Never reset.</p>
       </div>
       <div class="card">
-        <div class="icon">🗺️</div>
-        <h4>migration-xxx.md</h4>
-        <p>Instructions for a migration or refactoring. Written <em>before</em> execution. Acts as a prompt and a checklist.</p>
+        <div class="icon">🎯</div>
+        <h4>CONTEXT.md <span style="font-size:11px;color:var(--muted);font-weight:400;">contextual</span></h4>
+        <p>The current unit of work: title, description, todo list. The agent reads this first. Reset on every new context.</p>
+      </div>
+      <div class="card">
+        <div class="icon">📋</div>
+        <h4>specification/ <span style="font-size:11px;color:var(--muted);font-weight:400;">PO-owned</span></h4>
+        <p>Functional specs: user stories, acceptance criteria, business rules. Reset on new context — except <code>permanent-*</code> files.</p>
+      </div>
+      <div class="card">
+        <div class="icon">⚙️</div>
+        <h4>technical/ <span style="font-size:11px;color:var(--muted);font-weight:400;">dev-owned</span></h4>
+        <p>Architecture decisions, API contracts, migration steps, constraints. Reset on new context — except <code>permanent-*</code> files.</p>
       </div>
       <div class="card">
         <div class="icon">✅</div>
-        <h4>MIGRATION_DONE.md</h4>
-        <p>The execution report — written by the AI after completing the task. Every change, every decision, every trade-off.</p>
+        <h4>done/ <span style="font-size:11px;color:var(--muted);font-weight:400;">AI-written</span></h4>
+        <p>Execution reports written by the AI after each task: every change, every decision, every trade-off. Fully reset on new context. Git is the archive.</p>
       </div>
-      <div class="card">
-        <div class="icon">📚</div>
-        <h4>docs/*.md</h4>
-        <p>Deep-dive documentation on specific topics. The AI reads these to understand the project's technical philosophy.</p>
+      <div class="card" style="border-color: var(--accent);">
+        <div class="icon">🎓</div>
+        <h4>skills/ <span style="font-size:11px;color:var(--accent);font-weight:400;">permanent-* kept</span></h4>
+        <p>Reusable agent knowledge across all contexts: role, stack, conventions, architecture map. <code>permanent-*</code> files survive every context switch.</p>
       </div>
     </div>
+
+    <table style="margin-top: 32px;">
+      <thead>
+        <tr><th>Type</th><th>Owner</th><th>Lifecycle</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>CONTRACT.md</code></td><td>Dev (init)</td><td style="color:var(--accent2);">Permanent</td></tr>
+        <tr><td><code>CONTEXT.md</code></td><td>Dev</td><td>Reset on new context</td></tr>
+        <tr><td><code>specification/</code></td><td>PO</td><td>Reset (except <code>permanent-*</code>)</td></tr>
+        <tr><td><code>technical/</code></td><td>Dev</td><td>Reset (except <code>permanent-*</code>)</td></tr>
+        <tr><td><code>done/</code></td><td>AI</td><td>Fully reset</td></tr>
+        <tr><td><code>skills/</code></td><td>Dev</td><td style="color:var(--accent);">permanent-* kept, others reset</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ SKILLS ══════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>The <code>skills/</code> Folder — Reusable Agent Knowledge</h2>
+    <p>
+      Beyond the context-specific documents (<code>specification/</code>, <code>technical/</code>, <code>done/</code>),
+      DDD introduces a dedicated folder for <strong>persistent, reusable knowledge</strong>:
+      the <code>skills/</code> folder.
+    </p>
+    <blockquote>
+      A <em>skill</em> is what the agent needs to know about <strong>how to work</strong> on this project —
+      independently of what to do right now.
+    </blockquote>
+
+    <p>While <code>documents/</code> captures the <em>current context</em> (what to build, how it was done),
+      <code>skills/</code> captures the <em>stable knowledge</em> that applies across all contexts:</p>
+
+    <table>
+      <thead>
+        <tr><th>Folder</th><th>Contains</th><th>Lifecycle</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>documents/specification/</code></td>
+          <td>Functional specs for the current context</td>
+          <td>Reset on new context (except <code>permanent-*</code>)</td>
+        </tr>
+        <tr>
+          <td><code>documents/technical/</code></td>
+          <td>Technical decisions for the current context</td>
+          <td>Reset on new context (except <code>permanent-*</code>)</td>
+        </tr>
+        <tr>
+          <td><code>documents/done/</code></td>
+          <td>Execution reports written by the AI</td>
+          <td>Fully reset on new context</td>
+        </tr>
+        <tr style="background: #12221a;">
+          <td><strong><code>skills/</code></strong></td>
+          <td><strong>Role, stack, conventions, domain expertise</strong></td>
+          <td><strong style="color: #3fb950;">Persists across all contexts (<code>permanent-*</code>)</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>What goes in a skill?</h3>
+    <p>A skill document typically defines:</p>
+    <div class="card-grid" style="margin-top: 16px;">
+      <div class="card">
+        <div class="icon">🎭</div>
+        <h4>Role</h4>
+        <p>Who the agent should be. Senior dev, architect, PO-facing writer… Set the tone before writing a single line of code.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🛠️</div>
+        <h4>Stack & constraints</h4>
+        <p>Languages, frameworks, forbidden libraries, build tools. What exists. What must not be introduced.</p>
+      </div>
+      <div class="card">
+        <div class="icon">📐</div>
+        <h4>Conventions</h4>
+        <p>Naming, file structure, patterns to follow, patterns to avoid. The unwritten rules — now written.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🗺️</div>
+        <h4>Architecture map</h4>
+        <p>The shape of the codebase. Where things live. What touches what. How to navigate without getting lost.</p>
+      </div>
+    </div>
+
+    <h3>The <code>permanent-</code> convention</h3>
+    <p>
+      Any file prefixed with <code>permanent-</code> in <code>skills/</code> (or in <code>specification/</code> and <code>technical/</code>)
+      is <strong>preserved when switching to a new context</strong>. Everything else is reset.
+    </p>
+    <pre>
+skills/
+├── permanent-dev-typescript.md    ← survives all context switches
+├── permanent-architecture.md      ← survives all context switches
+└── onboarding-notes.md            ← reset on next context switch</pre>
+
+    <blockquote>
+      <em>Skills are the agent's memory of <strong>who it is on this project</strong>.
+      Documents are its memory of <strong>what it is doing right now</strong>.</em>
+    </blockquote>
   </div>
 </section>
 
@@ -486,6 +599,63 @@ Developer / PO
 
     <blockquote style="margin-top: 40px;">
       <em>Code is temporary. Documentation is permanent.</em>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ SCIENTIFIC PROOF ══════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>Scientific Proof: LLMs Corrupt Your Documents</h2>
+    <p>
+      In April 2026, Microsoft Research published
+      <strong>"LLMs Corrupt Your Documents When You Delegate"</strong>
+      (Laban, Schnabel, Neville). Their DELEGATE-52 benchmark tested 19 models
+      across 52 documents and 20 interactions each.
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>Condition</th><th>Degradation after 20 interactions</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Top-tier frontier models</td><td style="color:#f78166;font-weight:600;">~25% of content corrupted</td></tr>
+        <tr><td>Average across 19 models</td><td style="color:#f78166;font-weight:600;">~50% of content corrupted</td></tr>
+        <tr><td>At 100 interactions</td><td style="color:#f78166;">No plateau — monotonic decline</td></tr>
+        <tr><td>With agentic tool use</td><td style="color:#f78166;">+6% additional degradation</td></tr>
+        <tr style="background:#12221a;"><td><strong>Python code (verifiable domain)</strong></td><td style="color:#3fb950;font-weight:600;">98%+ accuracy — the only domain that held</td></tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top: 24px;">
+      The corruption is <strong>silent</strong> — not gibberish, but small confident changes: a detail shifted,
+      a qualification dropped, an emphasis altered. Invisible on a quick scan. Compounding over time.
+    </p>
+
+    <blockquote>
+      <em>"When you delegate document maintenance to an LLM, the theory dies twice.
+      First: you didn't build the understanding, because you delegated.
+      Second: the LLM silently corrupted the artifact itself."</em><br>
+      <span style="font-size:0.85em;color:var(--muted);">— Christian Ekrem, connecting the research to Peter Naur's 1985 theory of programming</span>
+    </blockquote>
+
+    <h3>DDD's structural answer</h3>
+    <table>
+      <thead>
+        <tr><th>Risk (DELEGATE-52)</th><th>DDD architectural response</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>LLMs corrupt documents when asked to update them</td><td>The AI only <strong>adds new files</strong> in <code>done/</code> — never modifies existing docs</td></tr>
+        <tr><td>Errors compound over multiple interactions</td><td>Each context starts clean — <code>done/</code> is fully reset</td></tr>
+        <tr><td>Agentic setups make corruption worse</td><td>Developer <strong>reviews and commits</strong> every change — no silent writes</td></tr>
+        <tr><td>Short-term performance hides long-term decay</td><td>Git tracks every change — corruption is detectable and reversible</td></tr>
+        <tr><td>You lose both document and mental model</td><td><code>skills/permanent-*</code> are human-written, never AI-modified</td></tr>
+      </tbody>
+    </table>
+
+    <blockquote style="margin-top: 32px;">
+      <em>The documents are not the AI's to modify. They are the team's to maintain.<br>
+      The AI's job is to execute — and to report.</em>
     </blockquote>
   </div>
 </section>
@@ -664,23 +834,18 @@ Developer / PO
     <p>Organize documentation by context, each in its own versioned subfolder:</p>
     <pre>
 .ai_context/
-├── best-practices.md          ← global rules & conventions for the AI
-├── docs/                      ← deep-dive technical references
-│   ├── RXJS_SIGNALS.md
-│   └── ZONELESS_MIGRATION.md
-├── features/                  ← one subfolder per functional domain
-│   ├── authentication/
-│   │   ├── specs-functional.md    ← functional specs (PO-owned)
-│   │   ├── specs-technical.md     ← technical specs (dev-owned)
-│   │   └── DONE.md                ← execution report (AI-written)
-│   └── notifications/
-│       ├── specs-functional.md
-│       ├── specs-technical.md
-│       └── DONE.md
-└── migrations/                ← one subfolder per migration
-    └── angular-21/
-        ├── migration-plan.md
-        └── MIGRATION_DONE.md</pre>
+├── README.md                  ← project overview for the agent (permanent)
+├── CONTRACT.md                ← agent interaction rules (permanent)
+├── CONTEXT.md                 ← current context: title, description, todo list
+├── context.json               ← machine-readable context metadata
+├── history.log                ← past contexts journal
+├── skills/                    ← reusable agent knowledge (permanent-* kept)
+│   ├── permanent-dev-stack.md     ← role, stack, conventions
+│   └── permanent-architecture.md ← codebase map
+└── documents/
+    ├── done/              ← AI execution reports (reset on new context)
+    ├── specification/     ← functional specs (permanent-* kept)
+    └── technical/         ← technical decisions (permanent-* kept)</pre>
 
     <h3>Step 2 — Write the functional specifications</h3>
     <p>
