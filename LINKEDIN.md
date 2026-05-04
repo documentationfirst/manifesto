@@ -25,6 +25,16 @@ There's a term gaining traction in AI engineering circles: **Context Engineering
 One rule stands at the heart of it: **the 3S Rule**.
 Every context document must be **Selected** (only what's relevant), **Synthetic** (distilled, not dumped), and **Structured** (headings, bullets, tables). Noise kills context. Structure is clarity.
 
+But the deepest insight in DDD is about **harnessing**. Memory is the `.md` files. Context is the documentation. And harnessing happens *through* the context itself, not on top of it.
+
+The `.ai_context/` folder doesn't just inform the agent. It *constrains* it. The agent knows its role, the rules, the history, the conventions.
+
+This is **Documental Engineering**: treating the document layer as the primary engineering artifact, not a byproduct.
+
+> *Documentation is the constant. The context is a variable.*
+
+Documental Engineering is the ghost in the machine. Invisible to the end user, indispensable to the team building it.
+
 The key insight: **context is not a prompt. It is architecture.**
 
 A prompt disappears after the session. A versioned <code>.md</code> file is permanent, forkable, and gets smarter over time. That's the difference between a one-shot AI interaction and a **durable, compounding team asset**.
@@ -88,15 +98,18 @@ The ticket references the docs. The docs drive the execution. The AI reports bac
 This isn't about generating docs from code.
 This is the **opposite** — documentation drives the code.
 
-And it has three superpowers people don't expect:
+And it has four superpowers people don't expect:
 
 **1. Language agnostic** 🌐
 The `.md` files describe intent and rules — not syntax. Angular today, something else tomorrow? The documentation survives every migration. Only the code changes.
 
-**2. Fully portable** 📦
+**2. Agent agnostic** 🤖
+All you need is a high-IQ adaptive AI agent with a clear view of the project in an instant, not an inflexible co-worker who attended every meeting. Any agent is expandable.
+
+**3. Fully portable** 📦
 Plain Markdown, committed alongside the code. Switch AI agents? The docs follow. Onboard a new dev? Hand them the `.ai_context/` folder. Fork the project? The entire context forks with it. Zero vendor lock-in.
 
-**3. Contextual adaptation** 🔄
+**4. Contextual adaptation** 🔄
 Every correction makes the next session smarter. When a convention changes → update the `.md`. When the AI makes a mistake → fix the `.md`, re-run. The error won't happen again. The documentation gets sharper with every iteration.
 
 ---

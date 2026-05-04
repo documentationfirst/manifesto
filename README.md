@@ -106,6 +106,32 @@ Every decision, every convention, every migration step, every architectural rule
 
 ---
 
+## Harness, Memory, Context Engineering
+
+In DDD, these three concepts are not separate layers — they are the same thing, expressed differently.
+
+**Memory is the `.md` files.** Not a database, not a chat history, not something the AI "remembers" implicitly. Every decision, every convention, every execution trace lives in a versioned file you can read, edit, commit, and fork. Explicit. Auditable. Permanent.
+
+**Context as a documentation.** Not a prompt you write before each session. It's a structured folder that already exists, already contains everything the agent needs, and already reflects the current truth of the project.
+
+**Harnessing is done by the context itself.** The `.ai_context/` folder does not just *inform* the agent — it *constrains* it. The agent operates within a defined boundary: it knows its role, the rules, the history, the conventions.
+
+> *You don't prompt your way to a reliable agent. You contextualize with documentation.*
+
+---
+
+## A New Approach: Documental Engineering
+
+**Documental Engineering** is the practice of treating the document layer as the primary engineering artifact. Not the code, not the model, not the prompt.
+
+The agent is a **SEAL** — a *Self-Evolving Agent Learning* system. Not because its weights change, but because its harness does. Every session adds to `done/`. Every correction sharpens a skill. Every new context builds on the accumulated knowledge of all previous ones. The agent doesn't get smarter by itself, it gets smarter because the context gets better.
+
+This is a fundamental shift from how most teams think about AI agents. They treat the agent as the variable to optimize — bigger model, better prompt, more tools. Documental Engineering inverts this: **documentation is the constant. The context is a driver. Any AI agent is an expandable variable.**
+
+> *Documental Engineering is the ghost in the machine — the invisible infrastructure that makes the agent coherent, consistent, and trustworthy across every session.*
+
+---
+
 ## DDD as Context Engineering
 
 A new discipline is emerging in AI-assisted development: **Context Engineering** — the practice of deliberately designing, structuring, and maintaining the information an AI agent needs to perform at its best.
@@ -178,6 +204,8 @@ The `.md` files are simultaneously:
 | **Reconstruction kit** | Everything needed to rebuild from scratch |
 
 ---
+
+> *In practice: a Jira ticket, a Linear issue, a GitHub feature — each one becomes a `.md` context file. The unit of work is a document.*
 
 ## The DDD Document Types
 

@@ -247,8 +247,31 @@
   <p class="version">Open · Versionable · CC BY 4.0</p>
 </div>
 
+<!-- ══════════════════════════════ TABLE OF CONTENTS ══════════════════════════════ -->
+<section style="background: var(--surface); border-bottom: 1px solid var(--border);">
+  <div class="container">
+    <h2 style="margin-bottom: 24px;">Table of Contents</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px 40px; font-size: 15px;">
+      <a href="#problem" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">① The Problem</a>
+      <a href="#documental-engineering" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">② Documental Engineering &amp; 3S Rule</a>
+      <a href="#loop" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">③ The DDD Loop</a>
+      <a href="#file-types" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">④ The DDD Document Types</a>
+      <a href="#skills" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑤ The <code>skills/</code> Folder</a>
+      <a href="#harness" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑥ Harness &amp; Documental Engineering</a>
+      <a href="#reconstruction" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑦ The Reconstruction Guarantee</a>
+      <a href="#scientific-proof" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑧ Scientific Proof — LLMs Corrupt Docs</a>
+      <a href="#superpowers" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑨ Four Superpowers</a>
+      <a href="#knowledge-capital" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑩ DDD as Knowledge Capital</a>
+      <a href="#get-started" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑪ Getting Started</a>
+      <a href="#ide-first" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑫ The IDE-First Ecosystem</a>
+      <a href="#mcp-memory" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑬ MCP &amp; Contextual Memory</a>
+      <a href="#support" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑭ Support &amp; Certification</a>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════════════════════ PROBLEM ══════════════════════════════ -->
-<section>
+<section id="problem">
   <div class="container">
     <h2>The Problem</h2>
     <p>
@@ -302,20 +325,20 @@
 </section>
 
 <!-- ══════════════════════════════ CONTEXT ENGINEERING ══════════════════════════════ -->
-<section>
+<section id="documental-engineering">
   <div class="container">
-    <h2>DDD as Context Engineering</h2>
+    <h2>Documental Engineering</h2>
     <p>
       A new discipline is emerging in AI-assisted development: <strong>Context Engineering</strong> —
       the practice of deliberately designing, structuring, and maintaining the information
       an AI agent needs to perform at its best.
     </p>
     <p>
-      <strong>DDD <em>is</em> Context Engineering</strong> — applied to software teams.
+      <strong>DDD <em>is</em> Documental Engineering</strong> — applied to software teams.
     </p>
     <p>
       Where Context Engineering describes the <em>what</em> (give the AI the right context),
-      DDD describes the <em>how</em>:
+      Documental Engineering describes the <em>how</em>:
     </p>
     <table>
       <thead>
@@ -340,7 +363,7 @@
     </p>
     <blockquote>
       <em>Context Engineering asks: "what does the AI need to know?"</em><br>
-      <em>DDD answers: "everything — and it lives in <code>.md</code> files."</em>
+      <em>DDD answers: "Read the <code>.md</code> files."</em>
     </blockquote>
 
     <h3>The 3S Rule — What Makes a Good Context Document</h3>
@@ -377,7 +400,7 @@
 </section>
 
 <!-- ══════════════════════════════ LOOP ══════════════════════════════ -->
-<section>
+<section id="loop">
   <div class="container">
     <h2>The DDD Loop</h2>
     <p>Everyone is in the loop — and the <code>.md</code> files connect them all.</p>
@@ -411,7 +434,7 @@ Developer / PO
 </section>
 
 <!-- ══════════════════════════════ FILE TYPES ══════════════════════════════ -->
-<section>
+<section id="file-types">
   <div class="container">
     <h2>The DDD Document Types</h2>
     <p>The <code>.ai_context/</code> folder organises documentation into six distinct types, each with a clear owner and lifecycle:</p>
@@ -465,7 +488,7 @@ Developer / PO
 </section>
 
 <!-- ══════════════════════════════ SKILLS ══════════════════════════════ -->
-<section>
+<section id="skills">
   <div class="container">
     <h2>The <code>skills/</code> Folder — Reusable Agent Knowledge</h2>
     <p>
@@ -511,7 +534,7 @@ Developer / PO
 
     <h3>What goes in a skill?</h3>
     <p>A skill document typically defines:</p>
-    <div class="card-grid" style="margin-top: 16px;">
+    <div class="card-grid" style="margin-top: 16px; grid-template-columns: 1fr 1fr;">
       <div class="card">
         <div class="icon">🎭</div>
         <h4>Role</h4>
@@ -552,8 +575,62 @@ skills/
   </div>
 </section>
 
+<!-- ══════════════════════════════ HARNESS / DOCUMENTAL ENGINEERING ══════════════════════════════ -->
+<section id="harness">
+  <div class="container">
+    <h2>Harness, Memory, Context Engineering</h2>
+    <p>In DDD, these three concepts are not separate layers — they are the same thing, expressed differently.</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 32px;">
+      <div class="card">
+        <div class="icon">🧠</div>
+        <h4>Memory = the <code>.md</code> files</h4>
+        <p>Not a database, not a chat history, not implicit model "memory". Every decision, convention, and trace lives in a versioned file — readable, editable, forkable. Explicit. Permanent.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🏗️</div>
+        <h4>Context = the documentation</h4>
+        <p>Not a prompt you write before each session — a structured folder that already exists, reflects the current truth of the project, and is maintained by the team across every context switch.</p>
+      </div>
+      <div class="card" style="border-color: var(--accent);">
+        <div class="icon">🔗</div>
+        <h4>Harnessing = done by context itself</h4>
+        <p>The <code>.ai_context/</code> folder doesn't just <em>inform</em> the agent — it <em>constrains</em> it. The agent knows its role, the rules, the history. It cannot drift. <strong>The context is the harness.</strong></p>
+      </div>
+    </div>
+
+    <blockquote style="margin-top: 32px;">
+      <em>You don't prompt your way to a reliable agent. You harness it — with documentation.</em>
+    </blockquote>
+
+    <h2 style="margin-top: 48px;">A New Approach: Documental Engineering</h2>
+    <p>
+      <strong>Documental Engineering</strong> is the practice of treating the document layer as the primary engineering artifact — not the code, not the model, not the prompt.
+    </p>
+    <p style="margin-top: 16px;">
+      The agent is a <strong>SEAL</strong> — a <em>Self-Evolving Agent Learning</em> system.
+      Not because its weights change, but because its harness does.
+      Every session adds to <code>done/</code>. Every correction sharpens a skill. Every new context builds on the accumulated knowledge of all previous ones.
+    </p>
+
+    <div class="card" style="margin-top: 24px; border-color: var(--accent2);">
+      <div class="icon">👻</div>
+      <h4>The ghost in the machine</h4>
+      <p>
+        Documental Engineering is the invisible infrastructure that makes the agent coherent, consistent, and trustworthy across every session.
+        It doesn't appear in the output. It doesn't show up in the diff.
+        But remove it — and the agent loses its memory, its identity, and its constraints in the very next session.
+      </p>
+    </div>
+
+    <blockquote style="margin-top: 32px;">
+      <em>Documentation is the constant. The harness is a context.</em>
+    </blockquote>
+  </div>
+</section>
+
 <!-- ══════════════════════════════ RECONSTRUCTION ══════════════════════════════ -->
-<section>
+<section id="reconstruction">
   <div class="container">
     <h2>The Reconstruction Guarantee</h2>
     <blockquote>
@@ -604,7 +681,7 @@ skills/
 </section>
 
 <!-- ══════════════════════════════ SCIENTIFIC PROOF ══════════════════════════════ -->
-<section>
+<section id="scientific-proof">
   <div class="container">
     <h2>Scientific Proof: LLMs Corrupt Your Documents</h2>
     <p>
@@ -661,9 +738,9 @@ skills/
 </section>
 
 <!-- ══════════════════════════════ THREE SUPERPOWERS ══════════════════════════════ -->
-<section>
+<section id="superpowers">
   <div class="container">
-    <h2>Three Superpowers</h2>
+    <h2>Four Superpowers</h2>
 
     <h3>🌐 Language Agnostic</h3>
     <p>
@@ -691,6 +768,19 @@ skills/
     </ul>
     <p>No vendor lock-in. No proprietary format. No special tooling required.</p>
 
+    <h3>🤖 Agent Agnostic</h3>
+    <p>
+      DDD does not care which AI agent sits in your IDE. It works with any agent that can read a file.
+    </p>
+    <p>
+      All you need is a <strong>high-IQ, adaptive, and comprehensive AI agent</strong> with a clear view
+      of the project in an instant. Not an inflexible corporate co-worker who has attended every
+      stand-up and memorised every meeting memo.
+    </p>
+    <blockquote>
+      Any agent is expandable.
+    </blockquote>
+
     <h3>🔄 Contextual Adaptation</h3>
     <p>
       DDD documentation is <strong>living documentation</strong> — it evolves with the project.
@@ -712,7 +802,7 @@ skills/
 </section>
 
 <!-- ══════════════════════════════ IS / IS NOT ══════════════════════════════ -->
-<section>
+<section id="is-is-not">
   <div class="container">
     <h2>DDD Is Not / DDD Is</h2>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
@@ -741,7 +831,7 @@ skills/
 </section>
 
 <!-- ══════════════════════════════ KNOWLEDGE CAPITAL ══════════════════════════════ -->
-<section>
+<section id="knowledge-capital">
   <div class="container">
     <h2>DDD as Knowledge Capital</h2>
     <p>
@@ -826,7 +916,7 @@ skills/
 </section>
 
 <!-- ══════════════════════════════ GET STARTED ══════════════════════════════ -->
-<section>
+<section id="get-started">
   <div class="container">
     <h2>Getting Started</h2>
 
@@ -901,7 +991,7 @@ See .ai_context/features/authentication/DONE.md for full execution report.</pre>
 </section>
 
 <!-- ══════════════════════════════ IDE-FIRST ECOSYSTEM ══════════════════════════════ -->
-<section>
+<section id="ide-first">
   <div class="container">
     <h2>The IDE-First Ecosystem</h2>
     <p style="max-width: 700px; margin-bottom: 32px;">
@@ -1040,7 +1130,7 @@ Git — versioned snapshot of code AND context</pre>
 </section>
 
 <!-- ══════════════════════════════ MCP & MEMORY ══════════════════════════════ -->
-<section>
+<section id="mcp-memory">
   <div class="container">
     <h2>DDD, MCP & Contextual Memory</h2>
     <p style="max-width: 700px; margin-bottom: 40px;">
@@ -1111,7 +1201,7 @@ Git — versioned snapshot of code AND context</pre>
 </section>
 
 <!-- ══════════════════════════════ SUPPORT ══════════════════════════════ -->
-<section>
+<section id="support">
   <div class="container" style="text-align: center;">
     <h2>Support the Manifesto</h2>
     <p style="max-width: 580px; margin: 0 auto 40px;">
@@ -1180,7 +1270,7 @@ Git — versioned snapshot of code AND context</pre>
 </section>
 
 <!-- ══════════════════════════════ CERTIFICATION ══════════════════════════════ -->
-<section>
+<section id="certification">
   <div class="container">
     <h2>Documentation First Certification</h2>
     <p style="max-width: 640px;">
