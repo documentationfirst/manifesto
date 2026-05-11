@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="d-ai.png" alt="Documentation-Driven Development" width="180" style="border-radius: 50%; overflow: hidden;" />
+
 # Documentation-Driven Development (DDD)
 ### A Manifesto for Human–AI Collaborative Software Engineering
 
