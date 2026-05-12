@@ -1,8 +1,9 @@
 <div align="center">
 
-<img src="d-ai.png" alt="Documentation-Driven Development" width="180" style="border-radius: 50%; overflow: hidden;" />
+# Documentation-Driven Development (DDD) for AI
 
-# Documentation-Driven Development (DDD)
+<img src="d-ai.jpg" alt="Documentation-Driven Development" width="260" style="border-radius: 50%; overflow: hidden;" />
+
 ### A Manifesto for Human–AI Collaborative Software Engineering
 
 [![Version](https://img.shields.io/badge/version-1.0-3fb950?style=flat-square)](https://documentationfirst.ai)
