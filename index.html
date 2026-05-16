@@ -256,16 +256,18 @@
       <a href="#documental-engineering" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">② Documental Engineering &amp; 3S Rule</a>
       <a href="#loop" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">③ The DDD Loop</a>
       <a href="#file-types" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">④ The DDD Document Types</a>
-      <a href="#skills" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑤ The <code>skills/</code> Folder</a>
-      <a href="#harness" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑥ Harness &amp; Documental Engineering</a>
-      <a href="#reconstruction" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑦ The Reconstruction Guarantee</a>
-      <a href="#scientific-proof" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑧ Scientific Proof — LLMs Corrupt Docs</a>
-      <a href="#superpowers" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑨ Four Superpowers</a>
-      <a href="#knowledge-capital" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑩ DDD as Knowledge Capital</a>
-      <a href="#get-started" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑪ Getting Started</a>
-      <a href="#ide-first" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑫ The IDE-First Ecosystem</a>
-      <a href="#mcp-memory" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑬ MCP &amp; Contextual Memory</a>
-      <a href="#support" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑭ Support &amp; Certification</a>
+      <a href="#preview-test" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑤ Preview &amp; Test Artefacts</a>
+      <a href="#skills" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑥ The <code>skills/</code> Folder</a>
+      <a href="#harness" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑦ Harness &amp; Documental Engineering</a>
+      <a href="#reconstruction" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑧ The Reconstruction Guarantee</a>
+      <a href="#scientific-proof" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑨ Scientific Proof — Two Labs, One Thesis</a>
+      <a href="#gitagent" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑩ GitAgent Protocol &amp; Interoperability</a>
+      <a href="#superpowers" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑪ Four Superpowers</a>
+      <a href="#knowledge-capital" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑫ DDD as Knowledge Capital</a>
+      <a href="#get-started" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑬ Getting Started</a>
+      <a href="#ide-first" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑭ The IDE-First Ecosystem</a>
+      <a href="#mcp-memory" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑮ MCP &amp; Contextual Memory</a>
+      <a href="#support" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑯ Support &amp; Certification</a>
     </div>
   </div>
 </section>
@@ -437,12 +439,22 @@ Developer / PO
 <section id="file-types">
   <div class="container">
     <h2>The DDD Document Types</h2>
-    <p>The <code>.ai_context/</code> folder organises documentation into six distinct types, each with a clear owner and lifecycle:</p>
+    <p>The <code>.ai_context/</code> folder organises documentation into eight distinct types, each with a clear owner and lifecycle:</p>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px;">
       <div class="card">
         <div class="icon">📜</div>
         <h4>CONTRACT.md <span style="font-size:11px;color:var(--accent2);font-weight:400;">permanent</span></h4>
         <p>The agent's interaction contract. Profile (strict / standard / permissive), permissions, communication rules. Written once at init. Never reset.</p>
+      </div>
+      <div class="card" style="border-color: var(--accent2);">
+        <div class="icon">🌟</div>
+        <h4>vision.md <span style="font-size:11px;color:var(--accent2);font-weight:400;">permanent</span></h4>
+        <p>The product vision and epic goals. Written once at init. Never reset. The strategic north star for every context and every step.</p>
+      </div>
+      <div class="card" style="border-color: var(--accent2);">
+        <div class="icon">🗺️</div>
+        <h4>steps/ <span style="font-size:11px;color:var(--accent2);font-weight:400;">permanent</span></h4>
+        <p>Roadmap phases and features — one file per milestone. Created at init, enriched over time. Never reset.</p>
       </div>
       <div class="card">
         <div class="icon">🎯</div>
@@ -451,17 +463,17 @@ Developer / PO
       </div>
       <div class="card">
         <div class="icon">📋</div>
-        <h4>specification/ <span style="font-size:11px;color:var(--muted);font-weight:400;">PO-owned</span></h4>
+        <h4>tasks/specification/ <span style="font-size:11px;color:var(--muted);font-weight:400;">PO-owned</span></h4>
         <p>Functional specs: user stories, acceptance criteria, business rules. Reset on new context — except <code>permanent-*</code> files.</p>
       </div>
       <div class="card">
         <div class="icon">⚙️</div>
-        <h4>technical/ <span style="font-size:11px;color:var(--muted);font-weight:400;">dev-owned</span></h4>
+        <h4>tasks/technical/ <span style="font-size:11px;color:var(--muted);font-weight:400;">dev-owned</span></h4>
         <p>Architecture decisions, API contracts, migration steps, constraints. Reset on new context — except <code>permanent-*</code> files.</p>
       </div>
       <div class="card">
         <div class="icon">✅</div>
-        <h4>done/ <span style="font-size:11px;color:var(--muted);font-weight:400;">AI-written</span></h4>
+        <h4>tasks/done/ <span style="font-size:11px;color:var(--muted);font-weight:400;">AI-written</span></h4>
         <p>Execution reports written by the AI after each task: every change, every decision, every trade-off. Fully reset on new context. Git is the archive.</p>
       </div>
       <div class="card" style="border-color: var(--accent);">
@@ -477,13 +489,75 @@ Developer / PO
       </thead>
       <tbody>
         <tr><td><code>CONTRACT.md</code></td><td>Dev (init)</td><td style="color:var(--accent2);">Permanent</td></tr>
+        <tr><td><code>vision.md</code></td><td>Dev (init)</td><td style="color:var(--accent2);">Permanent</td></tr>
+        <tr><td><code>steps/</code></td><td>Dev</td><td style="color:var(--accent2);">Permanent</td></tr>
         <tr><td><code>CONTEXT.md</code></td><td>Dev</td><td>Reset on new context</td></tr>
-        <tr><td><code>specification/</code></td><td>PO</td><td>Reset (except <code>permanent-*</code>)</td></tr>
-        <tr><td><code>technical/</code></td><td>Dev</td><td>Reset (except <code>permanent-*</code>)</td></tr>
-        <tr><td><code>done/</code></td><td>AI</td><td>Fully reset</td></tr>
+        <tr><td><code>tasks/specification/</code></td><td>PO</td><td>Reset (except <code>permanent-*</code>)</td></tr>
+        <tr><td><code>tasks/technical/</code></td><td>Dev</td><td>Reset (except <code>permanent-*</code>)</td></tr>
+        <tr><td><code>tasks/done/</code></td><td>AI</td><td>Fully reset</td></tr>
         <tr><td><code>skills/</code></td><td>Dev</td><td style="color:var(--accent);">permanent-* kept, others reset</td></tr>
       </tbody>
     </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ PREVIEW & TEST ARTEFACTS ══════════════════════════════ -->
+<section id="preview-test">
+  <div class="container">
+    <h2>Preview &amp; Test Artefacts</h2>
+    <p>
+      DDD specs are Markdown — but some tasks demand more than text. For UI work, the AI can generate
+      companion artefacts alongside the spec that make review faster and verification concrete.
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px;">
+      <div class="card" style="border-color: var(--accent);">
+        <div class="icon">🖼️</div>
+        <h4><code>*-preview.html</code></h4>
+        <p>
+          A self-contained HTML rendering of the UI component or page described in the spec.
+          The AI generates it alongside the <code>.md</code> — the developer opens it in a browser
+          to validate the visual intent <strong>before writing a single line of production code</strong>.
+        </p>
+        <p style="font-size:13px;color:var(--muted);margin-top:8px;">
+          Example: <code>tasks/specification/onboarding-wizard-preview.html</code>
+        </p>
+      </div>
+      <div class="card" style="border-color: var(--accent2);">
+        <div class="icon">🧪</div>
+        <h4><code>*-test.html</code></h4>
+        <p>
+          A lightweight test harness — also self-contained HTML — that the AI generates in
+          <code>tasks/done/</code> after implementation to demonstrate that key acceptance criteria pass.
+          No test framework required: open in browser, read the output.
+        </p>
+        <p style="font-size:13px;color:var(--muted);margin-top:8px;">
+          Example: <code>tasks/done/onboarding-wizard-test.html</code>
+        </p>
+      </div>
+    </div>
+
+    <table style="margin-top: 32px;">
+      <thead>
+        <tr><th>Artefact</th><th>Location</th><th>Generated by</th><th>Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>spec-*.md</code></td><td><code>tasks/specification/</code></td><td>PO / Dev</td><td>Human-written intent</td></tr>
+        <tr><td><code>spec-*-preview.html</code></td><td><code>tasks/specification/</code></td><td>AI</td><td>Visual validation before coding</td></tr>
+        <tr><td><code>done-*.md</code></td><td><code>tasks/done/</code></td><td>AI</td><td>Execution report</td></tr>
+        <tr><td><code>done-*-test.html</code></td><td><code>tasks/done/</code></td><td>AI</td><td>Acceptance test runner</td></tr>
+      </tbody>
+    </table>
+
+    <blockquote style="margin-top: 32px;">
+      <em>The spec says what to build. The preview shows what it should look like. The test proves it works.<br>
+      All three are Markdown-adjacent, versioned in Git, reviewed by the developer.</em>
+    </blockquote>
+
+    <p style="margin-top:16px;">
+      The <code>permanent-</code> prefix applies here too: a <code>permanent-</code> preview or test file
+      survives context resets and serves as a living reference for the feature.
+    </p>
   </div>
 </section>
 
@@ -492,7 +566,7 @@ Developer / PO
   <div class="container">
     <h2>The <code>skills/</code> Folder — Reusable Agent Knowledge</h2>
     <p>
-      Beyond the context-specific documents (<code>specification/</code>, <code>technical/</code>, <code>done/</code>),
+      Beyond the context-specific documents (<code>tasks/specification/</code>, <code>tasks/technical/</code>, <code>tasks/done/</code>),
       DDD introduces a dedicated folder for <strong>persistent, reusable knowledge</strong>:
       the <code>skills/</code> folder.
     </p>
@@ -501,7 +575,7 @@ Developer / PO
       independently of what to do right now.
     </blockquote>
 
-    <p>While <code>documents/</code> captures the <em>current context</em> (what to build, how it was done),
+    <p>While <code>tasks/</code> captures the <em>current context</em> (what to build, how it was done),
       <code>skills/</code> captures the <em>stable knowledge</em> that applies across all contexts:</p>
 
     <table>
@@ -510,17 +584,17 @@ Developer / PO
       </thead>
       <tbody>
         <tr>
-          <td><code>documents/specification/</code></td>
+          <td><code>tasks/specification/</code></td>
           <td>Functional specs for the current context</td>
           <td>Reset on new context (except <code>permanent-*</code>)</td>
         </tr>
         <tr>
-          <td><code>documents/technical/</code></td>
+          <td><code>tasks/technical/</code></td>
           <td>Technical decisions for the current context</td>
           <td>Reset on new context (except <code>permanent-*</code>)</td>
         </tr>
         <tr>
-          <td><code>documents/done/</code></td>
+          <td><code>tasks/done/</code></td>
           <td>Execution reports written by the AI</td>
           <td>Fully reset on new context</td>
         </tr>
@@ -683,13 +757,22 @@ skills/
 <!-- ══════════════════════════════ SCIENTIFIC PROOF ══════════════════════════════ -->
 <section id="scientific-proof">
   <div class="container">
-    <h2>Scientific Proof: LLMs Corrupt Your Documents</h2>
+    <h2>Scientific Proof: Two Labs, One Thesis</h2>
     <p>
-      In April 2026, Microsoft Research published
-      <strong>"LLMs Corrupt Your Documents When You Delegate"</strong>
-      (Laban, Schnabel, Neville). Their DELEGATE-52 benchmark tested 19 models
-      across 52 documents and 20 interactions each.
+      Two independent research groups — Microsoft Research and Google DeepMind — have published
+      findings in 2026 that, taken together, provide a rigorous scientific foundation for DDD.
+      Neither paper mentions DDD. Both describe exactly what DDD implements.
     </p>
+
+    <div class="card" style="margin-top: 24px; border-color: var(--accent3);">
+      <div class="icon">🔬</div>
+      <h4>Microsoft Research — "LLMs Corrupt Your Documents When You Delegate"</h4>
+      <p>
+        In April 2026, Philippe Laban, Tobias Schnabel and Jennifer Neville published
+        <strong>"LLMs Corrupt Your Documents When You Delegate."</strong>
+        Their DELEGATE-52 benchmark tested 19 models
+        across 52 documents and 20 interactions each.
+      </p>
 
     <table>
       <thead>
@@ -734,10 +817,158 @@ skills/
       <em>The documents are not the AI's to modify. They are the team's to maintain.<br>
       The AI's job is to execute — and to report.</em>
     </blockquote>
+
+    <div class="card" style="margin-top: 40px; border-color: var(--accent2);">
+      <div class="icon">🧬</div>
+      <h4>Google DeepMind — "Intelligent Delegation in Multi-Agent Systems" (2026, arXiv)</h4>
+      <p>
+        Researchers at Google DeepMind (Tomašev, Franklin, Osindero) argue that as AI agents
+        begin delegating tasks to other agents and to humans, <strong>formal systems for authority,
+        accountability and verification are required</strong> to prevent systemic risk.
+      </p>
+      <p style="margin-top: 12px;">Their five requirements for safe AI delegation:</p>
+      <ul class="check-list yes" style="margin-top: 8px;">
+        <li><strong>Dynamic capability assessment</strong> — continuously evaluate what the agent can do</li>
+        <li><strong>Adaptive task reassignment</strong> — re-delegate if performance degrades</li>
+        <li><strong>Structural transparency</strong> — monitoring and audit trails, including intermediate steps</li>
+        <li><strong>Verifiable task completion</strong> — proof that obligations were met</li>
+        <li><strong>Privilege attenuation</strong> — pass only minimum permissions when sub-delegating</li>
+      </ul>
+      <p style="margin-top: 16px;">
+        DDD already implements all five — not with a new infrastructure, but with existing primitives:
+      </p>
+      <table style="margin-top: 12px;">
+        <thead>
+          <tr><th>DeepMind requirement</th><th>DDD implementation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Authority definition</td><td><code>CONTRACT.md</code> — strict / standard / permissive profile</td></tr>
+          <tr><td>Task assignment &amp; scope</td><td><code>dev-context.json</code> — title, description, todos, steps</td></tr>
+          <tr><td>Process-level monitoring</td><td><code>tasks/specification/</code> → spec validated before execution</td></tr>
+          <tr><td>Verifiable task completion</td><td><code>tasks/done/*.md</code> — execution report written by the AI</td></tr>
+          <tr><td>Audit trail</td><td>Git history — every change committed alongside its context</td></tr>
+          <tr><td>Human-in-the-loop for high-risk tasks</td><td>Developer reviews and commits — no silent writes</td></tr>
+          <tr><td>Privilege attenuation</td><td><code>CONTRACT.md</code> profile scopes agent permissions per project</td></tr>
+          <tr><td>Verifiable task completion (machine-level)</td><td><strong>Vouch</strong> — obligation IDs, evidence, release gate</td></tr>
+        </tbody>
+      </table>
+      <blockquote style="margin-top: 16px;">
+        <em>"Without verifiable delegation protocols, large-scale multi-agent systems in high-stakes domains
+        could amplify failures and obscure responsibility."</em><br>
+        <span style="font-size:0.85em;color:var(--muted);">— DeepMind, arXiv 2026</span>
+      </blockquote>
+      <p style="margin-top: 12px; color: var(--muted); font-size: 14px;">
+        The paper is conceptual (no benchmarks yet). But its framing of delegation as a
+        <em>governance and risk-management challenge</em> — not a prompt-engineering problem —
+        maps precisely onto what DDD practitioners already know from practice.
+      </p>
+    </div>
+
+    <div style="margin-top: 32px; padding: 20px 24px; background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent2); border-radius: 0 8px 8px 0;">
+      <p style="font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent2); font-weight: 700; margin-bottom: 10px;">Two labs. One conclusion.</p>
+      <p style="font-size: 1.05rem; font-style: italic;">
+        Microsoft Research proves that delegating document maintenance to AI corrupts the artifact.<br>
+        Google DeepMind proves that delegating tasks to AI without formal authority and accountability creates systemic risk.<br><br>
+        DDD's answer to both: <strong>humans write the context, humans assign the task, humans review the output, Git tracks everything.</strong>
+      </p>
+    </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════ THREE SUPERPOWERS ══════════════════════════════ -->
+<!-- ══════════════════════════════ GITAGENT PROTOCOL ══════════════════════════════ -->
+<section id="gitagent">
+  <div class="container">
+    <h2>GitAgent Protocol &amp; The Markdown Question</h2>
+    <p>
+      DDD does not exist in isolation. Two emerging reference points confirm and sharpen its approach
+      from different angles.
+    </p>
+
+    <div class="card" style="margin-top: 24px; border-color: var(--accent);">
+      <div class="icon">🔗</div>
+      <h4>The GitAgent Protocol — <a href="https://github.com/open-gitagent/gitagent-protocol" target="_blank" style="color:var(--accent);font-weight:400;font-size:14px;">open-gitagent/gitagent-protocol ↗</a></h4>
+      <p>
+        The GitAgent Protocol formalises how AI agents interact with Git repositories:
+        structured file conventions, agent manifests, and task coordination through versioned files.
+        The core premise mirrors DDD exactly — <strong>Git is not just version control, it is the communication bus between agents and humans</strong>.
+      </p>
+      <p style="margin-top:12px;">
+        Where GitAgent Protocol defines the machine-readable layer (agent manifests, structured metadata),
+        DDD provides the human-readable layer: the <code>.md</code> files that describe intent, conventions,
+        and decisions in a form that both humans and agents can read, write, and reason about.
+      </p>
+      <p style="margin-top:12px;color:var(--muted);font-size:14px;">
+        DDD and GitAgent Protocol are complementary: DDD is the discipline, GitAgent is a formalisation
+        of the protocol beneath it. A DDD repository is a natural GitAgent-compatible workspace.
+      </p>
+    </div>
+
+    <div class="card" style="margin-top: 16px; border-color: var(--accent3);">
+      <div class="icon">⚠️</div>
+      <h4>"Markdown Was a Mistake for Agent Output" — <a href="https://medium.com/@rentierdigital/markdown-was-a-mistake-for-agent-output-a-claude-code-engineer-just-proved-it-454b78971cc4" target="_blank" style="color:var(--accent3);font-weight:400;font-size:14px;">Medium ↗</a></h4>
+      <p>
+        This article argues that Markdown as <em>AI output format</em> is problematic: agents generate
+        Markdown for chat interfaces where it renders as prose, creating an illusion of structure
+        that collapses the moment you try to parse, verify, or act on it programmatically.
+      </p>
+      <p style="margin-top:12px;">
+        <strong>DDD's position is the inverse — and it matters to understand why.</strong>
+        In DDD, Markdown is not agent <em>output</em>. It is human <em>input</em>.
+        Developers and POs write the <code>.md</code> files. The agent <em>reads</em> them.
+        The agent's output in <code>done/</code> is explicitly reviewed and committed by a human
+        before it enters the context.
+      </p>
+      <table style="margin-top:16px;">
+        <thead>
+          <tr><th>Pattern</th><th>Who writes</th><th>Who reads</th><th>Problem?</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>AI chat output as Markdown</td><td>Agent</td><td>Human (in chat)</td><td style="color:var(--accent3);">Yes — unstructured, unparseable, volatile</td></tr>
+          <tr style="background:#12221a;"><td>DDD context files (<code>.ai_context/</code>)</td><td>Human</td><td>Agent</td><td style="color:var(--accent2);">No — human-authored, structured, versioned</td></tr>
+          <tr><td>DDD <code>done/</code> reports</td><td>Agent</td><td>Human + Agent</td><td style="color:var(--accent);">Reviewed — human commits what matters</td></tr>
+        </tbody>
+      </table>
+      <blockquote style="margin-top:16px;">
+        <em>The problem is not Markdown. The problem is who writes it, and whether it is reviewed.<br>
+        DDD solves both: humans write the context, humans review the output.</em>
+      </blockquote>
+    </div>
+    <div class="card" style="margin-top: 16px; border-color: var(--accent2);">
+      <div class="icon">🔒</div>
+      <h4>Vouch — "A compiler for release contracts" — <a href="https://github.com/duriantaco/vouch" target="_blank" style="color:var(--accent2);font-weight:400;font-size:14px;">duriantaco/vouch ↗</a></h4>
+      <p>
+        Vouch takes human-owned intent (YAML) and compiles it into typed obligation IDs, runs evidence collection
+        (tests, SARIF, audit logs), and operates a release gate: <strong>block | escalate | canary | auto_merge</strong>.
+      </p>
+      <p style="margin-top:12px;">
+        Their positioning: <em>"Use Vouch when a risky AI-authored change needs more than 'CI passed.'"</em>
+      </p>
+      <p style="margin-top:12px;">
+        That sentence describes exactly the end of every DDD task cycle. DDD and Vouch are complementary layers
+        of the same pipeline:
+      </p>
+      <pre style="margin-top:12px;background:var(--code-bg);padding:12px 16px;border-radius:6px;font-size:13px;overflow:auto;">DDD spec (.md)  →  Agent reads  →  Agent executes
+    → done/*.md + code changes
+        → Vouch compiles obligations
+            → evidence (tests, SARIF, audit)
+                → gate: block | escalate | auto_merge</pre>
+      <table style="margin-top:16px;">
+        <thead>
+          <tr><th>Layer</th><th>Tool</th><th>What it does</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Input harness</td><td><strong>DDD <code>.ai_context/</code></strong></td><td>Structures what the agent reads and how it works</td></tr>
+          <tr style="background:#12221a;"><td>Output gate</td><td><strong>Vouch</strong></td><td>Verifies what the agent produced, with obligation IDs</td></tr>
+        </tbody>
+      </table>
+      <blockquote style="margin-top:16px;">
+        <em>DDD is the context contract — the input.<br>
+        Vouch is the release contract — the output gate.<br>
+        Together: a fully auditable, human-owned, machine-verifiable AI development pipeline.</em>
+      </blockquote>
+    </div>
+  </div>
+</section>
 <section id="superpowers">
   <div class="container">
     <h2>Four Superpowers</h2>
@@ -928,11 +1159,14 @@ skills/
 ├── CONTRACT.md                ← agent interaction rules (permanent)
 ├── CONTEXT.md                 ← current context: title, description, todo list
 ├── context.json               ← machine-readable context metadata
-├── history.log                ← past contexts journal
+├── vision.md                  ← product vision and epic goals (permanent)
+├── history.json               ← past contexts journal (JSON Lines, permanent)
+├── steps/                     ← roadmap phases and features (permanent)
+│   └── phase1-core.md             ← milestone description
 ├── skills/                    ← reusable agent knowledge (permanent-* kept)
 │   ├── permanent-dev-stack.md     ← role, stack, conventions
 │   └── permanent-architecture.md ← codebase map
-└── documents/
+└── tasks/
     ├── done/              ← AI execution reports (reset on new context)
     ├── specification/     ← functional specs (permanent-* kept)
     └── technical/         ← technical decisions (permanent-* kept)</pre>
@@ -1154,9 +1388,43 @@ Git — versioned snapshot of code AND context</pre>
       <div class="card" style="border-color: #8b949e;">
         <div class="icon">🧠</div>
         <h4 style="color: #8b949e;">Memory Tools</h4>
-        <p style="font-size: 14px; color: var(--muted);">Mem0, Zep, Mempalace… Implicit, conversational memory stored in a vector database.</p>
-        <p style="font-size: 13px; margin-top: 10px;">❌ Opaque<br>❌ Non-versionable<br>❌ Incompatible with Copilot<br>⚠️ Marginal value with DDD</p>
+        <p style="font-size: 14px; color: var(--muted);">Mem0, Zep, Memoir… Versioned or implicit memory stored outside Git.</p>
+        <p style="font-size: 13px; margin-top: 10px;">⚠️ Requires infrastructure<br>⚠️ Agent-written (corruption risk)<br>⚠️ Incompatible with Copilot<br>⚠️ Marginal value with DDD</p>
       </div>
+    </div>
+
+    <!-- MEMOIR CALLOUT -->
+    <div class="card" style="border-color: var(--accent); margin-bottom: 32px;">
+      <div class="icon">🔖</div>
+      <h4>Case study: <a href="https://memoir-ai.dev" target="_blank" style="color:var(--accent);font-weight:400;">Memoir</a> — "Git for AI Memory"</h4>
+      <p>
+        Memoir is a high-performance semantic memory system for AI agents that replaces opaque vector databases
+        with <strong>Git-like versioned memory</strong>: branch, commit, merge, rollback, cryptographic integrity,
+        semantic paths instead of UUID keys.
+      </p>
+      <p style="margin-top: 12px;">Their core diagnosis is our thesis, word for word:</p>
+      <blockquote style="margin: 12px 0;">
+        <em>"AI memory is a global variable anti-pattern. Your agent's memory is code without version control.
+        One bad session poisons every future retrieval."</em>
+      </blockquote>
+      <p>
+        The fact that Memoir had to build "Git for AI memory" to solve memory drift
+        is the strongest possible confirmation that <strong>the right mental model for agent memory
+        is version control</strong>. DDD practitioners just skipped the infrastructure
+        and used the one that already exists.
+      </p>
+      <table style="margin-top: 16px;">
+        <thead>
+          <tr><th>Dimension</th><th>Memoir</th><th>DDD</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Versioning</td><td>Cryptographic, semantic paths</td><td style="color:var(--accent2);">Plain Git</td></tr>
+          <tr><td>Authorship</td><td>Agent-written, auto-aggregated</td><td style="color:var(--accent2);"><strong>Human-written, human-reviewed</strong></td></tr>
+          <tr><td>Portability</td><td>memoir-ai.dev infrastructure</td><td style="color:var(--accent2);">Zero — any Git repo</td></tr>
+          <tr><td>Agent compatibility</td><td>memoir-compatible agents only</td><td style="color:var(--accent2);">Any agent that can read a file</td></tr>
+          <tr><td>Corruption risk</td><td>Mitigated by rollback</td><td style="color:var(--accent2);">Prevented by human review gate</td></tr>
+        </tbody>
+      </table>
     </div>
 
     <div style="
@@ -1185,16 +1453,18 @@ Git — versioned snapshot of code AND context</pre>
         <tr>
           <th>Dimension</th>
           <th>DDD (<code>.ai_context/</code>)</th>
+          <th>Memoir (versioned memory)</th>
           <th>Memory tools (Mem0, Zep…)</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>What is stored</td><td>Structured rules, specs, decisions</td><td>Implicit facts, conversation history</td></tr>
-        <tr><td>Who writes it</td><td>Developers and POs — deliberately</td><td>The agent — automatically</td></tr>
-        <tr><td>Versionable</td><td style="color:#3fb950;">✅ Committed in Git</td><td style="color:#f78166;">❌ Opaque vector store</td></tr>
-        <tr><td>Team-shareable</td><td style="color:#3fb950;">✅ Yes</td><td style="color:#f78166;">❌ Personal or session-scoped</td></tr>
-        <tr><td>Works with GitHub Copilot</td><td style="color:#3fb950;">✅ Yes</td><td style="color:#f78166;">❌ Closed environment</td></tr>
-        <tr><td>Infrastructure cost</td><td style="color:#3fb950;">Zero</td><td style="color:#e3b341;">Vector DB + embeddings, always-on</td></tr>
+        <tr><td>What is stored</td><td>Structured rules, specs, decisions</td><td>Semantic agent memory (versioned)</td><td>Implicit facts, conversation history</td></tr>
+        <tr><td>Who writes it</td><td style="color:#3fb950;">Humans — deliberately</td><td style="color:#e3b341;">Agent — auto-aggregated</td><td style="color:#f78166;">Agent — automatically</td></tr>
+        <tr><td>Versionable</td><td style="color:#3fb950;">✅ Plain Git</td><td style="color:#3fb950;">✅ Cryptographic</td><td style="color:#f78166;">❌ Opaque vector store</td></tr>
+        <tr><td>Human-readable</td><td style="color:#3fb950;">✅ Plain Markdown</td><td style="color:#e3b341;">⚠️ Semantic paths</td><td style="color:#f78166;">❌ Embeddings</td></tr>
+        <tr><td>Works with GitHub Copilot</td><td style="color:#3fb950;">✅ Yes</td><td style="color:#f78166;">❌ memoir-compatible only</td><td style="color:#f78166;">❌ Closed environment</td></tr>
+        <tr><td>Infrastructure cost</td><td style="color:#3fb950;">Zero</td><td style="color:#e3b341;">memoir-ai.dev service</td><td style="color:#e3b341;">Vector DB + embeddings, always-on</td></tr>
+        <tr><td>Corruption prevention</td><td style="color:#3fb950;">Human review + Git commit</td><td style="color:#e3b341;">Rollback after the fact</td><td style="color:#f78166;">None</td></tr>
       </tbody>
     </table>
   </div>

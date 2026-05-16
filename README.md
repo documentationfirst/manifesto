@@ -26,8 +26,7 @@
 - [DDD as Context Engineering](#ddd-as-context-engineering)
 - [The 3S Rule](#the-3s-rule--what-makes-a-good-context-document)
 - [The DDD Loop](#the-ddd-loop)
-- [The DDD Document Types](#the-ddd-document-types)
-- [The `skills/` Folder](#the-skills-folder--reusable-agent-knowledge)
+- [The DDD Document Types](#the-ddd-document-types)- [The `skills/` Folder](#the-skills-folder--reusable-agent-knowledge)
 - [Why Markdown?](#why-markdown)
 - [The Reconstruction Guarantee](#the-reconstruction-guarantee)
 - [Real-World Proof](#real-world-proof-legends-of-the-future-past-1992)
@@ -163,10 +162,11 @@ This rule applies to every file type in the DDD taxonomy: specs, technical notes
 |---|---|
 | Persistent context across sessions | Versioned `.md` files committed in the repo |
 | Structured knowledge base | `.ai_context/` folder organized by domain |
-| Role-specific information | `specs-functional.md` (PO) vs `specs-technical.md` (dev) |
-| Behavioral rules and constraints | `best-practices.md` — always read first |
-| Execution trace and auditability | `DONE.md` — written by the AI after each task |
-| Context scoping | One subfolder per feature, migration, or domain |
+| Strategic vision and roadmap | `vision.md` + `steps/` — permanent, never reset |
+| Role-specific information | `tasks/specification/` (PO) vs `tasks/technical/` (dev) |
+| Behavioral rules and constraints | `skills/permanent-*.md` — always read first |
+| Execution trace and auditability | `tasks/done/` — written by the AI after each task |
+| Context scoping | One context = one sprint = one commit |
 
 The key insight is that **context is not a prompt — it is infrastructure**.
 
@@ -212,36 +212,58 @@ The `.md` files are simultaneously:
 
 ## The DDD Document Types
 
-The `.ai_context/` folder organises documentation into six distinct types, each with a clear owner and lifecycle:
+The `.ai_context/` folder organises documentation into eight distinct types across **four lifecycle layers**:
 
-### 1. `CONTRACT.md` *(permanent)*
-The agent's interaction contract. Defines the profile (strict / standard / permissive): what the agent may or may not do, how it should communicate. Written once at project init. Never reset.
+### Layer 1 — Permanent (never reset)
 
-### 2. `CONTEXT.md` *(contextual)*
-The current unit of work: title, description, todo list. Reset each time the team starts a new context. The agent reads this first to understand what to do *right now*.
+#### 1. `CONTEXT.md`
+The project identity: what we are building, the stack, team conventions. Written once at init. **Never reset** — it is the permanent harness of the project.
 
-### 3. `documents/specification/` *(contextual, permanent-* kept)*
-Functional specifications written by the PO: user stories, acceptance criteria, business rules, edge cases. Reset on new context — except files prefixed `permanent-`.
+#### 2. `CONTRACT.md`
+The agent's interaction contract. Profile (strict / standard / permissive): what the agent may or may not do. Written once at init. Never reset.
 
-### 4. `documents/technical/` *(contextual, permanent-* kept)*
-Technical decisions written by the dev: architecture choices, API contracts, constraints, migration steps. Reset on new context — except files prefixed `permanent-`.
-
-### 5. `documents/done/` *(contextual)*
-Execution reports written *by the AI* after each task: what was done, what changed, every decision and trade-off. Fully reset on new context. The Git history is the archive.
-
-### 6. `skills/` *(permanent-* kept)*
-Reusable agent knowledge that persists across all contexts: role definition, stack, conventions, architecture map. See [The `skills/` Folder](#the-skills-folder--reusable-agent-knowledge).
+#### 3. `skills/` *(permanent-* kept)*
+Reusable agent knowledge that persists across all visions and tasks: role definition, stack, conventions, architecture map.
 
 ---
 
-| Type | Owner | Lifecycle |
+### Layer 2 — Semi-permanent (reset on "New Vision")
+
+#### 4. `vision.md`
+The product vision and epic goals. Reset when the team starts a new major direction. The strategic north star that frames every step.
+
+---
+
+### Layer 3 — Contextual per vision (reset on "New Vision")
+
+#### 5. `steps/`
+Roadmap phases and features for the current vision — one file per milestone. Fully reset when a new vision starts.
+
+---
+
+### Layer 4 — Ephemeral per task (reset on "New Tasks")
+
+#### 6. `tasks/specification/` *(permanent-* kept)*
+Functional specifications written by the PO: user stories, acceptance criteria, business rules. Reset on new task — except files prefixed `permanent-`.
+
+#### 7. `tasks/technical/` *(permanent-* kept)*
+Technical decisions written by the dev: architecture choices, API contracts, migration steps. Reset on new task — except files prefixed `permanent-`.
+
+#### 8. `tasks/done/`
+Execution reports written *by the AI* after each task: what was done, what changed, every decision. Fully reset on new task. Git is the archive.
+
+---
+
+| Type | Owner | Lifecycle layer |
 |---|---|---|
-| `CONTRACT.md` | Dev (init) | Permanent |
-| `CONTEXT.md` | Dev | Reset on new context |
-| `specification/` | PO | Reset (except `permanent-*`) |
-| `technical/` | Dev | Reset (except `permanent-*`) |
-| `done/` | AI | Fully reset |
-| `skills/` | Dev | `permanent-*` kept, others reset |
+| `CONTEXT.md` | Dev (init) | **Permanent** |
+| `CONTRACT.md` | Dev (init) | **Permanent** |
+| `skills/` | Dev | **Permanent** (`permanent-*` kept) |
+| `vision.md` | Dev | Semi-permanent (reset on New Vision) |
+| `steps/` | Dev | Contextual per vision |
+| `tasks/specification/` | PO | Ephemeral per task (`permanent-*` kept) |
+| `tasks/technical/` | Dev | Ephemeral per task (`permanent-*` kept) |
+| `tasks/done/` | AI | Fully reset on New Tasks |
 
 ---
 
@@ -251,13 +273,13 @@ Beyond context-specific documents, DDD introduces a dedicated folder for **persi
 
 > *A skill is what the agent needs to know about **how to work** on this project — independently of what to do right now.*
 
-While `documents/` captures the *current context*, `skills/` captures the *stable knowledge* that applies across all contexts:
+While `tasks/` captures the *current context*, `skills/` captures the *stable knowledge* that applies across all contexts:
 
 | Folder | Contains | Lifecycle |
 |---|---|---|
-| `documents/specification/` | Functional specs for the current context | Reset on new context (except `permanent-*`) |
-| `documents/technical/` | Technical decisions for the current context | Reset on new context (except `permanent-*`) |
-| `documents/done/` | Execution reports written by the AI | Fully reset on new context |
+| `tasks/specification/` | Functional specs for the current context | Reset on new context (except `permanent-*`) |
+| `tasks/technical/` | Technical decisions for the current context | Reset on new context (except `permanent-*`) |
+| `tasks/done/` | Execution reports written by the AI | Fully reset on new context |
 | **`skills/`** | **Role, stack, conventions, domain expertise** | **Persists across all contexts (`permanent-*`)** |
 
 ### What goes in a skill?
@@ -734,18 +756,22 @@ Organize documentation by context, each in its own versioned subfolder:
 
 ```
 .ai_context/
-├── README.md                  ← project overview for the agent (permanent)
+├── README.md                  ← project overview (permanent)
 ├── CONTRACT.md                ← agent interaction rules (permanent)
-├── CONTEXT.md                 ← current context: title, description, todo list
-├── context.json               ← machine-readable context metadata
-├── history.log                ← past contexts journal
+├── CONTEXT.md                 ← project identity: stack, conventions, team (permanent — never reset)
+├── context.json               ← current task metadata
+├── vision.md                  ← product vision and epic goals (semi-permanent — reset on New Vision)
+├── history.json               ← append-only log of all visions and tasks
+├── steps/                     ← roadmap phases for current vision (reset on New Vision)
+│   ├── phase1-core.md
+│   └── phase2-growth.md
 ├── skills/                    ← reusable agent knowledge (permanent-* kept)
-│   ├── permanent-dev-stack.md     ← role, stack, conventions
-│   └── permanent-architecture.md ← codebase map
-└── documents/
-    ├── done/              ← AI execution reports (reset on new context)
-    ├── specification/     ← functional specs (permanent-* kept)
-    └── technical/         ← technical decisions (permanent-* kept)
+│   ├── permanent-dev-stack.md
+│   └── permanent-architecture.md
+└── tasks/                     ← current sprint work (reset on New Tasks)
+    ├── done/                  ← AI execution reports
+    ├── specification/         ← functional specs (permanent-* kept)
+    └── technical/             ← technical decisions (permanent-* kept)
 ```
 
 ### Step 2 — Write the functional specifications

@@ -78,12 +78,18 @@ The `.md` files are simultaneously the **spec**, the **contract**, the **journal
 
 In practice, the structure looks like this:
 
-📁 `.ai_context/features/authentication/`
-&nbsp;&nbsp;&nbsp;&nbsp;📄 `specs-functional.md` ← PO writes user stories, acceptance criteria, business rules
-&nbsp;&nbsp;&nbsp;&nbsp;📄 `specs-technical.md` ← Dev writes architecture decisions, API contracts, constraints
-&nbsp;&nbsp;&nbsp;&nbsp;📄 `DONE.md` ← AI writes the execution report after completion
+```
+.ai_context/
+├── vision.md          ← product vision (permanent)
+├── steps/             ← roadmap phases (permanent)
+├── skills/            ← agent behaviours (permanent-* kept)
+└── tasks/
+    ├── specification/ ← PO writes user stories, acceptance criteria
+    ├── technical/     ← Dev writes architecture decisions, constraints
+    └── done/          ← AI writes the execution report after completion
+```
 
-Each context gets its own versioned subfolder. Each subfolder is a self-contained unit of knowledge.
+Each context gets its own sprint cycle. Each commit is a versioned snapshot of code AND context.
 
 And the prompt to the AI? It's just a User Story or a ticket — Jira, Linear, GitHub Issues, or even a sticky note:
 
@@ -136,6 +142,19 @@ No external server. No special infrastructure. Just Markdown files, versioned in
 > 🧪 *If you practice DDD correctly, you don't need a memory layer. If something is important enough for the agent to remember — write it in a `.md` file.*
 
 Memory tools are opaque, non-versionable, and incompatible with closed agents like GitHub Copilot. A well-maintained `.ai_context/` folder does the same job — explicitly, transparently, and for free.
+
+**One project makes this crystal clear: [Memoir](https://memoir-ai.dev).**
+
+Memoir is a high-performance semantic memory system for AI agents — built around the observation that *"AI memory is a global variable anti-pattern"*. It replaces opaque vector databases with transparent, versioned, cryptographically secure memory storage. It even uses Git semantics: branch, commit, merge, rollback.
+
+Their diagnosis is word-for-word our thesis:
+> *"Your agent's memory is code without version control. One bad session poisons every future retrieval."*
+
+Memoir's answer is infrastructure: semantic paths, O(log n) lookups, memory aggregation, multi-agent sessions.
+
+**DDD's answer is a `.md` file committed to Git.**
+
+Both agree on the problem. The difference is the solution layer.
 
 ---
 
