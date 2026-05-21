@@ -263,11 +263,12 @@
       <a href="#scientific-proof" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑨ Scientific Proof — Two Labs, One Thesis</a>
       <a href="#gitagent" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑩ GitAgent Protocol &amp; Interoperability</a>
       <a href="#superpowers" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑪ Four Superpowers</a>
-      <a href="#knowledge-capital" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑫ DDD as Knowledge Capital</a>
-      <a href="#get-started" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑬ Getting Started</a>
-      <a href="#ide-first" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑭ The IDE-First Ecosystem</a>
-      <a href="#mcp-memory" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑮ MCP &amp; Contextual Memory</a>
-      <a href="#support" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑯ Support &amp; Certification</a>
+      <a href="#is-is-not" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑫ DDD Is / Is Not</a>
+      <a href="#knowledge-capital" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑬ DDD as Knowledge Capital</a>
+      <a href="#get-started" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑭ Getting Started</a>
+      <a href="#ide-first" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑮ The IDE-First Ecosystem</a>
+      <a href="#mcp-memory" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑯ MCP &amp; Contextual Memory</a>
+      <a href="#support" style="color:var(--muted);text-decoration:none;padding:4px 0;border-bottom:1px solid var(--border);">⑰ Support &amp; Certification</a>
     </div>
   </div>
 </section>
@@ -432,6 +433,18 @@ Developer / PO
         <tr><td>🔁 <strong>Reconstruction kit</strong></td><td>Everything needed to rebuild from scratch</td></tr>
       </tbody>
     </table>
+
+    <h3>Steps as Mini-Retrospectives</h3>
+    <p>
+      Each step in <code>steps/</code> is not just a roadmap milestone — it is a <strong>living retrospective unit</strong>.
+      When a step closes, the agent appends a compact retrospective directly into the step file:
+      what was done, what remains, what blocked.
+      Stored in <code>dev-context.json</code> under <code>lastSession</code>, it gives the next session
+      instant continuity without reading the entire history.
+    </p>
+    <blockquote>
+      <em>Not a ceremony. Not a meeting. Three lines committed in Git — and the agent remembers everything.</em>
+    </blockquote>
   </div>
 </section>
 
@@ -1158,7 +1171,7 @@ skills/
 ├── README.md                  ← project overview for the agent (permanent)
 ├── CONTRACT.md                ← agent interaction rules (permanent)
 ├── CONTEXT.md                 ← current context: title, description, todo list
-├── context.json               ← machine-readable context metadata
+├── dev-context.json           ← machine-readable context metadata
 ├── vision.md                  ← product vision and epic goals (permanent)
 ├── history.json               ← past contexts journal (JSON Lines, permanent)
 ├── steps/                     ← roadmap phases and features (permanent)

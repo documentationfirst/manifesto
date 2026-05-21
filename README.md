@@ -206,6 +206,16 @@ The `.md` files are simultaneously:
 | **Journal** | What was done, why, and how |
 | **Reconstruction kit** | Everything needed to rebuild from scratch |
 
+### Steps as Mini-Retrospectives
+
+Each step in `steps/` is not just a roadmap milestone — it is a **living retrospective unit**.
+When a step closes, the agent appends a compact retrospective directly into the step file:
+what was done, what remains, what blocked.
+Stored in `dev-context.json` under `lastSession`, it gives the next session
+instant continuity without reading the entire history.
+
+> *Not a ceremony. Not a meeting. Three lines committed in Git — and the agent remembers everything.*
+
 ---
 
 > *In practice: a Jira ticket, a Linear issue, a GitHub feature — each one becomes a `.md` context file. The unit of work is a document.*
@@ -759,7 +769,7 @@ Organize documentation by context, each in its own versioned subfolder:
 ├── README.md                  ← project overview (permanent)
 ├── CONTRACT.md                ← agent interaction rules (permanent)
 ├── CONTEXT.md                 ← project identity: stack, conventions, team (permanent — never reset)
-├── context.json               ← current task metadata
+├── dev-context.json           ← current task metadata
 ├── vision.md                  ← product vision and epic goals (semi-permanent — reset on New Vision)
 ├── history.json               ← append-only log of all visions and tasks
 ├── steps/                     ← roadmap phases for current vision (reset on New Vision)

@@ -6,7 +6,7 @@
 
 🚀 **I've been working with AI coding agents for months. Here's the single most important thing I learned.**
 
-The problem with AI agents isn't intelligence. It's **memory**.
+The problem with AI agents isn't intelligence. It's **memory** and **context**.
 
 Every new session starts from zero. No context. No history. No conventions. You spend 20 minutes re-explaining the project before getting anything useful done.
 
@@ -81,6 +81,7 @@ In practice, the structure looks like this:
 ```
 .ai_context/
 ├── vision.md          ← product vision (permanent)
+├── dev-context.json   ← machine-readable context: title, todos, lastSession
 ├── steps/             ← roadmap phases (permanent)
 ├── skills/            ← agent behaviours (permanent-* kept)
 └── tasks/
@@ -89,7 +90,9 @@ In practice, the structure looks like this:
     └── done/          ← AI writes the execution report after completion
 ```
 
-Each context gets its own sprint cycle. Each commit is a versioned snapshot of code AND context.
+Each step in `steps/` doubles as a **mini-retrospective**: when a step closes, the agent appends three lines — what was done, what remains, what blocked — stored in `dev-context.json` under `lastSession`. The next session picks up instantly, without reading the full history.
+
+> *Not a ceremony. Not a meeting. Three lines committed in Git — and the agent remembers everything.*
 
 And the prompt to the AI? It's just a User Story or a ticket — Jira, Linear, GitHub Issues, or even a sticky note:
 
