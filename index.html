@@ -225,6 +225,176 @@
       background: var(--border);
       margin: 40px 0;
     }
+
+    /* ══════════════════════════════════════════
+       STICKY TOC — FAB BUTTON
+    ══════════════════════════════════════════ */
+    @keyframes toc-shine {
+      0%   { left: -80%; }
+      60%  { left: 130%; }
+      100% { left: 130%; }
+    }
+
+    #toc-fab {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 35%, #8ecf00, #2db80e 55%, #1a9a0a);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 900;
+      box-shadow: 0 0 8px 2px rgba(45,184,14,0.35), 0 4px 12px rgba(0,0,0,0.45);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.2s;
+    }
+    #toc-fab::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: -80%;
+      width: 50%;
+      height: 140%;
+      background: linear-gradient(105deg, transparent 20%, rgba(230,255,120,0.45) 50%, transparent 80%);
+      animation: toc-shine 2.6s ease-in-out infinite;
+      pointer-events: none;
+    }
+    #toc-fab.visible {
+      opacity: 0.75;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    #toc-fab:hover {
+      opacity: 1 !important;
+      box-shadow: 0 0 16px 5px rgba(45,184,14,0.55), 0 4px 20px rgba(0,0,0,0.6);
+    }
+    #toc-fab svg { width: 22px; height: 22px; position: relative; z-index: 1; }
+    #toc-fab-tooltip {
+      position: absolute;
+      right: 56px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #21262d;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    #toc-fab:hover #toc-fab-tooltip { opacity: 1; }
+
+    /* ══════════════════════════════════════════
+       STICKY TOC — BACKDROP
+    ══════════════════════════════════════════ */
+    #toc-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 910;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+    #toc-backdrop.visible { opacity: 1; pointer-events: auto; }
+
+    /* ══════════════════════════════════════════
+       STICKY TOC — SIDEBAR DRAWER
+    ══════════════════════════════════════════ */
+    #toc-sidebar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 100vh;
+      background: var(--surface);
+      border-left: 1px solid var(--border);
+      z-index: 920;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(300px);
+      transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+    #toc-sidebar.open { transform: translateX(0); }
+    .toc-sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 20px 16px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .toc-sidebar-header h3 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+    #toc-close {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      transition: color 0.2s;
+    }
+    #toc-close:hover { color: var(--text); }
+    .toc-sidebar-list { overflow-y: auto; flex: 1; padding: 12px 0; }
+    .toc-sidebar-list::-webkit-scrollbar { width: 4px; }
+    .toc-sidebar-list::-webkit-scrollbar-track { background: transparent; }
+    .toc-sidebar-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    .toc-sidebar-list a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 20px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      border-left: 2px solid transparent;
+      transition: color 0.2s, padding-left 0.2s, background 0.15s;
+    }
+    .toc-sidebar-list a:hover {
+      color: var(--accent);
+      padding-left: 26px;
+      border-left-color: var(--accent);
+      background: rgba(88,166,255,0.05);
+    }
+    .toc-sidebar-list a .toc-num {
+      color: var(--accent);
+      font-size: 1.1em;
+      flex-shrink: 0;
+      width: 22px;
+    }
+
+    /* ══════════════════════════════════════════
+       MOBILE (< 768px) — full screen panel
+    ══════════════════════════════════════════ */
+    @media (max-width: 767px) {
+      #toc-fab { bottom: 16px; right: 16px; width: 44px; height: 44px; }
+      #toc-sidebar {
+        width: 100%;
+        height: 100dvh;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+      }
+      #toc-sidebar.open { transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
@@ -248,7 +418,7 @@
 </div>
 
 <!-- ══════════════════════════════ TABLE OF CONTENTS ══════════════════════════════ -->
-<section style="background: var(--surface); border-bottom: 1px solid var(--border);">
+<section id="toc-section" style="background: var(--surface); border-bottom: 1px solid var(--border);">
   <div class="container">
     <h2 style="margin-bottom: 24px;">Table of Contents</h2>
     <div style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(9, auto); grid-auto-flow: column; gap: 4px 40px; font-size: 15px;">
@@ -1459,7 +1629,7 @@ Git — versioned snapshot of code AND context</pre>
 
     <p style="font-size: 15px; margin-bottom: 12px;">Apply this test before reaching for a memory tool:</p>
     <blockquote>
-      <em>If it's important enough for the agent to remember — it's important enough to be in a <code>.md</code> file.</em>
+      <em>If it's important enough for the agent to remember, it's important enough to be in a <code>.md</code> file.</em>
     </blockquote>
 
     <table style="margin-top: 36px;">
@@ -1563,6 +1733,16 @@ Git — versioned snapshot of code AND context</pre>
       for teams and companies that have adopted DDD practices.
     </p>
 
+    <!-- CERTIFICATION BADGE LOGO -->
+    <div style="text-align: center; margin: 48px 0 32px;">
+      <img src="certif-badge.svg" width="220" height="220" alt="Documentation First Certified Badge" style="display:inline-block;"/>
+
+      <p style="color: var(--muted); font-size: 13px; margin-top: 12px; margin-bottom: 0;">
+        The <strong style="color: #3fb950;">AI Documentation First</strong> badge <br>
+        displayed on your GitHub repo, website, and job postings.
+      </p>
+    </div>
+
     <div style="
       margin-top: 32px;
       display: grid;
@@ -1575,30 +1755,10 @@ Git — versioned snapshot of code AND context</pre>
         <p>A structured review of your <code>.ai_context/</code> folder, your DDD loop, and your team's practices by a certified DDD reviewer.</p>
       </div>
       <div class="card">
-        <div class="icon">📜</div>
-        <h4>Certificate</h4>
-        <p>A dated, versioned certificate recognizing your organization as <strong>Documentation First Certified</strong> — shareable on LinkedIn, your website, and job postings.</p>
-      </div>
-      <div class="card">
         <div class="icon">🏷️</div>
         <h4>Badge</h4>
         <p>A digital badge for your GitHub repo and documentation, with a verification link proving authenticity.</p>
       </div>
-      <div class="card">
-        <div class="icon">🔄</div>
-        <h4>Annual Renewal</h4>
-        <p>Certification is renewed yearly — ensuring your practices stay current as DDD evolves with the AI landscape.</p>
-      </div>
-    </div>
-
-    <!-- CERTIFICATION BADGE LOGO -->
-    <div style="text-align: center; margin: 48px 0 32px;">
-      <img src="certif-badge.svg" width="220" height="220" alt="Documentation First Certified Badge" style="display:inline-block;"/>
-
-      <p style="color: var(--muted); font-size: 13px; margin-top: 12px; margin-bottom: 0;">
-        The <strong style="color: #3fb950;">AI Documentation First</strong> badge <br>
-        displayed on your GitHub repo, website, and job postings.
-      </p>
     </div>
 
     <!-- CTA Certification -->
@@ -1672,6 +1832,12 @@ Git — versioned snapshot of code AND context</pre>
         <div class="icon">🐝</div>
         <h4><a href="https://github.com/activeloopai/hivemind" target="_blank" style="color:var(--accent3);text-decoration:none;">Hivemind</a></h4>
         <p>Captures every coding-agent interaction in your org as a structured trace, codifies repeated patterns into reusable skills, and propagates those skills to every agent on the team. The team-level equivalent of DDD's <code>skills/</code> folder — but automated and shared.</p>
+      </div>
+
+      <div class="card" style="border-color:var(--accent3);">
+        <div class="icon">🏗️</div>
+        <h4><a href="https://openai.com/fr-FR/index/harness-engineering/" target="_blank" style="color:var(--accent3);text-decoration:none;">Harness Engineering — OpenAI / Codex</a></h4>
+        <p>A 5-month experiment shipping a real product with zero manually written code. 3 engineers, ~1 500 PRs, ~1M lines — all by Codex. The key lesson: <strong>replace one big <code>AGENTS.md</code> with a structured <code>docs/</code> tree as a table of contents</strong>.</p>
       </div>
 
     </div>
@@ -1777,6 +1943,112 @@ Git — versioned snapshot of code AND context</pre>
     <a href="https://github.com/documentationfirst/manifesto" target="_blank">Fork on GitHub</a>
   </p>
 </footer>
+
+<!-- ══════════════════════════════ STICKY TOC ══════════════════════════════ -->
+<button id="toc-fab" aria-label="Open table of contents" aria-expanded="false">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#0a1a00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="3" y1="6" x2="21" y2="6"/>
+    <line x1="3" y1="12" x2="21" y2="12"/>
+    <line x1="3" y1="18" x2="21" y2="18"/>
+    <circle cx="3" cy="6"  r="1.5" fill="#0a1a00" stroke="none"/>
+    <circle cx="3" cy="12" r="1.5" fill="#0a1a00" stroke="none"/>
+    <circle cx="3" cy="18" r="1.5" fill="#0a1a00" stroke="none"/>
+  </svg>
+  <span id="toc-fab-tooltip">Table of Contents</span>
+</button>
+
+<div id="toc-backdrop" aria-hidden="true"></div>
+
+<nav id="toc-sidebar" role="dialog" aria-label="Table of Contents" aria-modal="true">
+  <div class="toc-sidebar-header">
+    <h3>Table of Contents</h3>
+    <button id="toc-close" aria-label="Close table of contents">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <div class="toc-sidebar-list">
+    <a href="#problem"           onclick="closeTocSidebar()"><span class="toc-num">①</span> The Problem</a>
+    <a href="#documental-engineering" onclick="closeTocSidebar()"><span class="toc-num">②</span> Documental Engineering &amp; 3S Rule</a>
+    <a href="#loop"              onclick="closeTocSidebar()"><span class="toc-num">③</span> The DDD Loop</a>
+    <a href="#file-types"        onclick="closeTocSidebar()"><span class="toc-num">④</span> The DDD Document Types</a>
+    <a href="#preview-test"      onclick="closeTocSidebar()"><span class="toc-num">⑤</span> Preview &amp; Test Artefacts</a>
+    <a href="#skills"            onclick="closeTocSidebar()"><span class="toc-num">⑥</span> The Folders</a>
+    <a href="#harness"           onclick="closeTocSidebar()"><span class="toc-num">⑦</span> Harness &amp; Documental Engineering</a>
+    <a href="#reconstruction"    onclick="closeTocSidebar()"><span class="toc-num">⑧</span> The Reconstruction Guarantee</a>
+    <a href="#scientific-proof"  onclick="closeTocSidebar()"><span class="toc-num">⑨</span> Scientific Proof — Two Labs, One Thesis</a>
+    <a href="#gitagent"          onclick="closeTocSidebar()"><span class="toc-num">⑩</span> GitAgent Protocol &amp; Interoperability</a>
+    <a href="#superpowers"       onclick="closeTocSidebar()"><span class="toc-num">⑪</span> Four Superpowers</a>
+    <a href="#is-is-not"         onclick="closeTocSidebar()"><span class="toc-num">⑫</span> DDD Is / Is Not</a>
+    <a href="#knowledge-capital" onclick="closeTocSidebar()"><span class="toc-num">⑬</span> DDD as Knowledge Capital</a>
+    <a href="#get-started"       onclick="closeTocSidebar()"><span class="toc-num">⑭</span> Getting Started</a>
+    <a href="#ide-first"         onclick="closeTocSidebar()"><span class="toc-num">⑮</span> The IDE-First Ecosystem</a>
+    <a href="#mcp-memory"        onclick="closeTocSidebar()"><span class="toc-num">⑯</span> MCP &amp; Contextual Memory</a>
+    <a href="#support"           onclick="closeTocSidebar()"><span class="toc-num">⑰</span> Support &amp; Certification</a>
+    <a href="#going-further"     onclick="closeTocSidebar()"><span class="toc-num">⑱</span> Going Further — The Ecosystem</a>
+  </div>
+</nav>
+
+<script>
+  (function() {
+    const fab      = document.getElementById('toc-fab');
+    const sidebar  = document.getElementById('toc-sidebar');
+    const backdrop = document.getElementById('toc-backdrop');
+    const closeBtn = document.getElementById('toc-close');
+    const tocSection = document.getElementById('toc-section');
+
+    // Show FAB only when TOC section has scrolled out of view
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          fab.classList.remove('visible');
+        } else {
+          fab.classList.add('visible');
+        }
+      },
+      { threshold: 0 }
+    );
+    observer.observe(tocSection);
+
+    function openTocSidebar() {
+      sidebar.classList.add('open');
+      backdrop.classList.add('visible');
+      fab.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => closeBtn.focus(), 50);
+    }
+
+    window.closeTocSidebar = function() {
+      sidebar.classList.remove('open');
+      backdrop.classList.remove('visible');
+      fab.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    };
+
+    fab.addEventListener('click', openTocSidebar);
+    closeBtn.addEventListener('click', window.closeTocSidebar);
+    backdrop.addEventListener('click', window.closeTocSidebar);
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+        window.closeTocSidebar();
+      }
+    });
+
+    // Focus trap
+    sidebar.addEventListener('keydown', function(e) {
+      if (e.key !== 'Tab') return;
+      const focusable = [...sidebar.querySelectorAll('button, a[href]')];
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    });
+  })();
+</script>
 
 </body>
 </html>
