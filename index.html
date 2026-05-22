@@ -7,8 +7,8 @@
   <meta property="og:title" content="Documentation-Driven Development" />
   <meta property="og:description" content="A manifesto for Human–AI collaborative software engineering." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://documentationfirst.ai" />
-  <link rel="canonical" href="https://documentationfirst.ai" />
+  <meta property="og:url" content="http://www.documentationfirst.ai" />
+  <link rel="canonical" href="http://www.documentationfirst.ai" />
   <title>Documentation Driven Development</title>
   <style>
     :root {
@@ -32,6 +32,7 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       line-height: 1.7;
       font-size: 17px;
+      overflow-x: hidden;
     }
 
     /* ── HERO ── */
@@ -383,17 +384,18 @@
     }
 
     /* ══════════════════════════════════════════
-       MOBILE (< 768px) — full screen panel
+       MOBILE (< 768px) — keep same behavior, just resize the FAB
     ══════════════════════════════════════════ */
     @media (max-width: 767px) {
-      #toc-fab { bottom: 16px; right: 16px; width: 44px; height: 44px; }
+      #toc-fab { bottom: 16px; right: auto; left: 16px; width: 44px; height: 44px; }
       #toc-sidebar {
-        width: 100%;
-        height: 100dvh;
-        transform: translateY(100%);
-        transition: transform 0.3s ease;
+        right: auto;
+        left: 0;
+        border-left: none;
+        border-right: 1px solid var(--border);
+        transform: translateX(-300px);
       }
-      #toc-sidebar.open { transform: translateY(0); }
+      #toc-sidebar.open { transform: translateX(0); }
     }
   </style>
 </head>
@@ -402,14 +404,13 @@
 <!-- ══════════════════════════════ HERO ══════════════════════════════ -->
 <div class="hero">
   <div class="badge">Manifesto — v1.0 — April 2026</div>
+  <img src="d-ai.jpg" alt="Documentation-Driven Development" width="150" style="border-radius: 50%; overflow: hidden; margin-left: 15px" align="center"/>
   <h1><span>Documentation Driven</span><br> Development v2</h1>
-  <p class="subtitle">
-    A manifesto for Human–AI collaborative software engineering.
-  </p>
+
   <div class="cta-group">
-    <a href="https://github.com/documentationfirst/manifesto/blob/main/README.md" class="btn btn-primary" target="_blank">
-      📄 Read the full manifesto
-    </a>
+    <p style="align-content: flex-end;">
+      A manifesto for Human–AI collaborative software engineering.
+    </p>
     <a href="https://github.com/documentationfirst/manifesto" class="btn btn-secondary" target="_blank">
       ⭐ Fork on GitHub
     </a>
@@ -516,15 +517,15 @@
     </p>
     <table>
       <thead>
-        <tr><th>Context Engineering concept</th><th>DDD implementation</th></tr>
+      <tr><th>Context Engineering concept</th><th>DDD implementation</th></tr>
       </thead>
       <tbody>
-        <tr><td>Persistent context across sessions</td><td>Versioned <code>.md</code> files committed in the repo</td></tr>
-        <tr><td>Structured knowledge base</td><td><code>.ai_context/</code> folder organized by domain</td></tr>
-        <tr><td>Role-specific information</td><td><code>specs-functional.md</code> (PO) vs <code>specs-technical.md</code> (dev)</td></tr>
-        <tr><td>Behavioral rules and constraints</td><td><code>best-practices.md</code> — always read first</td></tr>
-        <tr><td>Execution trace and auditability</td><td><code>DONE.md</code> — written by the AI after each task</td></tr>
-        <tr><td>Context scoping</td><td>One subfolder per feature, migration, or domain</td></tr>
+      <tr><td>Persistent context across sessions</td><td>Versioned <code>.md</code> files committed in the repo</td></tr>
+      <tr><td>Structured knowledge base</td><td><code>.ai_context/</code> folder organized by domain</td></tr>
+      <tr><td>Role-specific information</td><td><code>specs-functional.md</code> (PO) vs <code>specs-technical.md</code> (dev)</td></tr>
+      <tr><td>Behavioral rules and constraints</td><td><code>best-practices.md</code> — always read first</td></tr>
+      <tr><td>Execution trace and auditability</td><td><code>DONE.md</code> — written by the AI after each task</td></tr>
+      <tr><td>Context scoping</td><td>One subfolder per feature, migration, or domain</td></tr>
       </tbody>
     </table>
     <p>
@@ -547,24 +548,24 @@
     </p>
     <table>
       <thead>
-        <tr><th>3S</th><th>Principle</th><th>Meaning</th></tr>
+      <tr><th>3S</th><th>Principle</th><th>Meaning</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td><strong>Selected</strong></td>
-          <td>Only what the agent needs</td>
-          <td>Don't dump everything — choose what is relevant. Noise kills context.</td>
-        </tr>
-        <tr>
-          <td><strong>Synthetic</strong></td>
-          <td>Summarised, not verbose</td>
-          <td>As short as possible while actionable. Distil, don't transcribe.</td>
-        </tr>
-        <tr>
-          <td><strong>Structured</strong></td>
-          <td>Formatted for AI consumption</td>
-          <td>Use headings, bullet points, tables, and code blocks. Structure is clarity.</td>
-        </tr>
+      <tr>
+        <td><strong>Selected</strong></td>
+        <td>Only what the agent needs</td>
+        <td>Don't dump everything — choose what is relevant. Noise kills context.</td>
+      </tr>
+      <tr>
+        <td><strong>Synthetic</strong></td>
+        <td>Summarised, not verbose</td>
+        <td>As short as possible while actionable. Distil, don't transcribe.</td>
+      </tr>
+      <tr>
+        <td><strong>Structured</strong></td>
+        <td>Formatted for AI consumption</td>
+        <td>Use headings, bullet points, tables, and code blocks. Structure is clarity.</td>
+      </tr>
       </tbody>
     </table>
     <blockquote>
@@ -595,13 +596,13 @@ Developer / PO
     <p>The <code>.md</code> files play four roles simultaneously:</p>
     <table>
       <thead>
-        <tr><th>Role</th><th>Description</th></tr>
+      <tr><th>Role</th><th>Description</th></tr>
       </thead>
       <tbody>
-        <tr><td>📋 <strong>Spec</strong></td><td>What we want to build</td></tr>
-        <tr><td>📜 <strong>Contract</strong></td><td>The rules every contributor must follow</td></tr>
-        <tr><td>📖 <strong>Journal</strong></td><td>What was done, why, and how</td></tr>
-        <tr><td>🔁 <strong>Reconstruction kit</strong></td><td>Everything needed to rebuild from scratch</td></tr>
+      <tr><td>📋 <strong>Spec</strong></td><td>What we want to build</td></tr>
+      <tr><td>📜 <strong>Contract</strong></td><td>The rules every contributor must follow</td></tr>
+      <tr><td>📖 <strong>Journal</strong></td><td>What was done, why, and how</td></tr>
+      <tr><td>🔁 <strong>Reconstruction kit</strong></td><td>Everything needed to rebuild from scratch</td></tr>
       </tbody>
     </table>
 
@@ -669,17 +670,17 @@ Developer / PO
 
     <table style="margin-top: 32px;">
       <thead>
-        <tr><th>Type</th><th>Owner</th><th>Lifecycle</th></tr>
+      <tr><th>Type</th><th>Owner</th><th>Lifecycle</th></tr>
       </thead>
       <tbody>
-        <tr><td><code>CONTRACT.md</code></td><td>Dev (init)</td><td style="color:var(--accent2);">Permanent</td></tr>
-        <tr><td><code>vision.md</code></td><td>Dev (init)</td><td style="color:var(--accent2);">Permanent</td></tr>
-        <tr><td><code>steps/</code></td><td>Dev</td><td style="color:var(--accent2);">Permanent</td></tr>
-        <tr><td><code>CONTEXT.md</code></td><td>Dev</td><td>Reset on new context</td></tr>
-        <tr><td><code>tasks/specification/</code></td><td>PO</td><td>Reset (except <code>permanent-*</code>)</td></tr>
-        <tr><td><code>tasks/technical/</code></td><td>Dev</td><td>Reset (except <code>permanent-*</code>)</td></tr>
-        <tr><td><code>tasks/done/</code></td><td>AI</td><td>Fully reset</td></tr>
-        <tr><td><code>skills/</code></td><td>Dev</td><td style="color:var(--accent);">permanent-* kept, others reset</td></tr>
+      <tr><td><code>CONTRACT.md</code></td><td>Dev (init)</td><td style="color:var(--accent2);">Permanent</td></tr>
+      <tr><td><code>vision.md</code></td><td>Dev (init)</td><td style="color:var(--accent2);">Permanent</td></tr>
+      <tr><td><code>steps/</code></td><td>Dev</td><td style="color:var(--accent2);">Permanent</td></tr>
+      <tr><td><code>CONTEXT.md</code></td><td>Dev</td><td>Reset on new context</td></tr>
+      <tr><td><code>tasks/specification/</code></td><td>PO</td><td>Reset (except <code>permanent-*</code>)</td></tr>
+      <tr><td><code>tasks/technical/</code></td><td>Dev</td><td>Reset (except <code>permanent-*</code>)</td></tr>
+      <tr><td><code>tasks/done/</code></td><td>AI</td><td>Fully reset</td></tr>
+      <tr><td><code>skills/</code></td><td>Dev</td><td style="color:var(--accent);">permanent-* kept, others reset</td></tr>
       </tbody>
     </table>
   </div>
@@ -723,19 +724,19 @@ Developer / PO
 
     <table style="margin-top: 32px;">
       <thead>
-        <tr><th>Artefact</th><th>Location</th><th>Generated by</th><th>Purpose</th></tr>
+      <tr><th>Artefact</th><th>Location</th><th>Generated by</th><th>Purpose</th></tr>
       </thead>
       <tbody>
-        <tr><td><code>spec-*.md</code></td><td><code>tasks/specification/</code></td><td>PO / Dev</td><td>Human-written intent</td></tr>
-        <tr><td><code>spec-*-preview.html</code></td><td><code>tasks/specification/</code></td><td>AI</td><td>Visual validation before coding</td></tr>
-        <tr><td><code>done-*.md</code></td><td><code>tasks/done/</code></td><td>AI</td><td>Execution report</td></tr>
-        <tr><td><code>done-*-test.html</code></td><td><code>tasks/done/</code></td><td>AI</td><td>Acceptance test runner</td></tr>
+      <tr><td><code>spec-*.md</code></td><td><code>tasks/specification/</code></td><td>PO / Dev</td><td>Human-written intent</td></tr>
+      <tr><td><code>spec-*-preview.html</code></td><td><code>tasks/specification/</code></td><td>AI</td><td>Visual validation before coding</td></tr>
+      <tr><td><code>done-*.md</code></td><td><code>tasks/done/</code></td><td>AI</td><td>Execution report</td></tr>
+      <tr><td><code>done-*-test.html</code></td><td><code>tasks/done/</code></td><td>AI</td><td>Acceptance test runner</td></tr>
       </tbody>
     </table>
 
     <blockquote style="margin-top: 32px;">
       <em>The spec says what to build. The preview shows what it should look like. The test proves it works.<br>
-      All three are Markdown-adjacent, versioned in Git, reviewed by the developer.</em>
+        All three are Markdown-adjacent, versioned in Git, reviewed by the developer.</em>
     </blockquote>
 
     <p style="margin-top:16px;">
@@ -764,29 +765,29 @@ Developer / PO
 
     <table>
       <thead>
-        <tr><th>Folder</th><th>Contains</th><th>Lifecycle</th></tr>
+      <tr><th>Folder</th><th>Contains</th><th>Lifecycle</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td><code>tasks/specification/</code></td>
-          <td>Functional specs for the current context</td>
-          <td>Reset on new context (except <code>permanent-*</code>)</td>
-        </tr>
-        <tr>
-          <td><code>tasks/technical/</code></td>
-          <td>Technical decisions for the current context</td>
-          <td>Reset on new context (except <code>permanent-*</code>)</td>
-        </tr>
-        <tr>
-          <td><code>tasks/done/</code></td>
-          <td>Execution reports written by the AI</td>
-          <td>Fully reset on new context</td>
-        </tr>
-        <tr style="background: #12221a;">
-          <td><strong><code>skills/</code></strong></td>
-          <td><strong>Role, stack, conventions, domain expertise</strong></td>
-          <td><strong style="color: #3fb950;">Persists across all contexts (<code>permanent-*</code>)</strong></td>
-        </tr>
+      <tr>
+        <td><code>tasks/specification/</code></td>
+        <td>Functional specs for the current context</td>
+        <td>Reset on new context (except <code>permanent-*</code>)</td>
+      </tr>
+      <tr>
+        <td><code>tasks/technical/</code></td>
+        <td>Technical decisions for the current context</td>
+        <td>Reset on new context (except <code>permanent-*</code>)</td>
+      </tr>
+      <tr>
+        <td><code>tasks/done/</code></td>
+        <td>Execution reports written by the AI</td>
+        <td>Fully reset on new context</td>
+      </tr>
+      <tr style="background: #12221a;">
+        <td><strong><code>skills/</code></strong></td>
+        <td><strong>Role, stack, conventions, domain expertise</strong></td>
+        <td><strong style="color: #3fb950;">Persists across all contexts (<code>permanent-*</code>)</strong></td>
+      </tr>
       </tbody>
     </table>
 
@@ -828,7 +829,7 @@ skills/
 
     <blockquote>
       <em>Skills are the agent's memory of <strong>who it is on this project</strong>.
-      Documents are its memory of <strong>what it is doing right now</strong>.</em>
+        Documents are its memory of <strong>what it is doing right now</strong>.</em>
     </blockquote>
   </div>
 </section>
@@ -958,74 +959,74 @@ skills/
         across 52 documents and 20 interactions each.
       </p>
 
-    <table>
-      <thead>
+      <table>
+        <thead>
         <tr><th>Condition</th><th>Degradation after 20 interactions</th></tr>
-      </thead>
-      <tbody>
+        </thead>
+        <tbody>
         <tr><td>Top-tier frontier models</td><td style="color:#f78166;font-weight:600;">~25% of content corrupted</td></tr>
         <tr><td>Average across 19 models</td><td style="color:#f78166;font-weight:600;">~50% of content corrupted</td></tr>
         <tr><td>At 100 interactions</td><td style="color:#f78166;">No plateau — monotonic decline</td></tr>
         <tr><td>With agentic tool use</td><td style="color:#f78166;">+6% additional degradation</td></tr>
         <tr style="background:#12221a;"><td><strong>Python code (verifiable domain)</strong></td><td style="color:#3fb950;font-weight:600;">98%+ accuracy — the only domain that held</td></tr>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
 
-    <p style="margin-top: 24px;">
-      The corruption is <strong>silent</strong> — not gibberish, but small confident changes: a detail shifted,
-      a qualification dropped, an emphasis altered. Invisible on a quick scan. Compounding over time.
-    </p>
+      <p style="margin-top: 24px;">
+        The corruption is <strong>silent</strong> — not gibberish, but small confident changes: a detail shifted,
+        a qualification dropped, an emphasis altered. Invisible on a quick scan. Compounding over time.
+      </p>
 
-    <blockquote>
-      <em>"When you delegate document maintenance to an LLM, the theory dies twice.
-      First: you didn't build the understanding, because you delegated.
-      Second: the LLM silently corrupted the artifact itself."</em><br>
-      <span style="font-size:0.85em;color:var(--muted);">— Christian Ekrem, connecting the research to Peter Naur's 1985 theory of programming</span>
-    </blockquote>
+      <blockquote>
+        <em>"When you delegate document maintenance to an LLM, the theory dies twice.
+          First: you didn't build the understanding, because you delegated.
+          Second: the LLM silently corrupted the artifact itself."</em><br>
+        <span style="font-size:0.85em;color:var(--muted);">— Christian Ekrem, connecting the research to Peter Naur's 1985 theory of programming</span>
+      </blockquote>
 
-    <h3>DDD's structural answer</h3>
-    <table>
-      <thead>
+      <h3>DDD's structural answer</h3>
+      <table>
+        <thead>
         <tr><th>Risk (DELEGATE-52)</th><th>DDD architectural response</th></tr>
-      </thead>
-      <tbody>
+        </thead>
+        <tbody>
         <tr><td>LLMs corrupt documents when asked to update them</td><td>The AI only <strong>adds new files</strong> in <code>done/</code> — never modifies existing docs</td></tr>
         <tr><td>Errors compound over multiple interactions</td><td>Each context starts clean — <code>done/</code> is fully reset</td></tr>
         <tr><td>Agentic setups make corruption worse</td><td>Developer <strong>reviews and commits</strong> every change — no silent writes</td></tr>
         <tr><td>Short-term performance hides long-term decay</td><td>Git tracks every change — corruption is detectable and reversible</td></tr>
         <tr><td>You lose both document and mental model</td><td><code>skills/permanent-*</code> are human-written, never AI-modified</td></tr>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
 
-    <blockquote style="margin-top: 32px;">
-      <em>The documents are not the AI's to modify. They are the team's to maintain.<br>
-      The AI's job is to execute — and to report.</em>
-    </blockquote>
+      <blockquote style="margin-top: 32px;">
+        <em>The documents are not the AI's to modify. They are the team's to maintain.<br>
+          The AI's job is to execute — and to report.</em>
+      </blockquote>
 
-    <div class="card" style="margin-top: 40px; border-color: var(--accent2);">
-      <div class="icon">🧬</div>
-      <h4>Google DeepMind — "Intelligent Delegation in Multi-Agent Systems" (2026, arXiv)</h4>
-      <p>
-        Researchers at Google DeepMind (Tomašev, Franklin, Osindero) argue that as AI agents
-        begin delegating tasks to other agents and to humans, <strong>formal systems for authority,
-        accountability and verification are required</strong> to prevent systemic risk.
-      </p>
-      <p style="margin-top: 12px;">Their five requirements for safe AI delegation:</p>
-      <ul class="check-list yes" style="margin-top: 8px;">
-        <li><strong>Dynamic capability assessment</strong> — continuously evaluate what the agent can do</li>
-        <li><strong>Adaptive task reassignment</strong> — re-delegate if performance degrades</li>
-        <li><strong>Structural transparency</strong> — monitoring and audit trails, including intermediate steps</li>
-        <li><strong>Verifiable task completion</strong> — proof that obligations were met</li>
-        <li><strong>Privilege attenuation</strong> — pass only minimum permissions when sub-delegating</li>
-      </ul>
-      <p style="margin-top: 16px;">
-        DDD already implements all five — not with a new infrastructure, but with existing primitives:
-      </p>
-      <table style="margin-top: 12px;">
-        <thead>
+      <div class="card" style="margin-top: 40px; border-color: var(--accent2);">
+        <div class="icon">🧬</div>
+        <h4>Google DeepMind — "Intelligent Delegation in Multi-Agent Systems" (2026, arXiv)</h4>
+        <p>
+          Researchers at Google DeepMind (Tomašev, Franklin, Osindero) argue that as AI agents
+          begin delegating tasks to other agents and to humans, <strong>formal systems for authority,
+          accountability and verification are required</strong> to prevent systemic risk.
+        </p>
+        <p style="margin-top: 12px;">Their five requirements for safe AI delegation:</p>
+        <ul class="check-list yes" style="margin-top: 8px;">
+          <li><strong>Dynamic capability assessment</strong> — continuously evaluate what the agent can do</li>
+          <li><strong>Adaptive task reassignment</strong> — re-delegate if performance degrades</li>
+          <li><strong>Structural transparency</strong> — monitoring and audit trails, including intermediate steps</li>
+          <li><strong>Verifiable task completion</strong> — proof that obligations were met</li>
+          <li><strong>Privilege attenuation</strong> — pass only minimum permissions when sub-delegating</li>
+        </ul>
+        <p style="margin-top: 16px;">
+          DDD already implements all five — not with a new infrastructure, but with existing primitives:
+        </p>
+        <table style="margin-top: 12px;">
+          <thead>
           <tr><th>DeepMind requirement</th><th>DDD implementation</th></tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
           <tr><td>Authority definition</td><td><code>CONTRACT.md</code> — strict / standard / permissive profile</td></tr>
           <tr><td>Task assignment &amp; scope</td><td><code>dev-context.json</code> — title, description, todos, steps</td></tr>
           <tr><td>Process-level monitoring</td><td><code>tasks/specification/</code> → spec validated before execution</td></tr>
@@ -1034,29 +1035,29 @@ skills/
           <tr><td>Human-in-the-loop for high-risk tasks</td><td>Developer reviews and commits — no silent writes</td></tr>
           <tr><td>Privilege attenuation</td><td><code>CONTRACT.md</code> profile scopes agent permissions per project</td></tr>
           <tr><td>Verifiable task completion (machine-level)</td><td><strong>Vouch</strong> — obligation IDs, evidence, release gate</td></tr>
-        </tbody>
-      </table>
-      <blockquote style="margin-top: 16px;">
-        <em>"Without verifiable delegation protocols, large-scale multi-agent systems in high-stakes domains
-        could amplify failures and obscure responsibility."</em><br>
-        <span style="font-size:0.85em;color:var(--muted);">— DeepMind, arXiv 2026</span>
-      </blockquote>
-      <p style="margin-top: 12px; color: var(--muted); font-size: 14px;">
-        The paper is conceptual (no benchmarks yet). But its framing of delegation as a
-        <em>governance and risk-management challenge</em> — not a prompt-engineering problem —
-        maps precisely onto what DDD practitioners already know from practice.
-      </p>
-    </div>
+          </tbody>
+        </table>
+        <blockquote style="margin-top: 16px;">
+          <em>"Without verifiable delegation protocols, large-scale multi-agent systems in high-stakes domains
+            could amplify failures and obscure responsibility."</em><br>
+          <span style="font-size:0.85em;color:var(--muted);">— DeepMind, arXiv 2026</span>
+        </blockquote>
+        <p style="margin-top: 12px; color: var(--muted); font-size: 14px;">
+          The paper is conceptual (no benchmarks yet). But its framing of delegation as a
+          <em>governance and risk-management challenge</em> — not a prompt-engineering problem —
+          maps precisely onto what DDD practitioners already know from practice.
+        </p>
+      </div>
 
-    <div style="margin-top: 32px; padding: 20px 24px; background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent2); border-radius: 0 8px 8px 0;">
-      <p style="font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent2); font-weight: 700; margin-bottom: 10px;">Two labs. One conclusion.</p>
-      <p style="font-size: 1.05rem; font-style: italic;">
-        Microsoft Research proves that delegating document maintenance to AI corrupts the artifact.<br>
-        Google DeepMind proves that delegating tasks to AI without formal authority and accountability creates systemic risk.<br><br>
-        DDD's answer to both: <strong>humans write the context, humans assign the task, humans review the output, Git tracks everything.</strong>
-      </p>
+      <div style="margin-top: 32px; padding: 20px 24px; background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent2); border-radius: 0 8px 8px 0;">
+        <p style="font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent2); font-weight: 700; margin-bottom: 10px;">Two labs. One conclusion.</p>
+        <p style="font-size: 1.05rem; font-style: italic;">
+          Microsoft Research proves that delegating document maintenance to AI corrupts the artifact.<br>
+          Google DeepMind proves that delegating tasks to AI without formal authority and accountability creates systemic risk.<br><br>
+          DDD's answer to both: <strong>humans write the context, humans assign the task, humans review the output, Git tracks everything.</strong>
+        </p>
+      </div>
     </div>
-  </div>
 </section>
 
 <!-- ══════════════════════════════ GITAGENT PROTOCOL ══════════════════════════════ -->
@@ -1104,17 +1105,17 @@ skills/
       </p>
       <table style="margin-top:16px;">
         <thead>
-          <tr><th>Pattern</th><th>Who writes</th><th>Who reads</th><th>Problem?</th></tr>
+        <tr><th>Pattern</th><th>Who writes</th><th>Who reads</th><th>Problem?</th></tr>
         </thead>
         <tbody>
-          <tr><td>AI chat output as Markdown</td><td>Agent</td><td>Human (in chat)</td><td style="color:var(--accent3);">Yes — unstructured, unparseable, volatile</td></tr>
-          <tr style="background:#12221a;"><td>DDD context files (<code>.ai_context/</code>)</td><td>Human</td><td>Agent</td><td style="color:var(--accent2);">No — human-authored, structured, versioned</td></tr>
-          <tr><td>DDD <code>done/</code> reports</td><td>Agent</td><td>Human + Agent</td><td style="color:var(--accent);">Reviewed — human commits what matters</td></tr>
+        <tr><td>AI chat output as Markdown</td><td>Agent</td><td>Human (in chat)</td><td style="color:var(--accent3);">Yes — unstructured, unparseable, volatile</td></tr>
+        <tr style="background:#12221a;"><td>DDD context files (<code>.ai_context/</code>)</td><td>Human</td><td>Agent</td><td style="color:var(--accent2);">No — human-authored, structured, versioned</td></tr>
+        <tr><td>DDD <code>done/</code> reports</td><td>Agent</td><td>Human + Agent</td><td style="color:var(--accent);">Reviewed — human commits what matters</td></tr>
         </tbody>
       </table>
       <blockquote style="margin-top:16px;">
         <em>The problem is not Markdown. The problem is who writes it, and whether it is reviewed.<br>
-        DDD solves both: humans write the context, humans review the output.</em>
+          DDD solves both: humans write the context, humans review the output.</em>
       </blockquote>
     </div>
     <div class="card" style="margin-top: 16px; border-color: var(--accent2);">
@@ -1138,17 +1139,17 @@ skills/
                 → gate: block | escalate | auto_merge</pre>
       <table style="margin-top:16px;">
         <thead>
-          <tr><th>Layer</th><th>Tool</th><th>What it does</th></tr>
+        <tr><th>Layer</th><th>Tool</th><th>What it does</th></tr>
         </thead>
         <tbody>
-          <tr><td>Input harness</td><td><strong>DDD <code>.ai_context/</code></strong></td><td>Structures what the agent reads and how it works</td></tr>
-          <tr style="background:#12221a;"><td>Output gate</td><td><strong>Vouch</strong></td><td>Verifies what the agent produced, with obligation IDs</td></tr>
+        <tr><td>Input harness</td><td><strong>DDD <code>.ai_context/</code></strong></td><td>Structures what the agent reads and how it works</td></tr>
+        <tr style="background:#12221a;"><td>Output gate</td><td><strong>Vouch</strong></td><td>Verifies what the agent produced, with obligation IDs</td></tr>
         </tbody>
       </table>
       <blockquote style="margin-top:16px;">
         <em>DDD is the context contract — the input.<br>
-        Vouch is the release contract — the output gate.<br>
-        Together: a fully auditable, human-owned, machine-verifiable AI development pipeline.</em>
+          Vouch is the release contract — the output gate.<br>
+          Together: a fully auditable, human-owned, machine-verifiable AI development pipeline.</em>
       </blockquote>
     </div>
   </div>
@@ -1203,13 +1204,13 @@ skills/
     </p>
     <table>
       <thead>
-        <tr><th>Event</th><th>DDD Response</th></tr>
+      <tr><th>Event</th><th>DDD Response</th></tr>
       </thead>
       <tbody>
-        <tr><td>New framework version</td><td>Update <code>migration-xxx.md</code>, execute, update <code>MIGRATION_DONE.md</code></td></tr>
-        <tr><td>Convention changed</td><td>Update <code>best-practices.md</code>, commit</td></tr>
-        <tr><td>New architectural constraint</td><td>Add entry in <code>docs/</code>, reference it in <code>best-practices.md</code></td></tr>
-        <tr><td>AI produced something wrong</td><td>Correct the <code>.md</code>, re-run — the error won't happen again</td></tr>
+      <tr><td>New framework version</td><td>Update <code>migration-xxx.md</code>, execute, update <code>MIGRATION_DONE.md</code></td></tr>
+      <tr><td>Convention changed</td><td>Update <code>best-practices.md</code>, commit</td></tr>
+      <tr><td>New architectural constraint</td><td>Add entry in <code>docs/</code>, reference it in <code>best-practices.md</code></td></tr>
+      <tr><td>AI produced something wrong</td><td>Correct the <code>.md</code>, re-run — the error won't happen again</td></tr>
       </tbody>
     </table>
     <blockquote>Every session improves the next one.</blockquote>
@@ -1300,13 +1301,13 @@ skills/
       <p>We propose the concept of a <strong style="color: #c084fc;">Living Knowledge License</strong>:</p>
       <table style="margin: 20px 0;">
         <thead>
-          <tr><th>Traditional license assumes…</th><th>Living Knowledge License assumes…</th></tr>
+        <tr><th>Traditional license assumes…</th><th>Living Knowledge License assumes…</th></tr>
         </thead>
         <tbody>
-          <tr><td>The value is in the artifact</td><td>The value is in the accumulated context</td></tr>
-          <tr><td>A copy is equivalent to the original</td><td>A fork diverges and must be maintained separately</td></tr>
-          <tr><td>Authorship is a moment in time</td><td>Authorship is a continuous, multi-agent contribution</td></tr>
-          <tr><td>The license governs distribution</td><td>The license governs contribution, attribution, and evolution</td></tr>
+        <tr><td>The value is in the artifact</td><td>The value is in the accumulated context</td></tr>
+        <tr><td>A copy is equivalent to the original</td><td>A fork diverges and must be maintained separately</td></tr>
+        <tr><td>Authorship is a moment in time</td><td>Authorship is a continuous, multi-agent contribution</td></tr>
+        <tr><td>The license governs distribution</td><td>The license governs contribution, attribution, and evolution</td></tr>
         </tbody>
       </table>
       <p>
@@ -1477,32 +1478,32 @@ Git — versioned snapshot of code AND context</pre>
     <!-- Comparison table -->
     <table>
       <thead>
-        <tr>
-          <th>Approach</th>
-          <th>Context delivery</th>
-          <th>Session persistence</th>
-          <th>Vendor lock-in</th>
-        </tr>
+      <tr>
+        <th>Approach</th>
+        <th>Context delivery</th>
+        <th>Session persistence</th>
+        <th>Vendor lock-in</th>
+      </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Copy-paste to chat</td>
-          <td>Manual, per session</td>
-          <td>None</td>
-          <td style="color: #f78166;">High</td>
-        </tr>
-        <tr>
-          <td>MCP server</td>
-          <td>Automated, external</td>
-          <td>Partial</td>
-          <td style="color: #e3b341;">Medium</td>
-        </tr>
-        <tr style="background: #12221a;">
-          <td><strong>DDD + IDE plugin</strong></td>
-          <td><strong style="color: #3fb950;">Automated, local</strong></td>
-          <td><strong style="color: #3fb950;">Full (committed)</strong></td>
-          <td><strong style="color: #3fb950;">None</strong></td>
-        </tr>
+      <tr>
+        <td>Copy-paste to chat</td>
+        <td>Manual, per session</td>
+        <td>None</td>
+        <td style="color: #f78166;">High</td>
+      </tr>
+      <tr>
+        <td>MCP server</td>
+        <td>Automated, external</td>
+        <td>Partial</td>
+        <td style="color: #e3b341;">Medium</td>
+      </tr>
+      <tr style="background: #12221a;">
+        <td><strong>DDD + IDE plugin</strong></td>
+        <td><strong style="color: #3fb950;">Automated, local</strong></td>
+        <td><strong style="color: #3fb950;">Full (committed)</strong></td>
+        <td><strong style="color: #3fb950;">None</strong></td>
+      </tr>
       </tbody>
     </table>
 
@@ -1532,12 +1533,12 @@ Git — versioned snapshot of code AND context</pre>
       </p>
       <table style="margin: 0;">
         <thead>
-          <tr><th>Principle</th><th>Rationale</th></tr>
+        <tr><th>Principle</th><th>Rationale</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>Extract, don't dump</strong></td><td>A raw transcript is noise. Only what deserves to be permanent is proposed.</td></tr>
-          <tr><td><strong>Propose, don't auto-commit</strong></td><td>The human validates what enters the <code>.md</code>. No silent writes.</td></tr>
-          <tr><td><strong><code>.md</code> first, not vector memory</strong></td><td>The output is editable Markdown — versionable, auditable, agent-readable.</td></tr>
+        <tr><td><strong>Extract, don't dump</strong></td><td>A raw transcript is noise. Only what deserves to be permanent is proposed.</td></tr>
+        <tr><td><strong>Propose, don't auto-commit</strong></td><td>The human validates what enters the <code>.md</code>. No silent writes.</td></tr>
+        <tr><td><strong><code>.md</code> first, not vector memory</strong></td><td>The output is editable Markdown — versionable, auditable, agent-readable.</td></tr>
         </tbody>
       </table>
       <blockquote style="margin-top: 20px; margin-bottom: 0; border-left-color: #a855f7;">
@@ -1589,7 +1590,7 @@ Git — versioned snapshot of code AND context</pre>
       <p style="margin-top: 12px;">Their core diagnosis is our thesis, word for word:</p>
       <blockquote style="margin: 12px 0;">
         <em>"AI memory is a global variable anti-pattern. Your agent's memory is code without version control.
-        One bad session poisons every future retrieval."</em>
+          One bad session poisons every future retrieval."</em>
       </blockquote>
       <p>
         The fact that Memoir had to build "Git for AI memory" to solve memory drift
@@ -1599,14 +1600,14 @@ Git — versioned snapshot of code AND context</pre>
       </p>
       <table style="margin-top: 16px;">
         <thead>
-          <tr><th>Dimension</th><th>Memoir</th><th>DDD</th></tr>
+        <tr><th>Dimension</th><th>Memoir</th><th>DDD</th></tr>
         </thead>
         <tbody>
-          <tr><td>Versioning</td><td>Cryptographic, semantic paths</td><td style="color:var(--accent2);">Plain Git</td></tr>
-          <tr><td>Authorship</td><td>Agent-written, auto-aggregated</td><td style="color:var(--accent2);"><strong>Human-written, human-reviewed</strong></td></tr>
-          <tr><td>Portability</td><td>memoir-ai.dev infrastructure</td><td style="color:var(--accent2);">Zero — any Git repo</td></tr>
-          <tr><td>Agent compatibility</td><td>memoir-compatible agents only</td><td style="color:var(--accent2);">Any agent that can read a file</td></tr>
-          <tr><td>Corruption risk</td><td>Mitigated by rollback</td><td style="color:var(--accent2);">Prevented by human review gate</td></tr>
+        <tr><td>Versioning</td><td>Cryptographic, semantic paths</td><td style="color:var(--accent2);">Plain Git</td></tr>
+        <tr><td>Authorship</td><td>Agent-written, auto-aggregated</td><td style="color:var(--accent2);"><strong>Human-written, human-reviewed</strong></td></tr>
+        <tr><td>Portability</td><td>memoir-ai.dev infrastructure</td><td style="color:var(--accent2);">Zero — any Git repo</td></tr>
+        <tr><td>Agent compatibility</td><td>memoir-compatible agents only</td><td style="color:var(--accent2);">Any agent that can read a file</td></tr>
+        <tr><td>Corruption risk</td><td>Mitigated by rollback</td><td style="color:var(--accent2);">Prevented by human review gate</td></tr>
         </tbody>
       </table>
     </div>
@@ -1634,21 +1635,21 @@ Git — versioned snapshot of code AND context</pre>
 
     <table style="margin-top: 36px;">
       <thead>
-        <tr>
-          <th>Dimension</th>
-          <th>DDD (<code>.ai_context/</code>)</th>
-          <th>Memoir (versioned memory)</th>
-          <th>Memory tools (Mem0, Zep…)</th>
-        </tr>
+      <tr>
+        <th>Dimension</th>
+        <th>DDD (<code>.ai_context/</code>)</th>
+        <th>Memoir (versioned memory)</th>
+        <th>Memory tools (Mem0, Zep…)</th>
+      </tr>
       </thead>
       <tbody>
-        <tr><td>What is stored</td><td>Structured rules, specs, decisions</td><td>Semantic agent memory (versioned)</td><td>Implicit facts, conversation history</td></tr>
-        <tr><td>Who writes it</td><td style="color:#3fb950;">Humans — deliberately</td><td style="color:#e3b341;">Agent — auto-aggregated</td><td style="color:#f78166;">Agent — automatically</td></tr>
-        <tr><td>Versionable</td><td style="color:#3fb950;">✅ Plain Git</td><td style="color:#3fb950;">✅ Cryptographic</td><td style="color:#f78166;">❌ Opaque vector store</td></tr>
-        <tr><td>Human-readable</td><td style="color:#3fb950;">✅ Plain Markdown</td><td style="color:#e3b341;">⚠️ Semantic paths</td><td style="color:#f78166;">❌ Embeddings</td></tr>
-        <tr><td>Works with GitHub Copilot</td><td style="color:#3fb950;">✅ Yes</td><td style="color:#f78166;">❌ memoir-compatible only</td><td style="color:#f78166;">❌ Closed environment</td></tr>
-        <tr><td>Infrastructure cost</td><td style="color:#3fb950;">Zero</td><td style="color:#e3b341;">memoir-ai.dev service</td><td style="color:#e3b341;">Vector DB + embeddings, always-on</td></tr>
-        <tr><td>Corruption prevention</td><td style="color:#3fb950;">Human review + Git commit</td><td style="color:#e3b341;">Rollback after the fact</td><td style="color:#f78166;">None</td></tr>
+      <tr><td>What is stored</td><td>Structured rules, specs, decisions</td><td>Semantic agent memory (versioned)</td><td>Implicit facts, conversation history</td></tr>
+      <tr><td>Who writes it</td><td style="color:#3fb950;">Humans — deliberately</td><td style="color:#e3b341;">Agent — auto-aggregated</td><td style="color:#f78166;">Agent — automatically</td></tr>
+      <tr><td>Versionable</td><td style="color:#3fb950;">✅ Plain Git</td><td style="color:#3fb950;">✅ Cryptographic</td><td style="color:#f78166;">❌ Opaque vector store</td></tr>
+      <tr><td>Human-readable</td><td style="color:#3fb950;">✅ Plain Markdown</td><td style="color:#e3b341;">⚠️ Semantic paths</td><td style="color:#f78166;">❌ Embeddings</td></tr>
+      <tr><td>Works with GitHub Copilot</td><td style="color:#3fb950;">✅ Yes</td><td style="color:#f78166;">❌ memoir-compatible only</td><td style="color:#f78166;">❌ Closed environment</td></tr>
+      <tr><td>Infrastructure cost</td><td style="color:#3fb950;">Zero</td><td style="color:#e3b341;">memoir-ai.dev service</td><td style="color:#e3b341;">Vector DB + embeddings, always-on</td></tr>
+      <tr><td>Corruption prevention</td><td style="color:#3fb950;">Human review + Git commit</td><td style="color:#e3b341;">Rollback after the fact</td><td style="color:#f78166;">None</td></tr>
       </tbody>
     </table>
   </div>
@@ -2000,14 +2001,14 @@ Git — versioned snapshot of code AND context</pre>
 
     // Show FAB only when TOC section has scrolled out of view
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          fab.classList.remove('visible');
-        } else {
-          fab.classList.add('visible');
-        }
-      },
-      { threshold: 0 }
+            ([entry]) => {
+              if (entry.isIntersecting) {
+                fab.classList.remove('visible');
+              } else {
+                fab.classList.add('visible');
+              }
+            },
+            { threshold: 0 }
     );
     observer.observe(tocSection);
 
