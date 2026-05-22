@@ -1,10 +1,11 @@
 <div align="center">
 
-# Documentation-Driven Development (DDD) for AI
+# Documentation-Driven Development (DDD) for agentic AI
 
 <img src="d-ai.jpg" alt="Documentation-Driven Development" width="260" style="border-radius: 50%; overflow: hidden;" />
 
 ### A Manifesto for Human–AI Collaborative Software Engineering
+## [documentationfirst.ai](documentationfirst.ai)
 
 [![Version](https://img.shields.io/badge/version-1.0-3fb950?style=flat-square)](https://documentationfirst.ai)
 [![License](https://img.shields.io/badge/license-CC%20BY%204.0-a855f7?style=flat-square)](https://creativecommons.org/licenses/by/4.0/)
