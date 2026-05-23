@@ -880,6 +880,15 @@ Certification is currently in its **founding program** — early adopters get a 
 
 ---
 
+## 📖 Learn More
+
+- 🌐 [documentationfirst.ai](https://documentationfirst.ai)
+- 📖 [DDD Manifesto](https://github.com/documentationfirst/manifesto)
+- 🔌 [IntelliJ Plugin](https://github.com/documentationfirst/plugin-intellij)
+- 🔵 [VSCode Plugin](https://github.com/documentationfirst/plugin-vscode)
+
+---
+
 ## Contribute
 
 This manifesto is open and versionable. Fork it, adapt it, improve it.
