@@ -14,8 +14,8 @@ I kept coming back to the most neglected part of our craft: **documentation and 
 
 I wanted to frame this as a proper methodology, and build the tooling to go with it. Here it is, along with two plugins to make it zero-friction in your IDE:
 
-🔵 **DocumentFirst for VSCode** → [github.com/documentationfirst/plugin-vscode](https://github.com/documentationfirst/plugin-vscode)
-🔌 **DocumentFirst for JetBrains** → [github.com/documentationfirst/plugin-intellij](https://github.com/documentationfirst/plugin-intellij)
+🔵 **Extension VSCode** → [documentationfirst](https://marketplace.visualstudio.com/items?itemName=DocumentationFirst.ddd-documentation-first)
+🔌 **PlugIn Intellij** → [documentationfirst](https://plugins.jetbrains.com/plugin/31829-documentation-first--ddd2)
 
 I call this approach **Documentation-Driven Development v2 (DDD2)**.
 
