@@ -4,7 +4,7 @@
 
 <img src="d-ai.jpg" alt="Documentation-Driven Development" width="260" style="border-radius: 50%; overflow: hidden;" />
 
-### A Manifesto for Human–AI Collaborative Software Engineering
+### A Manifesto for Human–AI Collaborative Software Engineering As A SDD Overlayer.
 ## [documentationfirst.ai](https://documentationfirst.ai)
 
 [![Version](https://img.shields.io/badge/version-1.0-3fb950?style=flat-square)](https://documentationfirst.ai)
@@ -966,7 +966,7 @@ The only rule: **the documentation drives the development, not the other way aro
 
 ---
 
-*Documentation-Driven Development — v1.0 — April 2026*
+*Documentation-Driven Development — v1.1 — June 2026*
 *Published under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)*
 *Website: [documentationfirst.ai](https://documentationfirst.ai)*
 *GitHub: [github.com/documentationfirst/manifesto](https://github.com/documentationfirst/manifesto)*
