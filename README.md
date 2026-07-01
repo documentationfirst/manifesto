@@ -40,6 +40,7 @@
 - [The IDE-First Ecosystem](#the-ide-first-ecosystem)
 - [DDD & MCP — Advanced Integration](#ddd--mcp--advanced-integration)
 - [DDD & Contextual Memory Tools](#ddd--contextual-memory-tools)
+- [DDD & Spec-Driven Development](#ddd--spec-driven-development-sdd)
 - [DDD Tooling Roadmap](#ddd-tooling-roadmap)
 - [What's Next](#whats-next)
 - [Getting Started](#getting-started)
@@ -687,6 +688,73 @@ Implicit memory is a shortcut that creates **context debt** — exactly the prob
 Memory tools may add marginal value in **highly personal, conversational, multi-session** workflows — but for team-scoped, project-scoped, or agent-scoped context, DDD is strictly superior.
 
 > *What you want the team to remember → DDD. What the agent learns about you personally → memory tools, if you accept the trade-offs. When in doubt: write a `.md`.*
+
+---
+
+## DDD & Spec-Driven Development (SDD)
+
+A powerful approach has emerged in AI-native engineering: **Spec-Driven Development (SDD)** — where the specification becomes the source artifact, and code becomes a *projection* the agent generates from it. Instead of editing code first, you edit the spec, then let the agent "compile" it into implementation.
+
+The reference tooling:
+
+| Tool | Form | What it produces |
+|---|---|---|
+| **spec-kit** (GitHub) | CLI + agent slash-commands (`/specify`, `/plan`, `/tasks`, `/implement`) | `.md` specs in `specs/` |
+| **Kiro** (AWS) | CLI + agent | `requirements.md` → `design.md` → `tasks.md` in `.kiro/specs/` |
+| **Tessl** | CLI + spec registry | `.spec.md` files as the primary source |
+
+### The key realization: they all produce Markdown
+
+spec-kit, Kiro, and Tessl are excellent **spec-generation engines**. And what they generate is exactly the raw material of DDD: structured `.md` files describing intent, requirements, and technical plans.
+
+> *SDD is the spec-generation engine. DDD is the system that hosts, versions, and compounds those specs across the entire project lifecycle.*
+
+This makes them **complementary, not competing** — and better still, **ingestible**. The output of spec-kit or Kiro drops straight into your `.ai_context/`:
+
+```
+spec-kit / Kiro / Tessl
+   ↓  generate specs
+requirements.md  →  tasks/specification/   (PO layer)
+design.md        →  tasks/technical/        (dev layer)
+tasks.md         →  steps/                   (roadmap)
+```
+
+### Where SDD stops, DDD continues
+
+SDD is **feature-scoped and ephemeral**: one spec generates code, then the spec is regenerated or discarded. DDD is **project-scoped and permanent**: the documentation is durable infrastructure — the memory, the contract, and the Knowledge Capital of the whole team.
+
+| Dimension | SDD (spec-kit / Kiro / Tessl) | DDD |
+|---|---|---|
+| Scope | Per feature | Whole project lifecycle |
+| Spec lifespan | Ephemeral — regenerate & discard | Permanent infrastructure |
+| Role | **Produces** `.md` specs | **Hosts & versions** those `.md` specs |
+| Permanent project identity | ❌ | ✅ `CONTEXT.md` |
+| Agent behavioral contract | ❌ | ✅ `CONTRACT.md` (strict / standard / permissive) |
+| Reusable agent knowledge | ❌ | ✅ `skills/permanent-*` |
+| Execution memory | ❌ | ✅ `tasks/done/` + `dev-context.json` (`lastSession`) |
+| Knowledge Capital | ❌ | ✅ compounding intellectual asset |
+| Works with closed agents (Copilot) | ⚠️ Partial | ✅ Yes |
+
+### The takeaway
+
+You don't have to choose. Use SDD tooling to **turn intent into specs faster** — then let DDD **keep those specs alive** as versioned, auditable, permanent context.
+
+> *SDD asks: "how do I turn intent into a spec?"*
+> *DDD answers: "and where that spec lives, versions, and compounds — for the whole project, forever."*
+
+### Beyond code specs: design as portable context
+
+The same principle now reaches **design**. A new convention — `DESIGN.md` / `design.md` — captures a project's **visual identity** (colours, typography, spacing, tone) as a portable, agent-readable Markdown spec. Instead of living in a design tool an agent can't read, the identity becomes versioned context — exactly what DDD stores under `skills/permanent-*`.
+
+| Design context resource | What it is |
+|---|---|
+| [google-labs-code/design.md](https://github.com/google-labs-code/design.md) | A format specification for describing a visual identity to coding agents |
+| [Atlassian's DESIGN.md — in practice](https://www.atlassian.com/blog/atlassian-engineering) | Field report: "what we learned testing portable design context in practice" |
+| [designmd.co](https://www.designmd.co/) | The home of the `DESIGN.md` convention |
+
+> *Whether it's a feature spec, a technical plan, or a design identity — if it's in a `.md`, DDD keeps it alive.*
+
+**Learn more:** [Martin Fowler — Spec-Driven Development tools](https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html) · [Microsoft — Spec-Driven Development: AI-native engineering](https://developer.microsoft.com/blog/spec-driven-development-ai-native-engineering)
 
 ---
 

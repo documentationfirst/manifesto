@@ -766,6 +766,16 @@ AI   →  reads, executes, writes done/*.md</div>
     The conversation is the raw material. The plugin reads it, structures it, and proposes a versioned document. The developer reviews and commits. The knowledge is captured — not lost in a chat log.
   </div>
 
+  <h2 class="art">DDD ⊃ SDD</h2>
+  <p class="body">Spec-Driven Development (spec-kit, Kiro, Tessl) turns <em>intent</em> into specs — an excellent generation engine. But those tools are feature-scoped and their specs are ephemeral. They all emit Markdown.</p>
+
+  <p class="body">DDD is the <strong>superset</strong>: it hosts, versions and compounds those specs across the whole project lifecycle. Drop <code>requirements.md</code> straight into <code>specification/</code>, <code>design.md</code> into <code>technical/</code> — then add what SDD lacks: the contract, the execution memory, the Knowledge Capital.</p>
+
+  <div class="callout" style="margin-top:2mm;border-color:#c0390b;">
+    <strong>SDD asks, DDD answers</strong>
+    SDD: <em>"how do I turn intent into a spec?"</em> — DDD: <em>"and where that spec lives, versions and compounds — for the whole project, forever."</em>
+  </div>
+
   <h2 class="art">DDD + MCP</h2>
   <p class="body">The Model Context Protocol (MCP) by Anthropic formalises what DDD does informally: structured context injection for AI agents. DDD is a human workflow built on the same principle — and a natural fit for MCP-compatible tooling.</p>
 
@@ -777,6 +787,7 @@ AI   →  reads, executes, writes done/*.md</div>
   <div class="tag-strip">
     <span class="tag">#DDD</span>
     <span class="tag">#ContextEngineering</span>
+    <span class="tag">#SDD</span>
     <span class="tag">#MCP</span>
     <span class="tag">#IDEPlugin</span>
     <span class="tag">#KnowledgeCapital</span>

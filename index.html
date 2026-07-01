@@ -1847,7 +1847,7 @@ Git — versioned snapshot of code AND context</pre>
     <p style="max-width: 700px; margin-bottom: 40px;">
       DDD does not exist in a vacuum. Below are projects, articles, and references that share its
       concerns — context persistence, agent harnessing, memory architecture, and dev tooling.
-      Organised by the three axes that matter: <strong>Harness</strong>, <strong>Memory</strong>, <strong>Dev Environment</strong>.
+      Organised by the axes that matter: <strong>Harness</strong>, <strong>Spec-Driven Development</strong>, <strong>Memory</strong>, and <strong>Dev Environment</strong>.
     </p>
 
     <!-- ── HARNESS ── -->
@@ -1888,6 +1888,65 @@ Git — versioned snapshot of code AND context</pre>
         <div class="icon">🏗️</div>
         <h4><a href="https://openai.com/fr-FR/index/harness-engineering/" target="_blank" style="color:var(--accent3);text-decoration:none;">Harness Engineering — OpenAI / Codex</a></h4>
         <p>A 5-month experiment shipping a real product with zero manually written code. 3 engineers, ~1 500 PRs, ~1M lines — all by Codex. The key lesson: <strong>replace one big <code>AGENTS.md</code> with a structured <code>docs/</code> tree as a table of contents</strong>.</p>
+      </div>
+
+    </div>
+
+    <!-- ── SPEC-DRIVEN DEVELOPMENT ── -->
+    <h3 style="font-size:1rem;font-weight:700;color:var(--accent3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;">📐 Spec-Driven Development (SDD)</h3>
+    <p style="max-width:700px;margin-bottom:16px;color:var(--muted);">
+      SDD tools are excellent <strong>spec-generation engines</strong> — and what they produce is Markdown.
+      That output drops straight into DDD's <code>tasks/specification/</code> and <code>tasks/technical/</code>.
+      <strong>DDD engulfs SDD</strong>: they generate specs, DDD hosts, versions, and compounds them for the whole project lifecycle.
+    </p>
+    <div class="card-grid" style="margin-bottom:40px;">
+
+      <div class="card" style="border-color:var(--accent3);">
+        <div class="icon">🧭</div>
+        <h4><a href="https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html" target="_blank" style="color:var(--accent3);text-decoration:none;">Spec-Driven Development — Martin Fowler</a></h4>
+        <p>Birgitta Böckeler's field guide to the three SDD tools (Kiro, spec-kit, Tessl). Frames the shift: the spec becomes the source artifact, code becomes a projection the agent regenerates. DDD is the permanent home for those specs.</p>
+      </div>
+
+      <div class="card" style="border-color:var(--accent3);">
+        <div class="icon">🏗️</div>
+        <h4><a href="https://developer.microsoft.com/blog/spec-driven-development-ai-native-engineering" target="_blank" style="color:var(--accent3);text-decoration:none;">SDD: AI-Native Engineering — Microsoft</a></h4>
+        <p>Microsoft's formalisation of the SDD pipeline: <em>intent → specification → plan → tasks → implementation</em>, with the spec as executable source of truth. DDD extends this from a single feature to the entire project lifecycle.</p>
+      </div>
+
+      <div class="card" style="border-color:var(--accent3);">
+        <div class="icon">📋</div>
+        <h4><a href="https://github.com/github/spec-kit" target="_blank" style="color:var(--accent3);text-decoration:none;">spec-kit — GitHub</a></h4>
+        <p>A CLI that installs <code>/specify</code>, <code>/plan</code>, <code>/tasks</code>, <code>/implement</code> slash-commands into your agent and writes <code>.md</code> specs. A perfect front-end to feed a DDD <code>.ai_context/</code>.</p>
+      </div>
+
+      <div class="card" style="border-color:var(--accent3);">
+        <div class="icon">🌀</div>
+        <h4><a href="https://kiro.dev" target="_blank" style="color:var(--accent3);text-decoration:none;">Kiro — AWS</a></h4>
+        <p>A CLI + agent that generates <code>requirements.md → design.md → tasks.md</code> in <code>.kiro/specs/</code>. The three-file pipeline maps almost one-to-one onto DDD's specification, technical, and steps layers.</p>
+      </div>
+
+      <div class="card" style="border-color:var(--accent3);">
+        <div class="icon">🧩</div>
+        <h4><a href="https://tessl.io" target="_blank" style="color:var(--accent3);text-decoration:none;">Tessl</a></h4>
+        <p>Goes spec-centric: the <code>.spec.md</code> file <em>is</em> the source, the generated code is disposable. The purest expression of SDD — and a natural upstream producer of the specs DDD keeps alive and versioned.</p>
+      </div>
+
+      <div class="card" style="border-color:var(--accent3);">
+        <div class="icon">🎨</div>
+        <h4><a href="https://github.com/google-labs-code/design.md" target="_blank" style="color:var(--accent3);text-decoration:none;">design.md — Google Labs</a></h4>
+        <p>A format specification for describing a <strong>visual identity</strong> to coding agents: colours, typography, spacing, tone. Design becomes a portable <code>.md</code> spec — exactly the kind of permanent context DDD stores under <code>skills/permanent-*</code>.</p>
+      </div>
+
+      <div class="card" style="border-color:var(--accent3);">
+        <div class="icon">🧪</div>
+        <h4><a href="https://www.atlassian.com/blog/how-we-build/atlassians-design-md-is-here-what-we-learned-testing-portable-design-context-in-practice" target="_blank" style="color:var(--accent3);text-decoration:none;">Atlassian's DESIGN.md — In Practice</a></h4>
+        <p>"What we learned testing portable design context in practice." Atlassian's field report on carrying design context across agents and tools as a single <code>DESIGN.md</code> — validating DDD's thesis that context belongs in versioned Markdown, not in tool-locked state.</p>
+      </div>
+
+      <div class="card" style="border-color:var(--accent3);">
+        <div class="icon">🌐</div>
+        <h4><a href="https://www.designmd.co/" target="_blank" style="color:var(--accent3);text-decoration:none;">designmd.co</a></h4>
+        <p>The home of the <code>DESIGN.md</code> convention — a portable, agent-readable format for design context. A dedicated instance of the DDD principle applied to visual identity: if it's not in the <code>.md</code>, the agent can't see it.</p>
       </div>
 
     </div>
